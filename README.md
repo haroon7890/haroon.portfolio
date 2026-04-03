@@ -12,9 +12,6 @@ This is a premium developer portfolio built with [Next.js](https://nextjs.org), 
 
 ## Getting Started
 
-
-## Getting Started
-
 First, install dependencies:
 
 ```bash
@@ -33,10 +30,9 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+For local development, open [http://localhost:3000](http://localhost:3000) in your browser.
 
-
-Open [http://localhost:3000](http://localhost:3000) to view your portfolio.
+When deployed (e.g. on Vercel), you’ll use your live deployment URL instead of localhost.
 
 You can customize content in `src/app/page.tsx` and styles in `src/app/globals.css`.
 
