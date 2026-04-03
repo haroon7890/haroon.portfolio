@@ -5,7 +5,7 @@ import TiltEffects from "./TiltEffects";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const seoDescription =
-  "Portfolio of Haroon Imran, a Full-Stack Developer and AI Integrator from Lahore. Explore projects, skills, and contact details.";
+  "Full-Stack Developer & AI Integrator. Case studies, skills, and a direct contact form.";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,8 +20,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Haroon Imran | Full-Stack Developer & AI Integrator",
-    template: "%s | Haroon Imran",
+    default: "Haroon Imran — Portfolio",
+    template: "%s — Haroon Imran",
   },
   description: seoDescription,
   applicationName: "Haroon Imran Portfolio",
@@ -45,26 +45,17 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Haroon Imran | Full-Stack Developer & AI Integrator",
+    title: "Haroon Imran — Portfolio",
     description: seoDescription,
-    url: siteUrl,
-    siteName: "Haroon Imran Portfolio",
-    images: [
-      {
-        url: "/image/haroon.jpg.JPG",
-        width: 1200,
-        height: 630,
-        alt: "Haroon Imran professional photo"
-      }
-    ],
+    url: "/",
+    siteName: "Haroon Imran",
     locale: "en_US",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Haroon Imran | Full-Stack Developer & AI Integrator",
+    title: "Haroon Imran — Portfolio",
     description: seoDescription,
-    images: ["/image/haroon.jpg.JPG"]
   },
   robots: {
     index: true,
@@ -90,6 +81,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
   themeColor: "#101624",
   colorScheme: "dark",
 };

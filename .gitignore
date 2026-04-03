@@ -43,3 +43,5 @@ fgod jopu gqmi zodg.txt
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

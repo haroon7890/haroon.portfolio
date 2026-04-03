@@ -130,14 +130,42 @@ const structuredData = {
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-[#101624cc] backdrop-blur border-b border-[#63d2b420] px-6 md:px-10 py-3">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
-        <div className="font-mono text-[#63d2b4] text-sm md:text-base font-bold tracking-wide">{"// haroon.dev"}</div>
-        <div className="flex items-center gap-4 md:gap-6 text-xs md:text-sm font-mono text-zinc-200">
-          <a href="#about" className="hover:text-[#63d2b4] transition">About</a>
-          <a href="#case-studies" className="hover:text-[#63d2b4] transition">Case Studies</a>
-          <a href="#contact" className="hover:text-[#63d2b4] transition">Contact</a>
-          <Link href="/projects" className="hover:text-[#63d2b4] transition">Projects</Link>
+    <nav className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-10 py-3">
+      <div className="glass max-w-6xl mx-auto rounded-full border border-[#63d2b420] shadow-lg shadow-black/25">
+        <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-2.5">
+          <div className="font-mono text-[#63d2b4] text-sm md:text-base font-bold tracking-wide select-none">
+            {"// haroon.dev"}
+          </div>
+          <div className="flex items-center gap-1 sm:gap-2 text-xs md:text-sm font-mono text-zinc-200">
+            <a
+              href="#about"
+              className="btn-anim rounded-full px-3 py-2 hover:bg-[#63d2b420] hover:text-white"
+              data-analytics="nav_about_click"
+            >
+              About
+            </a>
+            <a
+              href="#case-studies"
+              className="btn-anim rounded-full px-3 py-2 hover:bg-[#63d2b420] hover:text-white"
+              data-analytics="nav_case_studies_click"
+            >
+              Case Studies
+            </a>
+            <a
+              href="#contact"
+              className="btn-anim rounded-full px-3 py-2 hover:bg-[#63d2b420] hover:text-white"
+              data-analytics="nav_contact_click"
+            >
+              Contact
+            </a>
+            <Link
+              href="/projects"
+              className="btn-anim rounded-full px-3 py-2 border border-[#63d2b440] bg-[#63d2b420] text-[#63d2b4] hover:bg-[#63d2b430]"
+              data-analytics="nav_projects_click"
+            >
+              Projects
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
@@ -354,7 +382,7 @@ export default async function Home({
                   </div>
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="text-[#63d2b4] underline text-sm mt-auto"
+                    className="btn-anim mt-auto inline-flex w-fit items-center justify-center rounded-full border border-[#63d2b440] bg-[#10162466] px-4 py-2 text-sm font-semibold text-[#63d2b4] hover:bg-[#63d2b420]"
                     data-analytics="project_case_study_open"
                     data-analytics-label={project.slug}
                   >

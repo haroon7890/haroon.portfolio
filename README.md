@@ -6,7 +6,7 @@ This is a premium developer portfolio built with [Next.js](https://nextjs.org), 
 - Glassmorphism and gradient UI
 - Smooth animations and responsive design
 - Modern sections: Hero, Projects (C++ work), Skills, Contact
-- Interactive AI chatbot popup (ready for OpenAI integration)
+- Interactive portfolio assistant popup (free, knowledge-base powered)
 - Mobile-first, accessible, and SEO-friendly
 
 

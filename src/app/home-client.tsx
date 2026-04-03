@@ -79,6 +79,46 @@ export function AssistantWidget() {
     },
   ]);
 
+  useEffect(() => {
+    // Progressive enhancement: keep React state in sync with the URL hash.
+    // This also enables a no-JS fallback via CSS :target.
+    const syncFromHash = () => {
+      const shouldBeOpen = typeof window !== "undefined" && window.location.hash === "#assistant-modal";
+      setOpen(shouldBeOpen);
+    };
+
+    syncFromHash();
+    window.addEventListener("hashchange", syncFromHash);
+    return () => window.removeEventListener("hashchange", syncFromHash);
+  }, []);
+
+  const openAssistant = () => {
+    try {
+      if (typeof window !== "undefined") {
+        window.location.hash = "assistant-modal";
+      }
+    } catch {
+      // ignore
+    }
+    setOpen(true);
+    trackEvent("assistant_open");
+  };
+
+  const closeAssistant = () => {
+    try {
+      if (typeof window !== "undefined") {
+        // Remove hash without scrolling.
+        const url = new URL(window.location.href);
+        url.hash = "";
+        window.history.replaceState(null, "", url.toString());
+      }
+    } catch {
+      // ignore
+    }
+    setOpen(false);
+    trackEvent("assistant_close");
+  };
+
   async function handleAsk(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -144,31 +184,52 @@ export function AssistantWidget() {
 
   return (
     <>
-      <div className="fixed bottom-6 right-6 z-50">
-        <button
+      <div className="fixed bottom-6 right-6 z-[60] pointer-events-auto">
+        <a
+          href="#assistant-modal"
+          role="button"
           className="glass btn-anim px-5 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold text-[#63d2b4] hover:bg-[#63d2b420]"
-          onClick={() => {
-            setOpen(true);
-            trackEvent("assistant_open");
+          aria-haspopup="dialog"
+          aria-expanded={open}
+          aria-controls="assistant-modal"
+          onClick={(e) => {
+            // Progressive enhancement: if JS is running, also set state for smoother UX.
+            // Do NOT prevent default so the hash navigation fallback still works.
+            openAssistant();
           }}
         >
           Ask Portfolio AI
-        </button>
+        </a>
       </div>
 
-      {open ? (
-        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/45" onClick={() => setOpen(false)}>
-          <div className="glass tilt-3d tilt-soft card-3d p-5 w-full max-w-lg rounded-2xl shadow-2xl flex flex-col gap-4 animate-fadeInUp max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
-            <div className="flex justify-between items-center">
-              <div className="font-bold text-[#63d2b4] text-lg">Portfolio Assistant</div>
-              <button
-                className="btn-anim text-zinc-400 hover:text-[#63d2b4] text-2xl"
-                onClick={() => setOpen(false)}
-                aria-label="Close"
-              >
-                &times;
-              </button>
-            </div>
+      {/* Always render so :target can open it even if JS fails. */}
+      <div
+        id="assistant-modal"
+        role="dialog"
+        aria-modal="true"
+        className={`assistant-overlay fixed inset-0 z-[70] items-end sm:items-center justify-center bg-black/45 ${
+          open ? "is-open" : ""
+        }`}
+        onClick={closeAssistant}
+      >
+        <div
+          className="glass tilt-3d tilt-soft card-3d p-5 w-full max-w-lg rounded-2xl shadow-2xl flex flex-col gap-4 animate-fadeInUp max-h-[85vh]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex justify-between items-center">
+            <div className="font-bold text-[#63d2b4] text-lg">Portfolio Assistant</div>
+            <a
+              href="#"
+              role="button"
+              className="btn-anim text-zinc-400 hover:text-[#63d2b4] text-2xl"
+              onClick={(e) => {
+                closeAssistant();
+              }}
+              aria-label="Close"
+            >
+              &times;
+            </a>
+          </div>
 
             <div className="flex-1 overflow-y-auto space-y-3 pr-1">
               {messages.map((message, idx) => (
@@ -180,7 +241,7 @@ export function AssistantWidget() {
                         <a
                           key={`${source.sourceType}-${source.url}`}
                           href={source.url}
-                          className="block text-xs text-[#63d2b4] hover:text-[#7be8cb] underline"
+                          className="btn-anim inline-flex w-full items-center justify-between gap-2 rounded-lg border border-[#63d2b440] bg-[#10162466] px-3 py-2 text-xs text-[#63d2b4] hover:bg-[#63d2b420] hover:text-[#7be8cb]"
                         >
                           {source.title} ({source.sourceType})
                         </a>
@@ -210,17 +271,27 @@ export function AssistantWidget() {
                 Send
               </button>
             </form>
-          </div>
         </div>
-      ) : null}
+      </div>
     </>
   );
 }
 
 export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
+  const MIN_CONTACT_MESSAGE_CHARS = 10;
   const [contactStatus, setContactStatus] = useState<null | "success" | "error">(null);
   const [contactMessage, setContactMessage] = useState("");
   const [contactLoading, setContactLoading] = useState(false);
+  const [contactSubmitAttempted, setContactSubmitAttempted] = useState(false);
+  const [contactDraftMessage, setContactDraftMessage] = useState("");
+  const contactMessageRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const [contactTopic, setContactTopic] = useState("");
+  const [contactTopicCustom, setContactTopicCustom] = useState("");
+  const [contactBudget, setContactBudget] = useState("");
+  const [contactBudgetCustom, setContactBudgetCustom] = useState("");
+  const [contactTimeline, setContactTimeline] = useState("");
+  const [contactTimelineCustom, setContactTimelineCustom] = useState("");
 
   const [newsletterStatus, setNewsletterStatus] = useState<null | "success" | "error">(null);
   const [newsletterMessage, setNewsletterMessage] = useState("");
@@ -228,8 +299,15 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
 
   const formStartedAtRef = useRef<number>(Date.now());
 
+  const trimmedContactDraft = contactDraftMessage.trim();
+  const remainingContactChars = Math.max(0, MIN_CONTACT_MESSAGE_CHARS - trimmedContactDraft.length);
+  // Show the hint whenever the message is under the minimum.
+  // This also makes it appear in the initial server-rendered HTML.
+  const shouldShowContactWriteMoreHint = remainingContactChars > 0;
+
   async function handleContactSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setContactSubmitAttempted(true);
     setContactStatus(null);
     setContactMessage("");
     setContactLoading(true);
@@ -239,6 +317,47 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
     formData.set("formStartedAt", String(formStartedAtRef.current));
     if (!formData.get("company")) {
       formData.set("company", "");
+    }
+
+    // If the user picked "Custom…", replace the select value with the typed value.
+    if (contactTopic === "custom") {
+      const custom = contactTopicCustom.trim();
+      if (custom.length < 2) {
+        setContactStatus("error");
+        setContactMessage("Please enter a custom topic.");
+        setContactLoading(false);
+        return;
+      }
+      formData.set("topic", custom);
+    }
+    if (contactBudget === "custom") {
+      const custom = contactBudgetCustom.trim();
+      if (custom.length < 2) {
+        setContactStatus("error");
+        setContactMessage("Please enter a custom budget.");
+        setContactLoading(false);
+        return;
+      }
+      formData.set("budget", custom);
+    }
+    if (contactTimeline === "custom") {
+      const custom = contactTimelineCustom.trim();
+      if (custom.length < 2) {
+        setContactStatus("error");
+        setContactMessage("Please enter a custom timeline.");
+        setContactLoading(false);
+        return;
+      }
+      formData.set("timeline", custom);
+    }
+
+    const rawMessage = String(formData.get("message") ?? "").trim();
+    if (rawMessage.length < MIN_CONTACT_MESSAGE_CHARS) {
+      setContactStatus("error");
+      setContactMessage(`Write a bit more (at least ${MIN_CONTACT_MESSAGE_CHARS} characters).`);
+      setContactLoading(false);
+      contactMessageRef.current?.focus();
+      return;
     }
 
     try {
@@ -260,6 +379,13 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
       setContactMessage("Message sent successfully. I will reach out shortly.");
       trackEvent("contact_submit_success_ui");
       form.reset();
+      setContactDraftMessage("");
+      setContactTopic("");
+      setContactTopicCustom("");
+      setContactBudget("");
+      setContactBudgetCustom("");
+      setContactTimeline("");
+      setContactTimelineCustom("");
       formStartedAtRef.current = Date.now();
     } catch {
       setContactStatus("error");
@@ -342,7 +468,8 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
               <select
                 name="topic"
                 className="rounded px-4 py-3 bg-[#232946] text-white border border-[#63d2b440] focus:border-[#63d2b4] outline-none"
-                defaultValue=""
+                value={contactTopic}
+                onChange={(e) => setContactTopic(e.currentTarget.value)}
                 required
                 disabled={contactLoading}
               >
@@ -353,12 +480,14 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
                 <option value="ai-automation">AI automation</option>
                 <option value="backend">Backend/API systems</option>
                 <option value="consulting">Technical consulting</option>
+                <option value="custom">Custom…</option>
               </select>
 
               <select
                 name="budget"
                 className="rounded px-4 py-3 bg-[#232946] text-white border border-[#63d2b440] focus:border-[#63d2b4] outline-none"
-                defaultValue=""
+                value={contactBudget}
+                onChange={(e) => setContactBudget(e.currentTarget.value)}
                 required
                 disabled={contactLoading}
               >
@@ -369,12 +498,14 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
                 <option value="500-1500">$500 - $1,500</option>
                 <option value="1500-5000">$1,500 - $5,000</option>
                 <option value="gt-5000">$5,000+</option>
+                <option value="custom">Custom…</option>
               </select>
 
               <select
                 name="timeline"
                 className="rounded px-4 py-3 bg-[#232946] text-white border border-[#63d2b440] focus:border-[#63d2b4] outline-none"
-                defaultValue=""
+                value={contactTimeline}
+                onChange={(e) => setContactTimeline(e.currentTarget.value)}
                 required
                 disabled={contactLoading}
               >
@@ -385,8 +516,45 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
                 <option value="2-weeks">Within 2 weeks</option>
                 <option value="1-month">Within 1 month</option>
                 <option value="flexible">Flexible</option>
+                <option value="custom">Custom…</option>
               </select>
             </div>
+
+            {contactTopic === "custom" ? (
+              <input
+                type="text"
+                value={contactTopicCustom}
+                onChange={(e) => setContactTopicCustom(e.currentTarget.value)}
+                placeholder="Custom topic"
+                required
+                disabled={contactLoading}
+                className="rounded px-4 py-3 bg-[#232946] text-white border border-[#63d2b440] focus:border-[#63d2b4] outline-none"
+              />
+            ) : null}
+
+            {contactBudget === "custom" ? (
+              <input
+                type="text"
+                value={contactBudgetCustom}
+                onChange={(e) => setContactBudgetCustom(e.currentTarget.value)}
+                placeholder="Custom budget"
+                required
+                disabled={contactLoading}
+                className="rounded px-4 py-3 bg-[#232946] text-white border border-[#63d2b440] focus:border-[#63d2b4] outline-none"
+              />
+            ) : null}
+
+            {contactTimeline === "custom" ? (
+              <input
+                type="text"
+                value={contactTimelineCustom}
+                onChange={(e) => setContactTimelineCustom(e.currentTarget.value)}
+                placeholder="Custom timeline"
+                required
+                disabled={contactLoading}
+                className="rounded px-4 py-3 bg-[#232946] text-white border border-[#63d2b440] focus:border-[#63d2b4] outline-none"
+              />
+            ) : null}
 
             <textarea
               name="message"
@@ -397,7 +565,26 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
               minLength={10}
               maxLength={5000}
               disabled={contactLoading}
+              ref={contactMessageRef}
+              onChange={(e) => setContactDraftMessage(e.currentTarget.value)}
             />
+
+            {shouldShowContactWriteMoreHint ? (
+              <div className="flex items-center gap-2 rounded-lg border border-[#63d2b440] bg-[#232946] px-3 py-2 text-sm text-zinc-200">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="h-4 w-4 shrink-0 text-[#63d2b4]"
+                  aria-hidden="true"
+                >
+                  <path d="M16.862 3.487a2.25 2.25 0 0 1 3.182 3.182l-10.2 10.2a4.5 4.5 0 0 1-1.897 1.13l-3.12 1.04a.75.75 0 0 1-.948-.948l1.04-3.12a4.5 4.5 0 0 1 1.13-1.897l10.2-10.2ZM18.73 5.355a.75.75 0 0 0-1.06 0l-1.09 1.09 1.06 1.06 1.09-1.09a.75.75 0 0 0 0-1.06Zm-2.68 2.68-8.9 8.9a3 3 0 0 0-.753 1.264l-.56 1.68 1.68-.56a3 3 0 0 0 1.264-.753l8.9-8.9-1.63-1.63Z" />
+                </svg>
+                <span>
+                  Write a bit more (add a few more words — {remainingContactChars} more character{remainingContactChars === 1 ? "" : "s"} minimum).
+                </span>
+              </div>
+            ) : null}
 
             <div>
               <label className="block text-sm text-zinc-300 mb-2" htmlFor="attachment">
@@ -419,6 +606,7 @@ export function ContactSection({ bookingUrl }: { bookingUrl: string }) {
               type="submit"
               className="featured-btn px-7 py-3 disabled:opacity-70"
               disabled={contactLoading}
+              onClick={() => setContactSubmitAttempted(true)}
             >
               {contactLoading ? "Sending..." : "Send Project Brief"}
             </button>
