@@ -59,21 +59,27 @@ function getProjectThumbHues(stack: string[], seed: string): { h1: number; h2: n
   return { h1: base, h2: (base + 28) % 360 };
 }
 
-function ProjectThumbnail({ title, stack, slug }: { title: string; stack: string[]; slug: string }) {
+function ProjectThumbnail({ title, stack, slug, image }: { title: string; stack: string[]; slug: string; image?: string }) {
   const { h1, h2 } = getProjectThumbHues(stack, slug);
 
   return (
-    <div
-      className="project-thumb relative h-44 w-full"
-      style={{
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ["--h1" as any]: h1,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ["--h2" as any]: h2,
-      }}
-      aria-hidden="true"
-    >
-      <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+    <div className="project-thumb-base relative h-44 w-full" aria-hidden="true">
+      {image && (
+        <Image
+          src={image}
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      )}
+      <div 
+        className="absolute inset-0 mix-blend-screen"
+        style={{
+          background: `radial-gradient(900px circle at 15% 20%, hsla(${h1}, 80%, 55%, 0.4), transparent 55%), radial-gradient(800px circle at 85% 75%, hsla(${h2}, 80%, 55%, 0.25), transparent 60%)`
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#101624] via-[#101624]/40 to-[#101624]/10" />
       <div className="absolute inset-x-5 bottom-5">
         <div className="text-white font-extrabold text-2xl leading-tight drop-shadow">{title}</div>
       </div>
@@ -90,7 +96,7 @@ const structuredData = {
       name: "Haroon Imran",
       jobTitle: "Full-Stack Developer & AI Integrator",
       url: siteUrl,
-      image: `${siteUrl}/image/haroon.jpg.JPG`,
+      image: `${siteUrl}/image/haroon.jpg`,
       email: "mailto:haroon86865@gmail.com",
       telephone: "+923364450294",
       sameAs: [
@@ -170,7 +176,7 @@ export default async function Home({
               <div className="glass hero-card p-7 md:p-10 grid lg:grid-cols-[320px_1fr] gap-8 items-center">
               <div className="relative h-[360px] w-full overflow-hidden rounded-xl border border-[#63d2b440] bg-[#0f1627]">
                 <Image
-                  src="/image/haroon.jpg.JPG"
+                  src="/image/haroon.jpg"
                   alt="Haroon Imran"
                   fill
                   priority
@@ -334,7 +340,7 @@ export default async function Home({
           <div className="grid md:grid-cols-3 gap-5">
             {projects.map((project) => (
               <article key={project.slug} className="glass tilt-3d tilt-soft overflow-hidden flex flex-col">
-                <ProjectThumbnail title={project.title} stack={project.stack} slug={project.slug} />
+                <ProjectThumbnail title={project.title} stack={project.stack} slug={project.slug} image={project.coverImage} />
                 <div className="p-5 flex flex-col gap-3 flex-1">
                   <div className="text-xs text-[#63d2b4] font-mono">{project.category}</div>
                   <h3 className="text-xl font-semibold text-white">{project.title}</h3>

@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly",
       priority: 1,
-      images: [`${siteUrl}/image/haroon.jpg.JPG`],
+      images: [`${siteUrl}/image/haroon.jpg`],
     },
   ];
 
