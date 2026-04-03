@@ -77,6 +77,14 @@
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 .animate-fadeInUp {
   animation: fadeInUp 0.5s cubic-bezier(0.4,0,0.2,1);
 }

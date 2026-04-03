@@ -136,31 +136,31 @@ function Navbar() {
           <div className="shrink-0 font-mono text-[#63d2b4] text-sm md:text-base font-bold tracking-wide select-none text-center sm:text-left">
             {"// haroon.dev"}
           </div>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-1 sm:gap-2 text-xs md:text-sm font-mono text-zinc-200">
+          <div className="no-scrollbar flex flex-nowrap overflow-x-auto sm:overflow-visible items-center justify-start sm:justify-end gap-1 sm:gap-2 text-[11px] sm:text-xs md:text-sm font-mono text-zinc-200">
             <a
               href="#about"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-3 py-2 hover:bg-[#63d2b420] hover:text-white"
+              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 hover:bg-[#63d2b420] hover:text-white"
               data-analytics="nav_about_click"
             >
               About
             </a>
             <a
               href="#case-studies"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-3 py-2 hover:bg-[#63d2b420] hover:text-white"
+              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 hover:bg-[#63d2b420] hover:text-white"
               data-analytics="nav_case_studies_click"
             >
               Case Studies
             </a>
             <a
               href="#contact"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-3 py-2 hover:bg-[#63d2b420] hover:text-white"
+              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 hover:bg-[#63d2b420] hover:text-white"
               data-analytics="nav_contact_click"
             >
               Contact
             </a>
             <Link
               href="/projects"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-3 py-2 border border-[#63d2b440] bg-[#63d2b420] text-[#63d2b4] hover:bg-[#63d2b430]"
+              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 border border-[#63d2b440] bg-[#63d2b420] text-[#63d2b4] hover:bg-[#63d2b430]"
               data-analytics="nav_projects_click"
             >
               Projects
