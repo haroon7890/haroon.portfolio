@@ -137,6 +137,23 @@ body {
   border: 1.5px solid var(--glass-border);
 }
 
+/* Assistant modal: supports no-JS fallback via :target */
+.assistant-overlay {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 160ms;
+}
+
+.assistant-overlay.is-open,
+.assistant-overlay:target {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 160ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
+}
+
 .gradient-text {
   background: var(--accent-gradient);
   -webkit-background-clip: text;
@@ -272,15 +289,11 @@ body {
   }
 }
 
-.project-thumb {
+.project-thumb-base {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(900px circle at 15% 20%, hsla(var(--h1) 80% 55% / 0.28), transparent 55%),
-    radial-gradient(800px circle at 85% 75%, hsla(var(--h2) 80% 55% / 0.22), transparent 60%),
-    linear-gradient(135deg, hsla(var(--h1) 80% 55% / 0.22), hsla(var(--h2) 80% 55% / 0.16));
 }
-.project-thumb::after {
+.project-thumb-base::after {
   content: "";
   position: absolute;
   inset: 0;

@@ -112,17 +112,21 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
       </Link>
 
       <article className="glass tilt-3d tilt-soft card-3d overflow-hidden">
-        <div
-          className="project-thumb relative w-full h-64 md:h-96"
-          style={{
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ["--h1" as any]: thumbHues.h1,
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ["--h2" as any]: thumbHues.h2,
-          }}
-          aria-hidden="true"
-        >
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+        <div className="project-thumb-base relative w-full h-64 md:h-96" aria-hidden="true">
+          {project.coverImage && (
+            <img
+              src={project.coverImage}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          )}
+          <div 
+            className="absolute inset-0 mix-blend-screen"
+            style={{
+              background: `radial-gradient(900px circle at 15% 20%, hsla(${thumbHues.h1}, 80%, 55%, 0.4), transparent 55%), radial-gradient(800px circle at 85% 75%, hsla(${thumbHues.h2}, 80%, 55%, 0.25), transparent 60%)`
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#101624] via-[#101624]/50 to-[#101624]/10" />
           <div className="absolute inset-x-8 bottom-8">
             <div className="text-white font-extrabold text-3xl md:text-4xl leading-tight drop-shadow">
               {project.title}

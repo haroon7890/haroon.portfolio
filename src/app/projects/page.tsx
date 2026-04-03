@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Detailed case studies covering product challenges, architecture, implementation strategy, and measurable outcomes.",
     url: "/projects",
     type: "website",
-    images: ["/image/supplychain.jpg"],
+    images: ["/projects/supply-chain-optimization-platform/opengraph-image"],
   },
 };
 
@@ -55,21 +55,26 @@ function getProjectThumbHues(stack: string[], seed: string): { h1: number; h2: n
   return { h1: base, h2: (base + 28) % 360 };
 }
 
-function ProjectThumbnail({ title, stack, slug }: { title: string; stack: string[]; slug: string }) {
+function ProjectThumbnail({ title, stack, slug, image }: { title: string; stack: string[]; slug: string; image?: string }) {
   const { h1, h2 } = getProjectThumbHues(stack, slug);
 
   return (
-    <div
-      className="project-thumb relative h-52 w-full"
-      style={{
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ["--h1" as any]: h1,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ["--h2" as any]: h2,
-      }}
-      aria-hidden="true"
-    >
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    <div className="project-thumb-base relative h-52 w-full" aria-hidden="true">
+      {image && (
+        <img
+          src={image}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      )}
+      {/* Dynamic neon gradient layer */}
+      <div 
+        className="absolute inset-0 mix-blend-screen"
+        style={{
+          background: `radial-gradient(900px circle at 15% 20%, hsla(${h1}, 80%, 55%, 0.4), transparent 55%), radial-gradient(800px circle at 85% 75%, hsla(${h2}, 80%, 55%, 0.25), transparent 60%)`
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#101624] via-[#101624]/40 to-[#101624]/10" />
       <div className="absolute inset-x-6 bottom-6">
         <div className="text-white font-extrabold text-3xl leading-tight drop-shadow">{title}</div>
       </div>
@@ -101,7 +106,7 @@ export default function ProjectsPage() {
       <div className="grid md:grid-cols-2 gap-6">
         {projects.map((project) => (
           <article key={project.slug} className="glass tilt-3d tilt-soft card-3d overflow-hidden flex flex-col">
-            <ProjectThumbnail title={project.title} stack={project.stack} slug={project.slug} />
+            <ProjectThumbnail title={project.title} stack={project.stack} slug={project.slug} image={project.coverImage} />
             <div className="p-6 flex flex-col gap-4 flex-1">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <span className="text-xs px-3 py-1 rounded-full bg-[#63d2b430] text-[#63d2b4] border border-[#63d2b450]">
