@@ -1,8 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+# Haroon Imran — Premium Developer Portfolio
+
+This is a premium developer portfolio built with [Next.js](https://nextjs.org), featuring:
+
+- Glassmorphism and gradient UI
+- Smooth animations and responsive design
+- Modern sections: Hero, Projects (C++ work), Skills, Contact
+- Interactive AI chatbot popup (ready for OpenAI integration)
+- Mobile-first, accessible, and SEO-friendly
+
 
 ## Getting Started
 
-First, run the development server:
+
+## Getting Started
+
+First, install dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -16,21 +35,21 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) to view your portfolio.
 
-## Learn More
+You can customize content in `src/app/page.tsx` and styles in `src/app/globals.css`.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy instantly to [Vercel](https://vercel.com/) for best results:
 
-## Deploy on Vercel
+1. Push your code to GitHub
+2. Connect your repo on [vercel.com](https://vercel.com/)
+3. Follow the prompts to deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Or use any static hosting that supports Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+For questions or freelance work, contact: haroon86865@gmail.com

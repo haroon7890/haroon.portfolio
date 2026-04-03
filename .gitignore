@@ -33,6 +33,10 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# local scratch/test files
+contact_api_test.txt
+fgod jopu gqmi zodg.txt
+
 # vercel
 .vercel
 

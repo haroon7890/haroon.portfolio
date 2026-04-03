@@ -1,0 +1,118 @@
+[
+  {
+    "slug": "supply-chain-optimization-platform",
+    "title": "Supply Chain Optimization Platform",
+    "summary": "An enterprise dashboard for forecasting demand, reducing logistics costs, and improving inventory turn with real-time insights.",
+    "coverImage": "/next.svg",
+    "category": "Enterprise",
+    "stack": ["React", "Node.js", "PostgreSQL", "TensorFlow", "TypeScript"],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/haroon7890",
+    "role": "Full-Stack Developer",
+    "timeline": "6 weeks",
+    "problem": "Manual operations and disconnected data made it difficult for teams to forecast demand and avoid stock-outs.",
+    "approach": [
+      "Built a unified analytics pipeline for inventory, orders, and transportation events.",
+      "Implemented a forecasting model to flag demand spikes and replenishment windows.",
+      "Designed role-based dashboards for operations managers and executives."
+    ],
+    "impact": [
+      "Reduced stock-out incidents by surfacing low-inventory alerts early.",
+      "Improved planning visibility with weekly forecast confidence reporting.",
+      "Decreased decision time through centralized KPI dashboards."
+    ],
+    "features": [
+      "Real-time KPI board",
+      "Forecast and anomaly alerts",
+      "Inventory health score",
+      "Role-based access controls"
+    ]
+  },
+  {
+    "slug": "ai-powered-portfolio",
+    "title": "AI-Powered Portfolio",
+    "summary": "A conversion-focused personal brand site with interactive sections, API-driven forms, and SEO architecture.",
+    "coverImage": "/next.svg",
+    "category": "Personal Brand",
+    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Nodemailer", "Mailchimp"],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/haroon7890",
+    "role": "Designer + Full-Stack Developer",
+    "timeline": "4 weeks",
+    "problem": "A static portfolio was not generating qualified leads or showcasing technical depth effectively.",
+    "approach": [
+      "Redesigned the information architecture around conversion and proof.",
+      "Integrated contact and newsletter APIs with validation and anti-spam controls.",
+      "Added structured SEO metadata and machine-readable schema."
+    ],
+    "impact": [
+      "Improved lead capture through stronger CTA placement.",
+      "Enabled consistent outreach via integrated newsletter.",
+      "Increased discoverability with full technical SEO setup."
+    ],
+    "features": [
+      "Booking CTA",
+      "Improved contact intake",
+      "SEO, robots, sitemap, RSS",
+      "Interactive AI assistant"
+    ]
+  },
+  {
+    "slug": "academic-planning-mentorship-system",
+    "title": "APMS - Academic Planning & Mentorship",
+    "summary": "A student platform for roadmap planning, mentor matching, and progress tracking with AI-assisted guidance.",
+    "coverImage": "/next.svg",
+    "category": "EdTech",
+    "stack": ["React", "Node.js", "MongoDB", "Express", "AI APIs"],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/haroon7890",
+    "role": "Full-Stack Developer",
+    "timeline": "8 weeks",
+    "problem": "Students lacked a structured way to plan degree paths and access mentorship at the right time.",
+    "approach": [
+      "Designed a modular planner with semester-aware recommendations.",
+      "Created mentor discovery and request workflows.",
+      "Added AI support for roadmap suggestions and career hints."
+    ],
+    "impact": [
+      "Higher planning clarity with guided course sequencing.",
+      "Faster mentor connection through profile filtering.",
+      "Better retention using milestone-based progress tracking."
+    ],
+    "features": [
+      "Roadmap planner",
+      "Mentor matching",
+      "Progress dashboard",
+      "AI recommendation assistant"
+    ]
+  },
+  {
+    "slug": "cpp-supply-chain-management-system",
+    "title": "C++ Supply Chain Management System",
+    "summary": "A deeply object-oriented C++ system modeling suppliers, warehouses, and transport operations.",
+    "coverImage": "/next.svg",
+    "category": "Systems",
+    "stack": ["C++", "OOP", "DSA", "File I/O"],
+    "liveUrl": "#",
+    "githubUrl": "https://github.com/haroon7890",
+    "role": "Software Engineer",
+    "timeline": "3 weeks",
+    "problem": "Need for a realistic OOP project that demonstrates inheritance, polymorphism, and data modeling in C++.",
+    "approach": [
+      "Modeled core entities with extensible class hierarchies.",
+      "Implemented polymorphic behaviors for operations and reporting.",
+      "Used file persistence for data storage and retrieval."
+    ],
+    "impact": [
+      "Demonstrated advanced OOP fluency for academic and interview settings.",
+      "Created reusable architecture patterns for future C++ projects.",
+      "Improved debugging and maintainability through separation of concerns."
+    ],
+    "features": [
+      "Multi-level class hierarchy",
+      "Operator overloading",
+      "Virtual inheritance",
+      "Persistent file storage"
+    ]
+  }
+]
