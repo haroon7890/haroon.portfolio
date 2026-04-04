@@ -188,7 +188,7 @@ export function AssistantWidget() {
         <a
           href="#assistant-modal"
           role="button"
-          className="glass btn-anim px-5 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold text-[#63d2b4] hover:bg-[#63d2b420]"
+          className="ask-ai-btn glass btn-anim px-5 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold text-[#63d2b4] hover:bg-[#63d2b420]"
           aria-haspopup="dialog"
           aria-expanded={open}
           aria-controls="assistant-modal"

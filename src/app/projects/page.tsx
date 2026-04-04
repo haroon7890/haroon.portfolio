@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects";
+import { ArrowRight } from "lucide-react";
+import ProjectThumbnail, { getProjectThumbnailPreset } from "@/components/ProjectThumbnail";
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -18,69 +20,6 @@ export const metadata: Metadata = {
     images: ["/projects/supply-chain-optimization-platform/opengraph-image"],
   },
 };
-
-function getHueForTech(tech: string): number | null {
-  const key = tech.toLowerCase();
-  if (key.includes("typescript")) return 210;
-  if (key.includes("javascript")) return 48;
-  if (key.includes("react")) return 195;
-  if (key.includes("next")) return 220;
-  if (key.includes("node")) return 135;
-  if (key.includes("express")) return 16;
-  if (key.includes("tailwind")) return 189;
-  if (key.includes("postgres")) return 210;
-  if (key.includes("mongo")) return 135;
-  if (key.includes("python")) return 42;
-  if (key.includes("tensorflow")) return 28;
-  if (key.includes("c++") || key.includes("cplusplus")) return 260;
-  if (key.includes("ai")) return 280;
-  if (key.includes("mail")) return 340;
-  return null;
-}
-
-function getProjectThumbHues(stack: string[], seed: string): { h1: number; h2: number } {
-  const hues = stack
-    .map(getHueForTech)
-    .filter((hue): hue is number => typeof hue === "number");
-
-  if (hues.length >= 2) {
-    return { h1: hues[0], h2: hues[1] };
-  }
-
-  let hash = 0;
-  for (let i = 0; i < seed.length; i += 1) {
-    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-  }
-  const base = 165 + (hash % 55);
-  return { h1: base, h2: (base + 28) % 360 };
-}
-
-function ProjectThumbnail({ title, stack, slug, image }: { title: string; stack: string[]; slug: string; image?: string }) {
-  const { h1, h2 } = getProjectThumbHues(stack, slug);
-
-  return (
-    <div className="project-thumb-base relative h-52 w-full" aria-hidden="true">
-      {image && (
-        <img
-          src={image}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      )}
-      {/* Dynamic neon gradient layer */}
-      <div 
-        className="absolute inset-0 mix-blend-screen"
-        style={{
-          background: `radial-gradient(900px circle at 15% 20%, hsla(${h1}, 80%, 55%, 0.4), transparent 55%), radial-gradient(800px circle at 85% 75%, hsla(${h2}, 80%, 55%, 0.25), transparent 60%)`
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#101624] via-[#101624]/40 to-[#101624]/10" />
-      <div className="absolute inset-x-6 bottom-6">
-        <div className="text-white font-extrabold text-3xl leading-tight drop-shadow">{title}</div>
-      </div>
-    </div>
-  );
-}
 
 export default function ProjectsPage() {
   const projects = getAllProjects();
@@ -104,9 +43,16 @@ export default function ProjectsPage() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <article key={project.slug} className="glass tilt-3d tilt-soft card-3d overflow-hidden flex flex-col">
-            <ProjectThumbnail title={project.title} stack={project.stack} slug={project.slug} image={project.coverImage} />
+        {projects.map((project) => {
+          const preset = getProjectThumbnailPreset(project.title);
+
+          return (
+          <article key={project.slug} className="glass tilt-3d tilt-soft card-3d overflow-hidden flex flex-col border border-white/[0.06] bg-[#0d1626] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-teal-500/30">
+            <ProjectThumbnail
+              title={project.title}
+              gradient={preset.gradient}
+              pattern={preset.pattern}
+            />
             <div className="p-6 flex flex-col gap-4 flex-1">
               <div className="flex items-center justify-between gap-3 flex-wrap">
                 <span className="text-xs px-3 py-1 rounded-full bg-[#63d2b430] text-[#63d2b4] border border-[#63d2b450]">
@@ -124,13 +70,18 @@ export default function ProjectsPage() {
                 ))}
               </div>
               <div className="mt-auto pt-2">
-                <Link href={`/projects/${project.slug}`} className="featured-btn inline-flex">
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="group inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-200 hover:text-teal-300 hover:gap-[8px]"
+                >
                   Read Case Study
+                  <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
           </article>
-        ))}
+          );
+        })}
       </div>
     </main>
   );

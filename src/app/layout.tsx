@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TiltEffects from "./TiltEffects";
+import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const seoDescription =
@@ -19,24 +21,20 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Haroon Imran — Portfolio",
-    template: "%s — Haroon Imran",
-  },
-  description: seoDescription,
+  title: "Haroon Imran — Full-Stack Developer & AI Integrator",
+  description:
+    "MERN Stack developer and AI integrator based in Lahore, Pakistan. Available for freelance projects on Upwork and Fiverr.",
   applicationName: "Haroon Imran Portfolio",
   referrer: "origin-when-cross-origin",
   keywords: [
-    "Haroon Imran",
     "Full-Stack Developer",
-    "AI Integrator",
-    "Portfolio",
-    "UMT Lahore",
+    "MERN Stack",
+    "AI Integration",
+    "Freelance Developer",
+    "Lahore",
+    "Pakistan",
+    "Next.js",
     "React",
-    "Node.js",
-    "C++",
-    "Web Developer",
-    "Pakistan"
   ],
   authors: [{ name: "Haroon Imran", url: siteUrl }],
   creator: "Haroon Imran",
@@ -45,17 +43,17 @@ export const metadata: Metadata = {
     canonical: "/"
   },
   openGraph: {
-    title: "Haroon Imran — Portfolio",
-    description: seoDescription,
-    url: "/",
-    siteName: "Haroon Imran",
+    title: "Haroon Imran — Full-Stack Developer & AI Integrator",
+    description: "Building production-ready web apps with MERN stack and AI integrations.",
+    url: "https://haroon.dev",
+    siteName: "Haroon Imran Portfolio",
     locale: "en_US",
-    type: "website"
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Haroon Imran — Portfolio",
-    description: seoDescription,
+    title: "Haroon Imran — Full-Stack Developer & AI Integrator",
+    description: "Building production-ready web apps with MERN stack and AI integrations.",
   },
   robots: {
     index: true,
@@ -97,9 +95,24 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
+      </head>
       <body className="min-h-full flex flex-col">
+        <CustomCursor />
         <TiltEffects />
-        {children}
+        <div className="page-load-bar" aria-hidden="true" />
+        <div className="flex-1">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   );

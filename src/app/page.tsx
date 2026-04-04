@@ -1,92 +1,17 @@
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, Check } from "lucide-react";
 import { getAllProjects } from "@/lib/projects";
-import { getProfileKnowledge } from "@/lib/profile";
-import FadeInOnScroll from "./FadeInOnScroll";
+import { SITE_CONFIG } from "@/lib/config";
+import Navbar from "@/components/Navbar";
+import ScrollReveal from "@/components/ScrollReveal";
+import ProjectThumbnail, { getProjectThumbnailPreset } from "@/components/ProjectThumbnail";
 import { AssistantWidget, HomeBehaviorTracker } from "./home-client";
-import ContactSection from "./ContactSection";
-import { Icon } from "@iconify/react";
-import typescriptIcon from "@iconify-icons/devicon/typescript";
-import javascriptIcon from "@iconify-icons/devicon/javascript";
-import reactIcon from "@iconify-icons/devicon/react";
-import nextjsIcon from "@iconify-icons/devicon/nextjs";
-import nodejsIcon from "@iconify-icons/devicon/nodejs";
-import expressIcon from "@iconify-icons/devicon/express";
-import tailwindcssIcon from "@iconify-icons/devicon/tailwindcss";
-import cplusplusIcon from "@iconify-icons/devicon/cplusplus";
-import pythonIcon from "@iconify-icons/devicon/python";
-import mongodbIcon from "@iconify-icons/devicon/mongodb";
-import postgresqlIcon from "@iconify-icons/devicon/postgresql";
-import swaggerIcon from "@iconify-icons/devicon/swagger";
-import githubIcon from "@iconify-icons/devicon/github";
+import ContactSection from "@/app/contact-section";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendly.com/";
-
-function getHueForTech(tech: string): number | null {
-  const key = tech.toLowerCase();
-  if (key.includes("typescript")) return 210;
-  if (key.includes("javascript")) return 48;
-  if (key.includes("react")) return 195;
-  if (key.includes("next")) return 220;
-  if (key.includes("node")) return 135;
-  if (key.includes("express")) return 16;
-  if (key.includes("tailwind")) return 189;
-  if (key.includes("postgres")) return 210;
-  if (key.includes("mongo")) return 135;
-  if (key.includes("python")) return 42;
-  if (key.includes("tensorflow")) return 28;
-  if (key.includes("c++") || key.includes("cplusplus")) return 260;
-  if (key.includes("ai")) return 280;
-  if (key.includes("mail")) return 340;
-  return null;
-}
-
-function getProjectThumbHues(stack: string[], seed: string): { h1: number; h2: number } {
-  const hues = stack
-    .map(getHueForTech)
-    .filter((hue): hue is number => typeof hue === "number");
-
-  if (hues.length >= 2) {
-    return { h1: hues[0], h2: hues[1] };
-  }
-
-  // Deterministic fallback that stays within the teal/blue family.
-  let hash = 0;
-  for (let i = 0; i < seed.length; i += 1) {
-    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-  }
-  const base = 165 + (hash % 55); // 165..219
-  return { h1: base, h2: (base + 28) % 360 };
-}
-
-function ProjectThumbnail({ title, stack, slug, image }: { title: string; stack: string[]; slug: string; image?: string }) {
-  const { h1, h2 } = getProjectThumbHues(stack, slug);
-
-  return (
-    <div className="project-thumb-base relative h-44 w-full" aria-hidden="true">
-      {image && (
-        <Image
-          src={image}
-          alt=""
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-      )}
-      <div 
-        className="absolute inset-0 mix-blend-screen"
-        style={{
-          background: `radial-gradient(900px circle at 15% 20%, hsla(${h1}, 80%, 55%, 0.4), transparent 55%), radial-gradient(800px circle at 85% 75%, hsla(${h2}, 80%, 55%, 0.25), transparent 60%)`
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#101624] via-[#101624]/40 to-[#101624]/10" />
-      <div className="absolute inset-x-5 bottom-5">
-        <div className="text-white font-extrabold text-2xl leading-tight drop-shadow">{title}</div>
-      </div>
-    </div>
-  );
-}
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -98,26 +23,8 @@ const structuredData = {
       jobTitle: "Full-Stack Developer & AI Integrator",
       url: siteUrl,
       image: `${siteUrl}/image/haroon.jpg`,
-      email: "mailto:haroon86865@gmail.com",
-      telephone: "+923364450294",
-      sameAs: [
-        "https://github.com/haroon7890",
-        "https://www.linkedin.com/in/haroon-imran-80b515352/",
-      ],
-    },
-    {
-      "@type": "ProfessionalService",
-      "@id": `${siteUrl}/#service`,
-      name: "Haroon Imran Engineering Services",
-      areaServed: "Worldwide",
-      provider: { "@id": `${siteUrl}/#person` },
-      serviceType: [
-        "Full-stack web development",
-        "AI integration",
-        "Backend architecture",
-        "Technical consulting",
-      ],
-      url: siteUrl,
+      email: `mailto:${SITE_CONFIG.email}`,
+      sameAs: [SITE_CONFIG.github, SITE_CONFIG.linkedin].filter(Boolean),
     },
     {
       "@type": "WebSite",
@@ -129,148 +36,9 @@ const structuredData = {
   ],
 };
 
-function Navbar() {
-  const { contact } = getProfileKnowledge();
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-10 py-3">
-      <div className="glass !rounded-full max-w-6xl mx-auto border border-[#63d2b420] shadow-lg shadow-black/25">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 px-4 sm:px-6 py-2.5">
-          <div className="shrink-0 font-mono text-[#63d2b4] text-xs sm:text-sm md:text-base font-bold tracking-wide select-none text-center sm:text-left">
-            {"// haroon.dev"}
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="no-scrollbar flex flex-nowrap overflow-x-auto sm:overflow-visible items-center justify-start sm:justify-end gap-0.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-mono text-zinc-200">
-            <a
-              href="#about"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2 py-1 sm:px-3 sm:py-2 hover:bg-[#63d2b420] hover:text-white"
-              data-analytics="nav_about_click"
-            >
-              About
-            </a>
-            <a
-              href="#case-studies"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2 py-1 sm:px-3 sm:py-2 hover:bg-[#63d2b420] hover:text-white"
-              data-analytics="nav_case_studies_click"
-            >
-              Case Studies
-            </a>
-            <a
-              href="#contact"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2 py-1 sm:px-3 sm:py-2 hover:bg-[#63d2b420] hover:text-white"
-              data-analytics="nav_contact_click"
-            >
-              Contact
-            </a>
-            <Link
-              href="/projects"
-              className="btn-anim inline-flex items-center whitespace-nowrap leading-none rounded-full px-2 py-1 sm:px-3 sm:py-2 border border-[#63d2b440] bg-[#63d2b420] text-[#63d2b4] hover:bg-[#63d2b430]"
-              data-analytics="nav_projects_click"
-            >
-              Projects
-            </Link>
-            </div>
-
-            <div className="hidden sm:flex items-center gap-1">
-              {contact.github && (
-                <a
-                  href={contact.github}
-                  title="GitHub"
-                  aria-label="GitHub"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-analytics="nav_github_click"
-                  className="btn-anim inline-flex items-center justify-center h-9 w-9 rounded-full border border-[#63d2b440] bg-[#10162466] text-zinc-200 hover:bg-[#63d2b420]"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                    <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.37-1.342-3.37-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.254-.447-1.274.098-2.656 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.025 2.747-1.025.547 1.382.203 2.402.1 2.656.64.7 1.028 1.594 1.028 2.687 0 3.847-2.339 4.695-4.566 4.944.359.31.678.921.678 1.857 0 1.34-.012 2.422-.012 2.752 0 .268.18.579.688.481C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
-                  </svg>
-                </a>
-              )}
-
-              {contact.linkedin && (
-                <a
-                  href={contact.linkedin}
-                  title="LinkedIn"
-                  aria-label="LinkedIn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-analytics="nav_linkedin_click"
-                  className="btn-anim inline-flex items-center justify-center h-9 w-9 rounded-full border border-[#4fa8e840] bg-[#10162466] text-zinc-200 hover:bg-[#4fa8e815]"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </a>
-              )}
-
-              {contact.email && (
-                <a
-                  href={`mailto:${contact.email}`}
-                  title="Email"
-                  aria-label="Email"
-                  data-analytics="nav_email_click"
-                  className="btn-anim inline-flex items-center justify-center h-9 w-9 rounded-full border border-[#63d2b440] bg-[#10162466] text-zinc-200 hover:bg-[#63d2b420]"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-                  </svg>
-                </a>
-              )}
-            </div>
-          </div>
-
-          <div className="sm:hidden flex items-center justify-center gap-2 pb-1">
-            {contact.github && (
-              <a
-                href={contact.github}
-                title="GitHub"
-                aria-label="GitHub"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics="nav_github_click"
-                className="btn-anim inline-flex items-center justify-center h-8 w-8 rounded-full border border-[#63d2b440] bg-[#10162466] text-zinc-200 hover:bg-[#63d2b420]"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4.5 w-4.5">
-                  <path d="M12 2C6.477 2 2 6.484 2 12.021c0 4.428 2.865 8.184 6.839 9.504.5.092.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.37-1.342-3.37-1.342-.454-1.154-1.11-1.461-1.11-1.461-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.53 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.34-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.254-.447-1.274.098-2.656 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.295 2.747-1.025 2.747-1.025.547 1.382.203 2.402.1 2.656.64.7 1.028 1.594 1.028 2.687 0 3.847-2.339 4.695-4.566 4.944.359.31.678.921.678 1.857 0 1.34-.012 2.422-.012 2.752 0 .268.18.579.688.481C19.138 20.2 22 16.447 22 12.021 22 6.484 17.523 2 12 2z" />
-                </svg>
-              </a>
-            )}
-
-            {contact.linkedin && (
-              <a
-                href={contact.linkedin}
-                title="LinkedIn"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-                data-analytics="nav_linkedin_click"
-                className="btn-anim inline-flex items-center justify-center h-8 w-8 rounded-full border border-[#4fa8e840] bg-[#10162466] text-zinc-200 hover:bg-[#4fa8e815]"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4.5 w-4.5">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </a>
-            )}
-
-            {contact.email && (
-              <a
-                href={`mailto:${contact.email}`}
-                title="Email"
-                aria-label="Email"
-                data-analytics="nav_email_click"
-                className="btn-anim inline-flex items-center justify-center h-8 w-8 rounded-full border border-[#63d2b440] bg-[#10162466] text-zinc-200 hover:bg-[#63d2b420]"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4.5 w-4.5">
-                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-                </svg>
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </nav>
-  );
+function hasCvFile() {
+  const cvPath = path.join(process.cwd(), "public", "cv", "Haroon_Imran_CV.docx");
+  return fs.existsSync(cvPath);
 }
 
 export default async function Home({
@@ -279,9 +47,8 @@ export default async function Home({
   searchParams?: Promise<Record<string, string | string[] | undefined>> | Record<string, string | string[] | undefined>;
 }) {
   const projects = getAllProjects().slice(0, 3);
+  const cvExists = hasCvFile();
 
-  // NOTE: In this Next.js version, `searchParams` can be a Promise.
-  // Unwrap it before accessing properties to avoid sync dynamic API warnings.
   const resolvedSearchParams = !searchParams
     ? undefined
     : typeof (searchParams as Promise<unknown>).then === "function"
@@ -298,207 +65,231 @@ export default async function Home({
       <HomeBehaviorTracker />
       <Navbar />
 
-      <FadeInOnScroll>
-        <section id="hero" className="fade-in" style={{ paddingTop: "6.25rem", paddingBottom: "2.5rem" }}>
-          <div className="mx-auto w-[85vw] max-w-6xl">
-            <div className="tilt-3d tilt-soft">
-              <div className="glass hero-card p-7 md:p-10 grid lg:grid-cols-[320px_1fr] gap-8 items-center">
-              <div className="relative h-[360px] w-full overflow-hidden rounded-xl border border-[#63d2b440] bg-[#0f1627]">
-                <Image
-                  src="/image/haroon.jpg"
-                  alt="Haroon Imran"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 320px, 100vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/35" />
-                <div className="absolute bottom-3 right-3 text-[11px] font-mono text-[#63d2b4] bg-[#101624d8] px-2 py-1 rounded inline-flex items-center gap-2">
-                  <span className="relative inline-flex h-2 w-2" aria-hidden="true">
-                    <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70 animate-ping" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-                  </span>
-                  Available for freelance
+      <main className="relative z-10 pt-24 md:pt-28">
+        <section id="hero" className="section scroll-mt-24 pb-6 md:pb-8">
+          <div className="relative mx-auto w-full max-w-6xl">
+            <div className="hero-glow" aria-hidden="true" />
+            <div className="hero-shell rounded-[20px] border border-white/[0.07] bg-gradient-to-br from-[#0d1626] to-[#0a1020] p-6 md:p-8">
+              <div className="grid items-center gap-6 md:gap-8 lg:grid-cols-[320px_1fr]">
+                <div className="photo-frame rounded-xl bg-gradient-to-br from-[#00C9A7] to-[#0066ff] p-[2px]">
+                  <div className="relative h-[200px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
+                    <Image
+                      src="/image/haroon.jpg"
+                      alt="Haroon Imran — Full-Stack Developer based in Lahore"
+                      fill
+                      priority
+                      sizes="(max-width: 767px) 100vw, 320px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-black/25 via-transparent to-black/35" />
+                    <div className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a1020d8] px-3 py-1.5 text-xs font-mono text-[#e2e8f0]">
+                      <span className="pulse-dot h-2 w-2 rounded-full bg-green-400" />
+                      <span>Available for freelance</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="mb-3 inline-flex items-center gap-2">
+                    <span className="h-px w-5 bg-[#00C9A7]" aria-hidden="true" />
+                    <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#00C9A7]">FULL-STACK + AI DELIVERY</span>
+                  </div>
+
+                  <h1 className="hero-name mb-4 font-extrabold text-white">Haroon Imran</h1>
+
+                  <p className="body-copy max-w-2xl text-[#94a3b8]">
+                    From backend APIs to polished React frontends - I&apos;m a BSCS student at UMT Lahore building real products with
+                    the MERN stack and AI integrations. Currently available for freelance projects.
+                  </p>
+
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                    <a
+                      href="#contact"
+                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[#00C9A7] px-6 py-3 text-sm font-semibold text-black transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-teal-500/25"
+                      data-analytics="booking_primary_click"
+                      data-analytics-label="hero"
+                    >
+                      Let&apos;s Work Together
+                    </a>
+
+                    <a
+                      href="#contact"
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[#63d2b440] px-6 py-3 text-sm font-semibold text-[#94a3b8] transition-all duration-200 ease-out hover:bg-teal-500/10 hover:border-teal-400 hover:text-teal-300"
+                      data-analytics="hero_contact_click"
+                    >
+                      Start a Project
+                    </a>
+
+                    {cvExists ? (
+                      <a
+                        href="/cv/Haroon_Imran_CV.docx"
+                        download
+                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/[0.12] px-6 py-3 text-sm font-semibold text-[#e2e8f0] transition-all duration-200 ease-out hover:bg-white/5 hover:scale-[1.02]"
+                        data-analytics="hero_download_cv_click"
+                      >
+                        Download CV
+                      </a>
+                    ) : (
+                      <a
+                        href={`mailto:${SITE_CONFIG.email}?subject=CV Request - Haroon Imran`}
+                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/[0.12] px-6 py-3 text-sm font-semibold text-[#e2e8f0] transition-all duration-200 ease-out hover:bg-white/5 hover:scale-[1.02]"
+                        data-analytics="hero_cv_request_click"
+                      >
+                        Request CV by Email
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-[#080d14] px-3 py-2 text-xs font-mono text-[#94a3b8]">
+                    <span aria-hidden="true">🔨</span>
+                    <span>Currently building: Multi-Agent AI Dev Workflow - n8n + LLMs + REST APIs</span>
+                  </div>
+                  {/* TODO: Add your CV to /public/cv/Haroon_Imran_CV.docx */}
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
 
+        <section id="about" className="section scroll-mt-24 pt-6 md:pt-8">
+          <div className="relative">
+            <span className="section-watermark" aria-hidden="true">01</span>
+            <ScrollReveal distance={24} duration={600} className="relative z-[1]">
+              <h2 className="section-title mb-4 text-[#e2e8f0]">
+                Engineering with <span className="text-teal-400">business context</span>
+              </h2>
+              <p className="body-copy border-l-2 border-teal-500/40 pl-4 text-[#94a3b8]">
+                I am a BSCS student at UMT Lahore and a hands-on full-stack engineer focused on building useful digital products.
+                My approach combines structured architecture, clear communication, and iterative delivery.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <ScrollReveal distance={24} duration={600}>
+              <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6 transition-colors duration-300 hover:border-white/[0.12]">
+                <span className="text-xs font-mono tracking-widest text-teal-400">// STACK</span>
+                <h3 className="mt-3 text-2xl font-bold text-white">Core Technologies</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {[
+                    { label: "TypeScript", icon: "devicon-typescript-plain colored" },
+                    { label: "JavaScript", icon: "devicon-javascript-plain colored" },
+                    { label: "React", icon: "devicon-react-original colored" },
+                    { label: "Next.js", icon: "devicon-nextjs-plain" },
+                    { label: "Node.js", icon: "devicon-nodejs-plain colored" },
+                    { label: "Express", icon: "devicon-express-original" },
+                    { label: "Tailwind CSS", icon: "devicon-tailwindcss-plain colored" },
+                    { label: "C++", icon: "devicon-cplusplus-plain colored" },
+                    { label: "Python", icon: "devicon-python-plain colored" },
+                    { label: "MongoDB", icon: "devicon-mongodb-plain colored" },
+                    { label: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
+                    { label: "Git/GitHub", icon: "devicon-github-original" },
+                  ].map((item, index) => (
+                    <ScrollReveal key={item.label} delay={index * 30} distance={20} duration={500}>
+                      <div className="tech-badge group inline-flex items-center gap-2 rounded-xl border border-white/[0.06] bg-[#080d14] px-3 py-2 text-xs font-medium text-[#e2e8f0] hover:border-teal-400/50 hover:-translate-y-1 transition-all duration-200">
+                        <i className={`${item.icon} text-base`} aria-hidden="true" />
+                        <span>{item.label}</span>
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal distance={24} duration={600}>
+              <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6 transition-colors duration-300 hover:border-white/[0.12]">
+                <span className="text-xs font-mono tracking-widest text-teal-400">// SERVICES</span>
+                <h3 className="mt-3 text-2xl font-bold text-white">What I Deliver</h3>
+                <ul className="mt-5 space-y-3 text-[#94a3b8]">
+                  {[
+                    "Full-stack web applications from zero to deployment.",
+                    "Integration of AI workflows and LLMs into existing tools.",
+                    "Performant REST APIs and database schema design.",
+                    "Data structures and C++ system modeling.",
+                    "Social media and marketing automation for crypto/Web3 brands.",
+                  ].map((item, index) => (
+                    <ScrollReveal key={item} delay={index * 60} distance={20} duration={500}>
+                      <li className="group flex items-start gap-2 transition-colors duration-150 hover:text-white">
+                        <Check size={14} className="mt-1 shrink-0 text-teal-400" />
+                        <span>{item}</span>
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ul>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        <section id="case-studies" className="section scroll-mt-24 pt-10">
+          <div className="relative">
+            <span className="section-watermark" aria-hidden="true">02</span>
+            <ScrollReveal distance={24} duration={600} className="relative z-[1] mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-[#63d2b4] mb-3 font-mono">Full-stack + AI delivery</p>
-                <h1 className="text-5xl md:text-7xl font-extrabold gradient-text drop-shadow mb-4">Haroon Imran</h1>
-                <p className="text-zinc-200 text-lg md:text-xl mb-4 leading-relaxed">I build production-ready products with modern web architecture and practical AI integrations.</p>
-                <p className="text-zinc-300 mb-6 max-w-2xl leading-relaxed">
-                From product strategy to backend systems and polished frontends, I focus on outcomes that matter: faster delivery,
-                clearer architecture, and better conversion performance.
-                </p>
-
-                <div className="flex flex-wrap gap-3 mb-5">
-                  <a
-                    href={bookingUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="featured-btn"
-                    data-analytics="booking_primary_click"
-                    data-analytics-label="hero"
-                  >
-                    Let&apos;s Work Together
-                  </a>
-                <a
-                  href="#contact"
-                  className="px-6 py-2 rounded-full border border-[#63d2b4] text-[#63d2b4] font-semibold hover:bg-[#63d2b420] transition hover:-translate-y-0.5"
-                  data-analytics="hero_contact_click"
-                >
-                  Start a Project
-                </a>
-                <a
-                  href="/cv/Haroon_Imran_CV.docx"
-                  download
-                  className="px-6 py-2 rounded-full border border-[#4fa8e8] text-[#4fa8e8] font-semibold hover:bg-[#4fa8e820] transition hover:-translate-y-0.5 inline-flex items-center gap-2"
-                  data-analytics="hero_download_cv_click"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4"><path fillRule="evenodd" d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z" clipRule="evenodd" /></svg>
-                  Download CV
-                </a>
-                </div>
-
-                <div className="flex flex-wrap gap-3 text-xs font-mono text-zinc-300">
-                  <span className="px-3 py-1 rounded-full bg-[#63d2b420] border border-[#63d2b440]">Next.js</span>
-                  <span className="px-3 py-1 rounded-full bg-[#4fa8e820] border border-[#4fa8e840]">TypeScript</span>
-                  <span className="px-3 py-1 rounded-full bg-[#63d2b420] border border-[#63d2b440]">AI Workflows</span>
-                  <span className="px-3 py-1 rounded-full bg-[#4fa8e820] border border-[#4fa8e840]">C++ Systems</span>
-                </div>
-
-                <div className="mt-4 inline-flex items-center gap-2 text-xs font-mono text-zinc-200 px-3 py-2 rounded-full bg-[#232946] border border-[#ffffff18]">
-                  <span aria-hidden="true">🔨</span>
-                  <span className="text-zinc-300">Currently building:</span>
-                  <span className="text-[#63d2b4]">Multi-Agent AI Dev Workflow</span>
-                </div>
+                <h2 className="section-title text-[#e2e8f0]">Featured Case Studies</h2>
+                <p className="mt-2 text-sm text-[#64748b]">Problem, approach, and measurable outcomes.</p>
               </div>
-            </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="section-divider" aria-hidden="true" />
-
-        <section id="about" className="section fade-in">
-          <div className="glass tilt-3d tilt-soft p-8 mb-8">
-            <h2 className="text-3xl font-bold gradient-text mb-4">Engineering with business context</h2>
-            <p className="text-zinc-200 leading-7 mb-4 text-lg">
-              I am a BSCS student at UMT Lahore and a hands-on full-stack engineer focused on building useful digital products.
-              My approach combines structured architecture, clear communication, and iterative delivery.
-            </p>
-            <p className="text-zinc-300 leading-7">
-              If you need someone who can reason through product tradeoffs, implement robust APIs, and craft high-quality
-              user-facing experiences, we should talk.
-            </p>
+              <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] px-4 py-2 text-sm font-semibold text-[#e2e8f0] transition-colors duration-200 hover:border-teal-500/30 hover:text-teal-300">
+                View All Case Studies
+              </Link>
+            </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="glass tilt-3d tilt-soft p-8">
-              <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6 text-[#63d2b4]"><path fillRule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clipRule="evenodd" /></svg>
-                Core Technologies
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {[
-                  { label: "TypeScript", icon: typescriptIcon },
-                  { label: "JavaScript", icon: javascriptIcon },
-                  { label: "React", icon: reactIcon },
-                  { label: "Next.js", icon: nextjsIcon },
-                  { label: "Node.js", icon: nodejsIcon },
-                  { label: "Express", icon: expressIcon },
-                  { label: "Tailwind CSS", icon: tailwindcssIcon },
-                  { label: "C++", icon: cplusplusIcon },
-                  { label: "Python", icon: pythonIcon },
-                  { label: "MongoDB", icon: mongodbIcon },
-                  { label: "PostgreSQL", icon: postgresqlIcon },
-                  { label: "REST APIs", icon: swaggerIcon },
-                  { label: "Git/GitHub", icon: githubIcon },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    className="tilt-3d tilt-strong card-3d flex items-center gap-3 px-3 py-3 rounded-xl bg-[#232946] border border-[#ffffff18] text-zinc-200 shadow-sm transition hover:border-[#63d2b440]"
-                  >
-                    <Icon icon={item.icon} className="h-6 w-6" aria-hidden="true" />
-                    <span className="text-sm font-semibold">{item.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="grid gap-5 md:grid-cols-3">
+            {projects.map((project, index) => {
+              const preset = getProjectThumbnailPreset(project.title);
 
-            <div className="glass tilt-3d tilt-soft p-8">
-              <h3 className="text-2xl font-semibold text-white mb-4 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6 text-[#4fa8e8]"><path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.1.43-.333.604-.903.408-1.41a7.002 7.002 0 00-13.074.003z" /></svg>
-                What I Deliver
-              </h3>
-              <ul className="space-y-3 text-zinc-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#4fa8e8] mt-1">✓</span>
-                  Full-stack web applications from zero to deployment.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#4fa8e8] mt-1">✓</span>
-                  Integration of AI workflows and LLMs into existing tools.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#4fa8e8] mt-1">✓</span>
-                  Performant REST APIs and database schema design.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#4fa8e8] mt-1">✓</span>
-                  Data structures and C++ system modeling.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
+              return (
+                <ScrollReveal key={project.slug} delay={index * 120} distance={32} duration={600}>
+                  <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0d1626] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-teal-500/30">
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-teal-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <span className="pointer-events-none absolute right-4 top-4 text-5xl font-bold font-mono text-white/10">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
 
-        <div className="section-divider" aria-hidden="true" />
+                    <ProjectThumbnail
+                      title={project.title}
+                      gradient={preset.gradient}
+                      pattern={preset.pattern}
+                    />
 
-        <section id="case-studies" className="section fade-in">
-          <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
-            <div>
-              <h2 className="text-3xl font-bold gradient-text">Featured Case Studies</h2>
-              <p className="text-zinc-400 mt-2">Problem, approach, and impact for recent work.</p>
-            </div>
-            <Link href="/projects" className="featured-btn" data-analytics="projects_view_all_click">
-              View All Case Studies
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {projects.map((project) => (
-              <article key={project.slug} className="glass tilt-3d tilt-soft overflow-hidden flex flex-col">
-                <ProjectThumbnail title={project.title} stack={project.stack} slug={project.slug} image={project.coverImage} />
-                <div className="p-5 flex flex-col gap-3 flex-1">
-                  <div className="text-xs text-[#63d2b4] font-mono">{project.category}</div>
-                  <h3 className="text-xl font-semibold text-white">{project.title}</h3>
-                  <p className="text-zinc-400 text-sm">{project.summary}</p>
-                  <div className="flex flex-wrap gap-2 text-[11px]">
-                    {project.stack.slice(0, 4).map((item) => (
-                      <span key={`${project.slug}-${item}`} className="px-2 py-1 rounded bg-[#232946] text-zinc-200">
-                        {item}
+                    <div className="flex flex-1 flex-col gap-4 p-5">
+                      <span className="w-fit rounded-full border border-teal-500/20 bg-teal-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-teal-400">
+                        {project.category}
                       </span>
-                    ))}
-                  </div>
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="btn-anim mt-auto inline-flex w-fit items-center justify-center rounded-full border border-[#63d2b440] bg-[#10162466] px-4 py-2 text-sm font-semibold text-[#63d2b4] hover:bg-[#63d2b420]"
-                    data-analytics="project_case_study_open"
-                    data-analytics-label={project.slug}
-                  >
-                    Open Case Study
-                  </Link>
-                </div>
-              </article>
-            ))}
+                      <h3 className="text-[20px] font-bold tracking-[-0.5px] text-white">{project.title}</h3>
+                      <p className="text-sm leading-6 text-[#64748b]">{project.summary}</p>
+
+                      <div className="mt-auto flex flex-wrap gap-2">
+                        {project.stack.slice(0, 4).map((item) => (
+                          <span key={`${project.slug}-${item}`} className="rounded-lg border border-white/[0.06] bg-[#080d14] px-2 py-1 text-[11px] font-mono text-[#94a3b8]">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-300 ease-out hover:text-teal-300 hover:gap-[8px]"
+                        data-analytics="project_case_study_open"
+                        data-analytics-label={project.slug}
+                      >
+                        Open Case Study
+                        <ArrowRight size={14} />
+                      </Link>
+                    </div>
+                  </article>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </section>
 
-        <div className="section-divider" aria-hidden="true" />
-
-        <ContactSection bookingUrl={bookingUrl} initialStatus={initialContactStatus} />
-      </FadeInOnScroll>
+        <ContactSection
+          calendlyUrl={SITE_CONFIG.calendlyUrl}
+          initialStatus={initialContactStatus}
+        />
+      </main>
 
       <AssistantWidget />
     </>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
+import ProjectThumbnail, { getProjectThumbnailPreset } from "@/components/ProjectThumbnail";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -35,44 +36,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       title: `${project.title} | Case Study`,
       description: project.summary,
       url: `/projects/${project.slug}`,
-      images: [project.coverImage],
+      images: [`/projects/${project.slug}/opengraph-image`],
     },
   };
-}
-
-function getHueForTech(tech: string): number | null {
-  const key = tech.toLowerCase();
-  if (key.includes("typescript")) return 210;
-  if (key.includes("javascript")) return 48;
-  if (key.includes("react")) return 195;
-  if (key.includes("next")) return 220;
-  if (key.includes("node")) return 135;
-  if (key.includes("express")) return 16;
-  if (key.includes("tailwind")) return 189;
-  if (key.includes("postgres")) return 210;
-  if (key.includes("mongo")) return 135;
-  if (key.includes("python")) return 42;
-  if (key.includes("tensorflow")) return 28;
-  if (key.includes("c++") || key.includes("cplusplus")) return 260;
-  if (key.includes("ai")) return 280;
-  return null;
-}
-
-function getProjectThumbHues(stack: string[], seed: string): { h1: number; h2: number } {
-  const hues = stack
-    .map(getHueForTech)
-    .filter((hue): hue is number => typeof hue === "number");
-
-  if (hues.length >= 2) {
-    return { h1: hues[0], h2: hues[1] };
-  }
-
-  let hash = 0;
-  for (let i = 0; i < seed.length; i += 1) {
-    hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
-  }
-  const base = 165 + (hash % 55);
-  return { h1: base, h2: (base + 28) % 360 };
 }
 
 export default async function ProjectCaseStudyPage({ params }: ProjectPageProps) {
@@ -97,7 +63,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
     keywords: project.stack.join(", "),
   };
 
-  const thumbHues = getProjectThumbHues(project.stack, project.slug);
+  const preset = getProjectThumbnailPreset(project.title);
 
   return (
     <main className="section max-w-5xl py-20">
@@ -112,26 +78,8 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
       </Link>
 
       <article className="glass tilt-3d tilt-soft card-3d overflow-hidden">
-        <div className="project-thumb-base relative w-full h-64 md:h-96" aria-hidden="true">
-          {project.coverImage && (
-            <img
-              src={project.coverImage}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          )}
-          <div 
-            className="absolute inset-0 mix-blend-screen"
-            style={{
-              background: `radial-gradient(900px circle at 15% 20%, hsla(${thumbHues.h1}, 80%, 55%, 0.4), transparent 55%), radial-gradient(800px circle at 85% 75%, hsla(${thumbHues.h2}, 80%, 55%, 0.25), transparent 60%)`
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#101624] via-[#101624]/50 to-[#101624]/10" />
-          <div className="absolute inset-x-8 bottom-8">
-            <div className="text-white font-extrabold text-3xl md:text-4xl leading-tight drop-shadow">
-              {project.title}
-            </div>
-          </div>
+        <div className="w-full" role="img" aria-label={`${project.title} — Case Study`}>
+          <ProjectThumbnail title={project.title} gradient={preset.gradient} pattern={preset.pattern} />
         </div>
 
         <div className="p-8 md:p-10">
