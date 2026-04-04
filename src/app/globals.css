@@ -46,7 +46,7 @@ body::before {
 }
 
 ::selection {
-  background: rgba(0, 201, 167, 0.25);
+  background: rgba(0, 201, 167, 0.2);
   color: #fff;
 }
 

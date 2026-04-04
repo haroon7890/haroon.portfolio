@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import type { Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import TiltEffects from "./TiltEffects";
@@ -17,65 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Haroon Imran — Full-Stack Developer & AI Integrator",
-  description:
-    "MERN Stack developer and AI integrator based in Lahore, Pakistan. Building production-ready web apps and AI-powered tools. Available for freelance on Upwork and Fiverr.",
-  applicationName: "Haroon Imran Portfolio",
-  referrer: "origin-when-cross-origin",
-  keywords: [
-    "Full-Stack Developer",
-    "MERN Stack Developer",
-    "AI Integration",
-    "Freelance Developer Pakistan",
-    "React Developer Lahore",
-    "Node.js Developer",
-    "Next.js Developer",
-    "Upwork Developer",
-    "Fiverr Developer",
-    "Haroon Imran",
-  ],
-  authors: [{ name: "Haroon Imran" }],
-  creator: "Haroon Imran",
-  publisher: "Haroon Imran",
-  alternates: {
-    canonical: "/"
-  },
-  openGraph: {
-    title: "Haroon Imran — Full-Stack Developer & AI Integrator",
-    description: "Building MERN stack web apps and AI-powered tools. Available for freelance.",
-    url: "https://haroon.dev",
-    siteName: "Haroon Imran Portfolio",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Haroon Imran — Full-Stack Developer",
-    description: "MERN Stack + AI Integration. Available for freelance.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  category: "technology",
-  manifest: "/manifest.webmanifest",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
-  },
-  other: {
-    "format-detection": "telephone=no, date=no, email=no, address=no",
-  },
+export const metadata = {
+  title: "Haroon Imran | Full Stack Engineer | MERN, Next.js, AI",
+  description: "Full-stack MERN and Next.js developer integrating AI workflows and automation into production-ready web applications.",
+  keywords: ["MERN developer", "Next.js freelancer", "AI engineer", "Haroon Imran portfolio"],
 };
 
 export const viewport: Viewport = {

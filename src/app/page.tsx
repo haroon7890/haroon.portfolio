@@ -7,7 +7,7 @@ import { getAllProjects } from "@/lib/projects";
 import { SITE_CONFIG } from "@/lib/config";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
-import ProjectThumbnail, { getProjectThumbnailPreset } from "@/components/ProjectThumbnail";
+import ProjectThumbnail from "@/components/ProjectThumbnail";
 import { AssistantWidget, HomeBehaviorTracker } from "./home-client";
 import ContactSection from "@/app/contact-section";
 
@@ -59,6 +59,30 @@ export default async function Home({
   const contact = Array.isArray(rawContact) ? rawContact[0] : rawContact;
   const initialContactStatus = contact === "success" || contact === "error" ? contact : undefined;
 
+  const thumbnailPropsBySlug: Record<
+    string,
+    { title: string; gradient: string; pattern: "grid" | "dots" | "circuit"; category: string }
+  > = {
+    "supply-chain-optimization-platform": {
+      title: "Supply Chain",
+      gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
+      pattern: "grid",
+      category: "Enterprise",
+    },
+    "ai-powered-portfolio": {
+      title: "AI Portfolio",
+      gradient: "from-[#0f4c4c] via-[#0d7377] to-[#14a085]",
+      pattern: "circuit",
+      category: "Personal Brand",
+    },
+    "academic-planning-mentorship-system": {
+      title: "APMS Platform",
+      gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
+      pattern: "dots",
+      category: "EdTech",
+    },
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
@@ -105,7 +129,7 @@ export default async function Home({
                 <div className="text-center lg:text-left">
                   <div className="mb-3 inline-flex items-center justify-center gap-2 lg:justify-start">
                     <span className="h-px w-5 bg-[#00C9A7]" aria-hidden="true" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#00C9A7]">MERN STACK + AI INTEGRATION</span>
+                    <span className="font-mono text-[11px] tracking-[0.28em] text-[#00C9A7]">MERN Stack + AI Integration</span>
                   </div>
 
                   <h1 className="hero-name mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">Haroon Imran</h1>
@@ -114,10 +138,7 @@ export default async function Home({
                     I build MERN stack web apps and AI-powered tools that ship fast and work reliably.
                   </p>
 
-                  <p className="body-copy max-w-2xl">
-                    From backend APIs to polished React frontends - I am a BSCS student at UMT Lahore building real products with
-                    the MERN stack and AI integrations. Currently available for freelance projects.
-                  </p>
+                  <p className="body-copy max-w-2xl">From backend APIs to polished React frontends — I am a BSCS student at UMT Lahore building real products using the MERN stack and AI integrations. Currently available for freelance projects.</p>
 
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a
@@ -159,7 +180,7 @@ export default async function Home({
 
                   <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-[#080d14] px-3 py-2 text-xs font-mono text-[#94a3b8]">
                     <span aria-hidden="true">🔨</span>
-                    <span>Currently building: Multi-Agent AI Dev Workflow - n8n + LLMs + REST APIs</span>
+                    <span>Currently building: Multi-Agent AI Dev Workflow — n8n + LLMs + REST APIs</span>
                   </div>
                   {/* TODO: Add your CV to /public/cv/Haroon_Imran_CV.docx */}
                 </div>
@@ -175,15 +196,8 @@ export default async function Home({
               <h2 className="section-title mb-4 text-[#e2e8f0]">
                 Engineering with <span className="text-teal-400">business context</span>
               </h2>
-              <p className="body-copy border-l-2 border-teal-500/40 pl-4 text-[#94a3b8]">
-                I am a BSCS student at UMT Lahore and a hands-on full-stack engineer building useful digital products with the MERN
-                stack. My work sits at the intersection of clean architecture, practical AI integration, and real-world delivery -
-                not just academic exercises.
-              </p>
-              <p className="body-copy mt-4 border-l-2 border-teal-500/25 pl-4 text-[#94a3b8]">
-                If you need someone who understands product tradeoffs, builds robust REST APIs, and ships polished frontends
-                without cutting corners - let us talk. I am currently available for freelance projects on Upwork and Fiverr.
-              </p>
+              <p className="body-copy border-l-2 border-teal-500/40 pl-4 text-[#94a3b8]">I am a BSCS student at UMT Lahore and a hands-on full-stack engineer building useful digital products with the MERN stack. My work sits at the intersection of clean architecture, practical AI integration, and real-world delivery — not just academic exercises.</p>
+              <p className="body-copy mt-4 border-l-2 border-teal-500/25 pl-4 text-[#94a3b8]">If you need someone who understands product tradeoffs, builds robust REST APIs, and ships polished frontends without cutting corners — let us talk. I am currently available for freelance projects on Upwork and Fiverr.</p>
             </ScrollReveal>
           </div>
 
@@ -259,7 +273,13 @@ export default async function Home({
 
           <div className="grid gap-5 md:grid-cols-3">
             {projects.map((project, index) => {
-              const preset = getProjectThumbnailPreset(project.title);
+              const thumbnailProps =
+                thumbnailPropsBySlug[project.slug] ?? {
+                  title: project.title,
+                  gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
+                  pattern: "grid" as const,
+                  category: project.category,
+                };
 
               return (
                 <ScrollReveal key={project.slug} delay={index * 120} distance={32} duration={600}>
@@ -270,10 +290,10 @@ export default async function Home({
                     </span>
 
                     <ProjectThumbnail
-                      title={project.title}
-                      gradient={preset.gradient}
-                      pattern={preset.pattern}
-                      category={project.category}
+                      title={thumbnailProps.title}
+                      gradient={thumbnailProps.gradient}
+                      pattern={thumbnailProps.pattern}
+                      category={thumbnailProps.category}
                     />
 
                     <div className="flex flex-1 flex-col gap-4 p-5">
@@ -308,10 +328,7 @@ export default async function Home({
           </div>
         </section>
 
-        <ContactSection
-          calendlyUrl={SITE_CONFIG.calendlyUrl}
-          initialStatus={initialContactStatus}
-        />
+        <ContactSection initialStatus={initialContactStatus} />
       </main>
 
       <AssistantWidget />

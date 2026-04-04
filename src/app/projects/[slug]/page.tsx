@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/lib/projects";
-import ProjectThumbnail, { getProjectThumbnailPreset } from "@/components/ProjectThumbnail";
+import ProjectThumbnail from "@/components/ProjectThumbnail";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -63,7 +63,41 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
     keywords: project.stack.join(", "),
   };
 
-  const preset = getProjectThumbnailPreset(project.title);
+  const thumbnail = (() => {
+    if (project.slug === "supply-chain-optimization-platform") {
+      return {
+        title: "Supply Chain",
+        gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
+        pattern: "grid" as const,
+        category: "Enterprise",
+      };
+    }
+
+    if (project.slug === "ai-powered-portfolio") {
+      return {
+        title: "AI Portfolio",
+        gradient: "from-[#0f4c4c] via-[#0d7377] to-[#14a085]",
+        pattern: "circuit" as const,
+        category: "Personal Brand",
+      };
+    }
+
+    if (project.slug === "academic-planning-mentorship-system") {
+      return {
+        title: "APMS Platform",
+        gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
+        pattern: "dots" as const,
+        category: "EdTech",
+      };
+    }
+
+    return {
+      title: project.title,
+      gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
+      pattern: "grid" as const,
+      category: project.category,
+    };
+  })();
 
   return (
     <main className="section max-w-5xl py-20">
@@ -79,7 +113,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
       <article className="glass tilt-3d tilt-soft card-3d overflow-hidden">
         <div className="w-full" role="img" aria-label={`${project.title} - Case Study by Haroon Imran`}>
-          <ProjectThumbnail title={project.title} gradient={preset.gradient} pattern={preset.pattern} category={project.category} />
+          <ProjectThumbnail title={thumbnail.title} gradient={thumbnail.gradient} pattern={thumbnail.pattern} category={thumbnail.category} />
         </div>
 
         <div className="p-8 md:p-10">

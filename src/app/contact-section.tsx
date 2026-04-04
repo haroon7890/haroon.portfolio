@@ -14,11 +14,11 @@ type ToastState = {
   type: "error" | "success";
 };
 
+const CALENDLY_URL = "";
+
 export default function ContactSection({
-  calendlyUrl,
   initialStatus,
 }: {
-  calendlyUrl: string;
   initialStatus?: ContactRedirectStatus;
 }) {
   const MIN_MESSAGE_CHARS = 20;
@@ -334,22 +334,15 @@ export default function ContactSection({
                 {loading ? "Sending..." : "Send Message"}
               </button>
 
-              {calendlyUrl ? (
+              {CALENDLY_URL && (
                 <a
-                  href={calendlyUrl}
+                  href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-anim inline-flex w-full items-center justify-center rounded-full border border-white/[0.12] bg-transparent px-6 py-2 text-sm font-semibold text-[#94a3b8] transition-all duration-200 hover:bg-white/5"
                 >
                   Or book a strategy call
                 </a>
-              ) : (
-                <p className="mt-3 text-sm text-gray-500">
-                  Or reach me directly at{" "}
-                  <a href={`mailto:${SITE_CONFIG.email}`} className="text-teal-400 hover:underline">
-                    {SITE_CONFIG.email}
-                  </a>
-                </p>
               )}
               {/* TODO: Add your Calendly URL in /lib/config.ts */}
             </form>
