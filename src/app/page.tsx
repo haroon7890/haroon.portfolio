@@ -44,16 +44,12 @@ function hasCvFile() {
 export default async function Home({
   searchParams,
 }: {
-  searchParams?: Promise<Record<string, string | string[] | undefined>> | Record<string, string | string[] | undefined>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const projects = getAllProjects().slice(0, 3);
   const cvExists = hasCvFile();
 
-  const resolvedSearchParams = !searchParams
-    ? undefined
-    : typeof (searchParams as Promise<unknown>).then === "function"
-      ? await (searchParams as Promise<Record<string, string | string[] | undefined>>)
-      : (searchParams as Record<string, string | string[] | undefined>);
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
 
   const rawContact = resolvedSearchParams?.contact;
   const contact = Array.isArray(rawContact) ? rawContact[0] : rawContact;
