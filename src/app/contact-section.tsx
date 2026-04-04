@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Check, Copy, Loader2 } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import Toast from "@/components/Toast";
 import { SITE_CONFIG } from "@/lib/config";
 
 type ContactRedirectStatus = "success" | "error";
@@ -10,6 +11,7 @@ type ContactRedirectStatus = "success" | "error";
 type ToastState = {
   id: number;
   message: string;
+  type: "error" | "success";
 };
 
 export default function ContactSection({
@@ -37,11 +39,9 @@ export default function ContactSection({
   const [error, setError] = useState(initialStatus === "error" ? "Could not send your message. Please try again." : "");
   const [toast, setToast] = useState<ToastState | null>(null);
   const [copied, setCopied] = useState(false);
-  const [successFlash, setSuccessFlash] = useState(false);
 
   const formStartedAtRef = useRef<number>(0);
   const toastTimerRef = useRef<number | null>(null);
-  const successTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -69,14 +69,11 @@ export default function ContactSection({
       if (toastTimerRef.current) {
         window.clearTimeout(toastTimerRef.current);
       }
-      if (successTimerRef.current) {
-        window.clearTimeout(successTimerRef.current);
-      }
     };
   }, []);
 
-  const showToast = (message: string) => {
-    const nextToast = { id: Date.now(), message };
+  const showToast = (message: string, type: "error" | "success") => {
+    const nextToast = { id: Date.now(), message, type };
     setToast(nextToast);
 
     if (toastTimerRef.current) {
@@ -103,10 +100,10 @@ export default function ContactSection({
     try {
       await navigator.clipboard.writeText(SITE_CONFIG.email);
       setCopied(true);
-      showToast("Copied!");
+      showToast("Copied!", "success");
       window.setTimeout(() => setCopied(false), 1500);
     } catch {
-      showToast("Unable to copy right now.");
+      showToast("Something went wrong. Please try again or email me directly.", "error");
     }
   };
 
@@ -118,7 +115,7 @@ export default function ContactSection({
     const message = form.message.trim();
     if (message.length < MIN_MESSAGE_CHARS) {
       setLoading(false);
-      showToast("Please add a bit more detail about your project 💬");
+      showToast("Please add more detail about your project 💬", "error");
       return;
     }
 
@@ -172,21 +169,14 @@ export default function ContactSection({
 
       if (!response.ok) {
         setError(payload?.error ?? "Could not send message. Please try again later.");
+        showToast("Something went wrong. Please try again or email me directly.", "error");
         setLoading(false);
         return;
       }
 
       setSubmitted(true);
-      setSuccessFlash(true);
       setDeliveryId(payload?.deliveryId ?? null);
-      showToast("Message sent!");
-
-      if (successTimerRef.current) {
-        window.clearTimeout(successTimerRef.current);
-      }
-      successTimerRef.current = window.setTimeout(() => {
-        setSuccessFlash(false);
-      }, 2000);
+      showToast("Message sent! I'll reply within 24 hours ✓", "success");
 
       window.setTimeout(() => {
         setForm({
@@ -204,6 +194,7 @@ export default function ContactSection({
       formStartedAtRef.current = 0;
     } catch {
       setError("Could not send message. Please try again later.");
+      showToast("Something went wrong. Please try again or email me directly.", "error");
     } finally {
       setLoading(false);
     }
@@ -212,22 +203,23 @@ export default function ContactSection({
   return (
     <section id="contact" className="section scroll-mt-24 pt-10">
       <div className="relative">
-        <span className="section-watermark" aria-hidden="true">03</span>
+        <span className="section-number" aria-hidden="true">03</span>
         <ScrollReveal distance={20} duration={600} className="relative z-[1] mb-6">
-          <h2 className="section-title text-[#e2e8f0]">Let&apos;s build something together</h2>
-          <p className="mt-2 text-sm text-[#94a3b8]">Tell me about your project and I&apos;ll get back to you within 24 hours.</p>
+          <h2 className="section-title text-[#e2e8f0]">Let&apos;s Build Something Together</h2>
+          <p className="mt-2 text-sm text-[#94a3b8]">Tell me about your project and I will get back to you within 24 hours.</p>
         </ScrollReveal>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[40%_60%]">
+      <div className="grid gap-6 md:grid-cols-[2fr_3fr]">
         <ScrollReveal distance={20} duration={600}>
           <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6">
             <h3 className="text-lg font-semibold text-white">Why work with me?</h3>
             <ul className="mt-4 space-y-3 text-sm text-[#94a3b8]">
-              <li>✦ Fast turnaround - 48hr response guarantee</li>
-              <li>✦ Clean, documented code</li>
-              <li>✦ MERN Stack + AI integrations</li>
-              <li>✦ Affordable student rates</li>
+              <li>✦ 48hr response guarantee</li>
+              <li>✦ Clean, documented MERN stack code</li>
+              <li>✦ AI integrations that actually work</li>
+              <li>✦ Affordable rates, professional results</li>
+              <li>✦ Direct communication - no middlemen</li>
             </ul>
 
             <div className="mt-6 rounded-xl border border-white/[0.08] bg-[#080d14] p-3">
@@ -339,7 +331,7 @@ export default function ContactSection({
                 disabled={loading}
               >
                 {loading ? <Loader2 size={18} className="animate-spin" /> : null}
-                {loading ? "Sending..." : successFlash ? "Message sent!" : "Send Message"}
+                {loading ? "Sending..." : "Send Message"}
               </button>
 
               {calendlyUrl ? (
@@ -351,7 +343,14 @@ export default function ContactSection({
                 >
                   Or book a strategy call
                 </a>
-              ) : null}
+              ) : (
+                <p className="mt-3 text-sm text-gray-500">
+                  Or reach me directly at{" "}
+                  <a href={`mailto:${SITE_CONFIG.email}`} className="text-teal-400 hover:underline">
+                    {SITE_CONFIG.email}
+                  </a>
+                </p>
+              )}
               {/* TODO: Add your Calendly URL in /lib/config.ts */}
             </form>
           </div>
@@ -359,9 +358,7 @@ export default function ContactSection({
       </div>
 
       {toast ? (
-        <div className="soft-toast fixed bottom-5 right-5 z-[100] rounded-xl border border-teal-500/30 bg-[#1e293b] px-4 py-3 text-sm text-white shadow-xl">
-          {toast.message}
-        </div>
+        <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
       ) : null}
     </section>
   );

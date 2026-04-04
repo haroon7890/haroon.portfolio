@@ -36,9 +36,9 @@ function SocialLink({ href, label, icon }: SocialLinkProps) {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#080f1a] border-t border-white/[0.06] py-8 px-6 mt-0">
-      <div className="mx-auto w-full max-w-6xl grid gap-6 md:grid-cols-3 items-center text-center md:text-left">
-        <div>
+    <footer className="bg-[#080f1a] border-t border-white/[0.06] py-6 px-6 mt-0">
+      <div className="mx-auto w-full max-w-6xl flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+        <div className="flex flex-col items-center gap-1 md:items-start">
           <div className="font-mono font-semibold text-sm text-teal-400">// haroon.dev</div>
           <div className="mt-1 text-xs text-gray-400">Full-Stack Developer &amp; AI Integrator</div>
         </div>
@@ -67,8 +67,8 @@ export default function Footer() {
           <SocialLink href={`mailto:${SITE_CONFIG.email}`} label="Email" icon={<Mail size={18} />} />
         </div>
 
-        <div className="md:text-right">
-          <div className="text-xs text-gray-500">Built with Next.js &amp; Tailwind</div>
+        <div className="flex flex-col items-center gap-1 md:items-end md:text-right">
+          <div className="text-xs text-gray-500">Built with Next.js &amp; Tailwind CSS</div>
           <div className="mt-1 text-xs text-gray-400">© 2025 Haroon Imran</div>
         </div>
       </div>

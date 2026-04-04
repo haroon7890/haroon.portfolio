@@ -78,8 +78,8 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
       </Link>
 
       <article className="glass tilt-3d tilt-soft card-3d overflow-hidden">
-        <div className="w-full" role="img" aria-label={`${project.title} — Case Study`}>
-          <ProjectThumbnail title={project.title} gradient={preset.gradient} pattern={preset.pattern} />
+        <div className="w-full" role="img" aria-label={`${project.title} - Case Study by Haroon Imran`}>
+          <ProjectThumbnail title={project.title} gradient={preset.gradient} pattern={preset.pattern} category={project.category} />
         </div>
 
         <div className="p-8 md:p-10">

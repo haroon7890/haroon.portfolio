@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Mail, Menu, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { SITE_CONFIG } from "@/lib/config";
 
 type NavItem = {
@@ -21,6 +21,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<NavItem["id"]>("about");
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -62,6 +63,39 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) {
+      return;
+    }
+
+    const onPointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node | null;
+      if (!target) {
+        return;
+      }
+
+      if (navRef.current && !navRef.current.contains(target)) {
+        setMobileOpen(false);
+      }
+    };
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMobileOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("touchstart", onPointerDown, { passive: true });
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("touchstart", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [mobileOpen]);
+
   const navLinkClass = useMemo(
     () =>
       (id: NavItem["id"]) =>
@@ -83,7 +117,7 @@ export default function Navbar() {
           : "bg-transparent",
       ].join(" ")}
     >
-      <nav className="mx-auto w-[92vw] max-w-6xl py-2">
+      <nav ref={navRef} className="mx-auto w-[92vw] max-w-6xl py-2">
         <div
           className={[
             "flex h-14 items-center justify-between gap-3 rounded-2xl px-3 md:px-4 transition-all duration-300",

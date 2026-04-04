@@ -1,3 +1,5 @@
+import { SITE_CONFIG } from "@/lib/config";
+
 export type ProfileKnowledge = {
   name: string;
   headline: string;
@@ -18,8 +20,8 @@ export type ProfileKnowledge = {
 
 export function getProfileKnowledge(): ProfileKnowledge {
   return {
-    name: "Haroon Imran",
-    headline: "Full-Stack Developer & AI Integrator",
+    name: SITE_CONFIG.name,
+    headline: SITE_CONFIG.title,
     shortIntro:
       "Haroon Imran is a full-stack developer focused on production-ready web apps, backend APIs, and practical AI integrations.",
     about: [
@@ -28,8 +30,8 @@ export function getProfileKnowledge(): ProfileKnowledge {
       "Works with automation/AI workflows when they add real product value.",
     ],
     education: "BSCS student at UMT Lahore.",
-    location: "Worldwide (remote)",
-    availability: "Available for freelance projects.",
+    location: SITE_CONFIG.location,
+    availability: SITE_CONFIG.available ? "Available for freelance projects." : "Currently unavailable for freelance projects.",
     specialties: [
       "Full-stack web applications",
       "Backend/API systems",
@@ -37,11 +39,11 @@ export function getProfileKnowledge(): ProfileKnowledge {
       "Technical consulting",
     ],
     contact: {
-      email: "haroon86865@gmail.com",
+      email: SITE_CONFIG.email,
       phone: "+923364450294",
-      github: "https://github.com/haroon7890",
-      linkedin: "https://www.linkedin.com/in/haroon-imran-80b515352/",
-      bookingUrl: process.env.NEXT_PUBLIC_BOOKING_URL ?? "https://calendly.com/",
+      github: SITE_CONFIG.github,
+      linkedin: SITE_CONFIG.linkedin,
+      bookingUrl: SITE_CONFIG.calendlyUrl || undefined,
     },
   };
 }

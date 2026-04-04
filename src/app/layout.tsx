@@ -6,8 +6,6 @@ import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const seoDescription =
-  "Full-Stack Developer & AI Integrator. Case studies, skills, and a direct contact form.";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,20 +21,22 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Haroon Imran — Full-Stack Developer & AI Integrator",
   description:
-    "MERN Stack developer and AI integrator based in Lahore, Pakistan. Available for freelance projects on Upwork and Fiverr.",
+    "MERN Stack developer and AI integrator based in Lahore, Pakistan. Building production-ready web apps and AI-powered tools. Available for freelance on Upwork and Fiverr.",
   applicationName: "Haroon Imran Portfolio",
   referrer: "origin-when-cross-origin",
   keywords: [
     "Full-Stack Developer",
-    "MERN Stack",
+    "MERN Stack Developer",
     "AI Integration",
-    "Freelance Developer",
-    "Lahore",
-    "Pakistan",
-    "Next.js",
-    "React",
+    "Freelance Developer Pakistan",
+    "React Developer Lahore",
+    "Node.js Developer",
+    "Next.js Developer",
+    "Upwork Developer",
+    "Fiverr Developer",
+    "Haroon Imran",
   ],
-  authors: [{ name: "Haroon Imran", url: siteUrl }],
+  authors: [{ name: "Haroon Imran" }],
   creator: "Haroon Imran",
   publisher: "Haroon Imran",
   alternates: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Haroon Imran — Full-Stack Developer & AI Integrator",
-    description: "Building production-ready web apps with MERN stack and AI integrations.",
+    description: "Building MERN stack web apps and AI-powered tools. Available for freelance.",
     url: "https://haroon.dev",
     siteName: "Haroon Imran Portfolio",
     locale: "en_US",
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Haroon Imran — Full-Stack Developer & AI Integrator",
-    description: "Building production-ready web apps with MERN stack and AI integrations.",
+    title: "Haroon Imran — Full-Stack Developer",
+    description: "MERN Stack + AI Integration. Available for freelance.",
   },
   robots: {
     index: true,

@@ -68,37 +68,54 @@ export default async function Home({
       <main className="relative z-10 pt-24 md:pt-28">
         <section id="hero" className="section scroll-mt-24 pb-6 md:pb-8">
           <div className="relative mx-auto w-full max-w-6xl">
-            <div className="hero-glow" aria-hidden="true" />
-            <div className="hero-shell rounded-[20px] border border-white/[0.07] bg-gradient-to-br from-[#0d1626] to-[#0a1020] p-6 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+            <div
+              className="absolute inset-0 -z-10"
+              style={{
+                background:
+                  "radial-gradient(ellipse 600px 400px at 60% 50%, rgba(0,201,167,0.05) 0%, transparent 70%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="hero-shell relative overflow-hidden rounded-[20px] border border-white/[0.07] bg-gradient-to-br from-[#0d1626] to-[#0a1020] p-6 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" aria-hidden="true" />
               <div className="grid items-center gap-6 md:gap-8 lg:grid-cols-[320px_1fr]">
-                <div className="photo-frame rounded-xl bg-gradient-to-br from-[#00C9A7] to-[#0066ff] p-[2px]">
-                  <div className="relative h-[200px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
+                <div className="photo-frame mx-auto w-full max-w-[200px] rounded-[12px] bg-gradient-to-br from-[#00C9A7] to-[#0066ff] p-[2px] sm:max-w-[280px] md:max-w-[320px] lg:mx-0">
+                  <div className="relative h-[250px] sm:h-[320px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
                     <Image
                       src="/image/haroon.jpg"
-                      alt="Haroon Imran — Full-Stack Developer based in Lahore"
+                      alt="Haroon Imran - Full-Stack Developer based in Lahore, Pakistan"
                       fill
                       priority
-                      sizes="(max-width: 767px) 100vw, 320px"
-                      className="object-cover"
+                      sizes="(max-width: 639px) 200px, (max-width: 767px) 280px, 320px"
+                      className="object-cover object-[center_18%] md:object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-black/25 via-transparent to-black/35" />
-                    <div className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#0a1020d8] px-3 py-1.5 text-xs font-mono text-[#e2e8f0]">
-                      <span className="pulse-dot h-2 w-2 rounded-full bg-green-400" />
-                      <span>Available for freelance</span>
+                    <div className="absolute bottom-3 right-3 inline-flex rounded-full border border-white/10 bg-[#0a1020d8] px-3 py-1.5">
+                      <span className="flex items-center gap-1.5 text-xs text-white/80">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                          <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+                        </span>
+                        Available for freelance
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                <div>
-                  <div className="mb-3 inline-flex items-center gap-2">
+                <div className="text-center lg:text-left">
+                  <div className="mb-3 inline-flex items-center justify-center gap-2 lg:justify-start">
                     <span className="h-px w-5 bg-[#00C9A7]" aria-hidden="true" />
-                    <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#00C9A7]">FULL-STACK + AI DELIVERY</span>
+                    <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#00C9A7]">MERN STACK + AI INTEGRATION</span>
                   </div>
 
-                  <h1 className="hero-name mb-4 font-extrabold text-white">Haroon Imran</h1>
+                  <h1 className="hero-name mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">Haroon Imran</h1>
+
+                  <p className="mb-3 text-base text-[#d8e3f2] md:text-lg">
+                    I build MERN stack web apps and AI-powered tools that ship fast and work reliably.
+                  </p>
 
                   <p className="body-copy max-w-2xl">
-                    From backend APIs to polished React frontends - I&apos;m a BSCS student at UMT Lahore building real products with
+                    From backend APIs to polished React frontends - I am a BSCS student at UMT Lahore building real products with
                     the MERN stack and AI integrations. Currently available for freelance projects.
                   </p>
 
@@ -153,14 +170,19 @@ export default async function Home({
 
         <section id="about" className="section scroll-mt-24 pt-6 md:pt-8">
           <div className="relative">
-            <span className="section-watermark" aria-hidden="true">01</span>
+            <span className="section-number" aria-hidden="true">01</span>
             <ScrollReveal distance={24} duration={600} className="relative z-[1]">
               <h2 className="section-title mb-4 text-[#e2e8f0]">
                 Engineering with <span className="text-teal-400">business context</span>
               </h2>
               <p className="body-copy border-l-2 border-teal-500/40 pl-4 text-[#94a3b8]">
-                I am a BSCS student at UMT Lahore and a hands-on full-stack engineer focused on building useful digital products.
-                My approach combines structured architecture, clear communication, and iterative delivery.
+                I am a BSCS student at UMT Lahore and a hands-on full-stack engineer building useful digital products with the MERN
+                stack. My work sits at the intersection of clean architecture, practical AI integration, and real-world delivery -
+                not just academic exercises.
+              </p>
+              <p className="body-copy mt-4 border-l-2 border-teal-500/25 pl-4 text-[#94a3b8]">
+                If you need someone who understands product tradeoffs, builds robust REST APIs, and ships polished frontends
+                without cutting corners - let us talk. I am currently available for freelance projects on Upwork and Fiverr.
               </p>
             </ScrollReveal>
           </div>
@@ -170,7 +192,7 @@ export default async function Home({
               <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6 transition-colors duration-300 hover:border-white/[0.12]">
                 <span className="text-xs font-mono tracking-widest text-teal-400">// STACK</span>
                 <h3 className="mt-3 text-2xl font-bold text-white">Core Technologies</h3>
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
                   {[
                     { label: "TypeScript", icon: "devicon-typescript-plain colored" },
                     { label: "JavaScript", icon: "devicon-javascript-plain colored" },
@@ -206,7 +228,7 @@ export default async function Home({
                     "Integration of AI workflows and LLMs into existing tools.",
                     "Performant REST APIs and database schema design.",
                     "Data structures and C++ system modeling.",
-                    "Social media and marketing automation for crypto/Web3 brands.",
+                    "Social media and marketing automation for crypto and Web3 brands.",
                   ].map((item, index) => (
                     <ScrollReveal key={item} delay={index * 60} distance={20} duration={500}>
                       <li className="group flex items-start gap-2 transition-colors duration-150 hover:text-white">
@@ -223,7 +245,7 @@ export default async function Home({
 
         <section id="case-studies" className="section scroll-mt-24 pt-10">
           <div className="relative">
-            <span className="section-watermark" aria-hidden="true">02</span>
+            <span className="section-number" aria-hidden="true">02</span>
             <ScrollReveal distance={24} duration={600} className="relative z-[1] mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h2 className="section-title text-[#e2e8f0]">Featured Case Studies</h2>
@@ -243,7 +265,7 @@ export default async function Home({
                 <ScrollReveal key={project.slug} delay={index * 120} distance={32} duration={600}>
                   <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0d1626] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-teal-500/30">
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-teal-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <span className="pointer-events-none absolute right-4 top-4 text-5xl font-bold font-mono text-white/10">
+                    <span className="pointer-events-none absolute right-4 top-4 text-5xl font-bold font-mono text-white/[0.04]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
@@ -251,6 +273,7 @@ export default async function Home({
                       title={project.title}
                       gradient={preset.gradient}
                       pattern={preset.pattern}
+                      category={project.category}
                     />
 
                     <div className="flex flex-1 flex-col gap-4 p-5">
@@ -270,7 +293,7 @@ export default async function Home({
 
                       <Link
                         href={`/projects/${project.slug}`}
-                        className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-300 ease-out hover:text-teal-300 hover:gap-[8px]"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-200 group-hover:gap-3"
                         data-analytics="project_case_study_open"
                         data-analytics-label={project.slug}
                       >

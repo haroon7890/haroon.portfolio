@@ -52,6 +52,7 @@ export default function ProjectsPage() {
               title={project.title}
               gradient={preset.gradient}
               pattern={preset.pattern}
+              category={project.category}
             />
             <div className="p-6 flex flex-col gap-4 flex-1">
               <div className="flex items-center justify-between gap-3 flex-wrap">
