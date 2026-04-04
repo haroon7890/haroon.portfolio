@@ -23,7 +23,7 @@ export function getProfileKnowledge(): ProfileKnowledge {
     name: SITE_CONFIG.name,
     headline: SITE_CONFIG.title,
     shortIntro:
-      "Haroon Imran is a full-stack developer focused on production-ready web apps, backend APIs, and practical AI integrations.",
+      "Haroon Imran is a full-stack engineer focused on production-ready web apps, backend APIs, and practical AI integrations.",
     about: [
       "Builds modern Next.js/React apps with strong UX and technical SEO.",
       "Designs and implements backend APIs, databases, and integrations.",

@@ -20,7 +20,7 @@ const structuredData = {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Haroon Imran",
-      jobTitle: "Full-Stack Developer & AI Integrator",
+      jobTitle: "Full-Stack Engineer & AI Integrator",
       url: siteUrl,
       image: `${siteUrl}/image/haroon.jpg`,
       email: `mailto:${SITE_CONFIG.email}`,
@@ -103,7 +103,7 @@ export default async function Home({
                   <div className="relative h-[250px] sm:h-[320px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
                     <Image
                       src="/image/haroon.jpg"
-                      alt="Haroon Imran - Full-Stack Developer based in Lahore, Pakistan"
+                      alt="Haroon Imran - Full-Stack Engineer based in Lahore, Pakistan"
                       fill
                       priority
                       sizes="(max-width: 639px) 200px, (max-width: 767px) 280px, 320px"

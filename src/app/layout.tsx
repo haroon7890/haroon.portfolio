@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Haroon Imran | Full Stack Engineer | MERN, Next.js, AI",
-  description: "Full-stack MERN and Next.js developer integrating AI workflows and automation into production-ready web applications.",
+  title: "Haroon Imran — Full-Stack Engineer & AI Integrator",
+  description: "Full-Stack MERN and Next.js engineer integrating practical AI workflows into production-ready web applications. Open to freelance projects.",
   keywords: ["MERN developer", "Next.js freelancer", "AI engineer", "Haroon Imran portfolio"],
 };
 

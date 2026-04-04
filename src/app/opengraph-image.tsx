@@ -65,7 +65,6 @@ export default function OpenGraphImage() {
               style={{
                 fontSize: 78,
                 lineHeight: 1.05,
-                fontWeight: 700,
                 letterSpacing: -1.4,
                 color: "#ffffff",
               }}
@@ -81,7 +80,7 @@ export default function OpenGraphImage() {
                 maxWidth: 880,
               }}
             >
-              Full-Stack Developer &amp; AI Integrator
+              Full-Stack Engineer &amp; AI Integrator
             </div>
           </div>
 

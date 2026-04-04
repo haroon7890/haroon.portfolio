@@ -15,7 +15,7 @@ export default function Footer() {
             // haroon.dev
           </span>
           <span className="text-xs text-gray-500">
-            Full-Stack Developer & AI Integrator
+            Full-Stack Engineer & AI Integrator
           </span>
         </div>
 

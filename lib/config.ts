@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
 	name: "Haroon Imran",
-	title: "Full-Stack Developer & AI Integrator",
+	title: "Full-Stack Engineer & AI Integrator",
 	email: "haroon86865@gmail.com",
 	calendlyUrl: "",
 	github: "https://github.com/haroon7890",

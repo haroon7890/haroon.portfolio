@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Haroon Imran Portfolio",
     short_name: "Haroon Portfolio",
     description:
-      "Portfolio of Haroon Imran, a Full-Stack Developer and AI Integrator.",
+      "Portfolio of Haroon Imran, a Full-Stack Engineer and AI Integrator.",
     start_url: "/",
     display: "standalone",
     background_color: "#101624",
