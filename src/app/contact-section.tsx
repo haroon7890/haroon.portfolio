@@ -359,7 +359,7 @@ export default function ContactSection({
       </div>
 
       {toast ? (
-        <div className="fixed bottom-5 right-5 z-[100] rounded-xl border border-teal-500/30 bg-[#1e293b] px-4 py-3 text-sm text-white shadow-xl">
+        <div className="soft-toast fixed bottom-5 right-5 z-[100] rounded-xl border border-teal-500/30 bg-[#1e293b] px-4 py-3 text-sm text-white shadow-xl">
           {toast.message}
         </div>
       ) : null}

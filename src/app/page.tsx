@@ -69,7 +69,7 @@ export default async function Home({
         <section id="hero" className="section scroll-mt-24 pb-6 md:pb-8">
           <div className="relative mx-auto w-full max-w-6xl">
             <div className="hero-glow" aria-hidden="true" />
-            <div className="hero-shell rounded-[20px] border border-white/[0.07] bg-gradient-to-br from-[#0d1626] to-[#0a1020] p-6 md:p-8">
+            <div className="hero-shell rounded-[20px] border border-white/[0.07] bg-gradient-to-br from-[#0d1626] to-[#0a1020] p-6 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
               <div className="grid items-center gap-6 md:gap-8 lg:grid-cols-[320px_1fr]">
                 <div className="photo-frame rounded-xl bg-gradient-to-br from-[#00C9A7] to-[#0066ff] p-[2px]">
                   <div className="relative h-[200px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
@@ -97,12 +97,12 @@ export default async function Home({
 
                   <h1 className="hero-name mb-4 font-extrabold text-white">Haroon Imran</h1>
 
-                  <p className="body-copy max-w-2xl text-[#94a3b8]">
+                  <p className="body-copy max-w-2xl">
                     From backend APIs to polished React frontends - I&apos;m a BSCS student at UMT Lahore building real products with
                     the MERN stack and AI integrations. Currently available for freelance projects.
                   </p>
 
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a
                       href="#contact"
                       className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[#00C9A7] px-6 py-3 text-sm font-semibold text-black transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-teal-500/25"
@@ -258,7 +258,7 @@ export default async function Home({
                         {project.category}
                       </span>
                       <h3 className="text-[20px] font-bold tracking-[-0.5px] text-white">{project.title}</h3>
-                      <p className="text-sm leading-6 text-[#64748b]">{project.summary}</p>
+                      <p className="text-sm leading-6 text-[#71839b]">{project.summary}</p>
 
                       <div className="mt-auto flex flex-wrap gap-2">
                         {project.stack.slice(0, 4).map((item) => (

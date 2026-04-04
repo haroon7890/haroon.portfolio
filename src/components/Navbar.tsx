@@ -66,10 +66,10 @@ export default function Navbar() {
     () =>
       (id: NavItem["id"]) =>
         [
-          "inline-flex items-center border-b-2 pb-1 text-sm font-medium transition-all duration-300",
+          "inline-flex items-center rounded-md border-b-2 px-1.5 pb-1 text-sm font-medium transition-all duration-300",
           activeSection === id
-            ? "border-teal-400 text-white"
-            : "border-transparent text-[#94a3b8] hover:text-white",
+            ? "border-teal-400 text-white bg-white/[0.02]"
+            : "border-transparent text-[#94a3b8] hover:text-white hover:bg-white/[0.02]",
         ].join(" "),
     [activeSection]
   );
@@ -79,12 +79,17 @@ export default function Navbar() {
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         isScrolled
-          ? "backdrop-blur-md bg-[#080d14]/80 border-b border-white/[0.06] shadow-lg shadow-black/20"
+          ? "backdrop-blur-md backdrop-saturate-150 bg-[#080d14]/80 border-b border-white/[0.06] shadow-lg shadow-black/20"
           : "bg-transparent",
       ].join(" ")}
     >
-      <nav className="mx-auto w-[92vw] max-w-6xl">
-        <div className="flex h-16 items-center justify-between gap-3">
+      <nav className="mx-auto w-[92vw] max-w-6xl py-2">
+        <div
+          className={[
+            "flex h-14 items-center justify-between gap-3 rounded-2xl px-3 md:px-4 transition-all duration-300",
+            isScrolled ? "border border-white/[0.06] bg-[#0b1422]/85" : "bg-transparent",
+          ].join(" ")}
+        >
           <a
             href="#hero"
             className="group inline-flex items-center gap-2 font-mono text-[15px] font-semibold text-[#00C9A7] transition-colors duration-300 hover:text-white"
@@ -101,6 +106,7 @@ export default function Navbar() {
                 href={item.href}
                 className={navLinkClass(item.id)}
                 data-analytics={`nav_${item.id.replace("-", "_")}_click`}
+                aria-current={activeSection === item.id ? "page" : undefined}
               >
                 {item.label}
               </a>
@@ -108,7 +114,7 @@ export default function Navbar() {
 
             <Link
               href="/projects"
-              className="inline-flex items-center border-b-2 border-transparent pb-1 text-sm font-medium text-[#94a3b8] transition-all duration-300 hover:text-white"
+              className="inline-flex items-center rounded-md border-b-2 border-transparent px-1.5 pb-1 text-sm font-medium text-[#94a3b8] transition-all duration-300 hover:text-white hover:bg-white/[0.02]"
               data-analytics="nav_projects_click"
             >
               Projects
@@ -129,7 +135,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 title="GitHub"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#94a3b8] transition-colors duration-200 hover:text-[#00C9A7]"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#94a3b8] transition-all duration-200 hover:text-[#00C9A7] hover:-translate-y-[1px]"
                 data-analytics="nav_github_click"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
@@ -142,7 +148,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 title="LinkedIn"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#94a3b8] transition-colors duration-200 hover:text-[#00C9A7]"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#94a3b8] transition-all duration-200 hover:text-[#00C9A7] hover:-translate-y-[1px]"
                 data-analytics="nav_linkedin_click"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
@@ -153,7 +159,7 @@ export default function Navbar() {
                 href={`mailto:${SITE_CONFIG.email}`}
                 aria-label="Email"
                 title="Email"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#94a3b8] transition-colors duration-200 hover:text-[#00C9A7]"
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-[#94a3b8] transition-all duration-200 hover:text-[#00C9A7] hover:-translate-y-[1px]"
                 data-analytics="nav_email_click"
               >
                 <Mail size={16} />
@@ -174,8 +180,8 @@ export default function Navbar() {
 
         <div
           className={[
-            "md:hidden overflow-hidden transition-all duration-300",
-            mobileOpen ? "max-h-96 opacity-100 pb-4" : "max-h-0 opacity-0",
+            "md:hidden overflow-hidden transition-all duration-300 ease-out",
+            mobileOpen ? "max-h-[420px] opacity-100 pb-4 translate-y-0" : "max-h-0 opacity-0 pb-0 -translate-y-1",
           ].join(" ")}
         >
           <div className="rounded-2xl border border-white/[0.08] bg-[#0d1626] p-4 space-y-3">

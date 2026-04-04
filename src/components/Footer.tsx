@@ -13,7 +13,7 @@ function SocialLink({ href, label, icon }: SocialLinkProps) {
     return (
       <span
         aria-label={`${label} (add link in config)`}
-        className="inline-flex h-9 w-9 items-center justify-center text-gray-500/60"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.06] text-gray-500/60"
       >
         {icon}
       </span>
@@ -27,7 +27,7 @@ function SocialLink({ href, label, icon }: SocialLinkProps) {
       rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
       aria-label={label}
       title={label}
-      className="inline-flex h-9 w-9 items-center justify-center text-gray-400 transition-colors duration-200 hover:text-teal-400"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.08] text-gray-400 transition-all duration-200 hover:text-teal-400 hover:border-teal-500/30 hover:-translate-y-[1px]"
     >
       {icon}
     </a>
