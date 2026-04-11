@@ -6,14 +6,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { SITE_CONFIG } from "@/lib/config";
 
 type NavItem = {
-  id: "about" | "case-studies" | "contact";
+  id: "about" | "services" | "case-studies" | "experience" | "contact";
   label: string;
   href: string;
 };
 
 const NAV_ITEMS: NavItem[] = [
-  { id: "about", label: "About", href: "#about" },
-  { id: "case-studies", label: "Case Studies", href: "#case-studies" },
+  { id: "about", label: "Intro", href: "#about" },
+  { id: "services", label: "Services", href: "#services" },
+  { id: "case-studies", label: "Projects", href: "#case-studies" },
+  { id: "experience", label: "Experience", href: "#experience" },
   { id: "contact", label: "Contact", href: "#contact" },
 ];
 

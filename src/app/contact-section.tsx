@@ -203,7 +203,7 @@ export default function ContactSection({
   return (
     <section id="contact" className="section scroll-mt-24 pt-10">
       <div className="relative">
-        <span className="section-number" aria-hidden="true">03</span>
+        <span className="section-number" aria-hidden="true">05</span>
         <ScrollReveal distance={24} duration={760} className="relative z-[1] mb-6">
           <h2 className="section-title text-[color:var(--text-light)]">Let&apos;s Build Something Together</h2>
           <p className="mt-2 text-sm text-[color:var(--text-mid)]">Tell me about your project and I will get back to you within 24 hours.</p>

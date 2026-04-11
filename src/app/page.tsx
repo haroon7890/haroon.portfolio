@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { getAllProjects } from "@/lib/projects";
 import { SITE_CONFIG } from "@/lib/config";
 import Navbar from "@/components/Navbar";
@@ -205,66 +205,46 @@ export default async function Home({
               <p className="body-copy mt-4 border-l-2 border-[color:var(--accent-soft)] pl-4 text-[color:var(--text-mid)]">If you need someone who understands product tradeoffs, builds robust REST APIs, and ships polished frontends without cutting corners — let us talk. I am currently available for freelance projects on Upwork and Fiverr.</p>
             </ScrollReveal>
           </div>
+        </section>
 
-          <div className="mt-10 grid gap-7 md:grid-cols-2">
-            <ScrollReveal distance={26} duration={760}>
-              <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-7 transition-colors duration-300 hover:border-[color:var(--accent-soft)]">
-                <span className="text-xs font-mono tracking-widest text-[color:var(--accent)]">// STACK</span>
-                <h3 className="mt-3 text-2xl font-bold text-[color:var(--text-light)]">Core Technologies</h3>
-                <div className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
-                  {[
-                    "TypeScript",
-                    "JavaScript",
-                    "React",
-                    "Next.js",
-                    "Node.js",
-                    "Express",
-                    "Tailwind CSS",
-                    "C++",
-                    "Python",
-                    "MongoDB",
-                    "PostgreSQL",
-                    "Git/GitHub",
-                  ].map((item, index) => (
-                    <ScrollReveal key={item} delay={index * 36} distance={22} duration={680}>
-                      <div className="tech-badge group inline-flex items-center gap-2 rounded-xl border border-[color:var(--border)] bg-[#fff] px-3 py-2 text-xs font-medium text-[color:var(--text-mid)] hover:border-[color:var(--accent-soft)] hover:-translate-y-1 transition-all duration-200">
-                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
-                        <span>{item}</span>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
+        <section id="services" className="section scroll-mt-24 pt-8">
+          <div className="relative">
+            <span className="section-number" aria-hidden="true">02</span>
+            <ScrollReveal distance={26} duration={760} className="relative z-[1]">
+              <h2 className="section-title text-[color:var(--text-light)]">Services built for outcomes</h2>
+              <p className="mt-3 max-w-3xl text-[color:var(--text-mid)]">From product sites to backend systems and AI workflows, each engagement is scoped around measurable business goals and reliable delivery.</p>
             </ScrollReveal>
+          </div>
 
-            <ScrollReveal distance={26} duration={760}>
-              <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-7 transition-colors duration-300 hover:border-[color:var(--accent-soft)]">
-                <span className="text-xs font-mono tracking-widest text-[color:var(--accent)]">// SERVICES</span>
-                <h3 className="mt-3 text-2xl font-bold text-[color:var(--text-light)]">What I Deliver</h3>
-                <ul className="mt-5 space-y-3 text-[color:var(--text-mid)]">
-                  {[
-                    "Full-stack web applications from zero to deployment.",
-                    "Integration of AI workflows and LLMs into existing tools.",
-                    "Performant REST APIs and database schema design.",
-                    "Data structures and C++ system modeling.",
-                    "Social media and marketing automation for crypto and Web3 brands.",
-                  ].map((item, index) => (
-                    <ScrollReveal key={item} delay={index * 70} distance={22} duration={680}>
-                      <li className="group flex items-start gap-2 transition-colors duration-150 hover:text-[color:var(--text-light)]">
-                        <Check size={14} className="mt-1 shrink-0 text-[color:var(--accent)]" />
-                        <span>{item}</span>
-                      </li>
-                    </ScrollReveal>
-                  ))}
-                </ul>
-              </div>
-            </ScrollReveal>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                title: "Product Websites",
+                detail: "Narrative-driven marketing and portfolio sites with clean typography, premium motion, and conversion-focused structure.",
+              },
+              {
+                title: "Web App Engineering",
+                detail: "Full-stack app delivery with Next.js, Node.js, API design, auth, and production-grade deployment workflows.",
+              },
+              {
+                title: "AI Integrations",
+                detail: "Practical AI assistants and automation layers integrated into existing systems without sacrificing maintainability.",
+              },
+            ].map((service, index) => (
+              <ScrollReveal key={service.title} delay={index * 120} distance={30} duration={780}>
+                <article className="case-card rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-6">
+                  <p className="text-xs font-mono tracking-[0.16em] text-[color:var(--accent)]">0{index + 1}</p>
+                  <h3 className="mt-3 text-2xl font-bold tracking-[-0.6px] text-[color:var(--text-light)]">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[color:var(--text-mid)]">{service.detail}</p>
+                </article>
+              </ScrollReveal>
+            ))}
           </div>
         </section>
 
         <section id="case-studies" className="section scroll-mt-24 pt-10">
           <div className="relative">
-            <span className="section-number" aria-hidden="true">02</span>
+            <span className="section-number" aria-hidden="true">03</span>
             <ScrollReveal distance={26} duration={760} className="relative z-[1] mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h2 className="section-title text-[color:var(--text-light)]">Featured Case Studies</h2>
@@ -341,6 +321,49 @@ export default async function Home({
                 </ScrollReveal>
               );
             })}
+          </div>
+        </section>
+
+        <section id="experience" className="section scroll-mt-24 pt-10">
+          <div className="relative">
+            <span className="section-number" aria-hidden="true">04</span>
+            <ScrollReveal distance={26} duration={760} className="relative z-[1]">
+              <h2 className="section-title text-[color:var(--text-light)]">Experience and delivery</h2>
+              <p className="mt-3 max-w-3xl text-[color:var(--text-mid)]">A focused progression from systems fundamentals to full product execution with real clients and practical AI workflows.</p>
+            </ScrollReveal>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {[
+              {
+                period: "2024 - Present",
+                title: "Freelance Full-Stack Developer",
+                detail: "Shipping client-facing Next.js and Node.js products with measurable outcomes and rapid iteration cycles.",
+              },
+              {
+                period: "2023 - 2024",
+                title: "Automation + AI Workflow Builder",
+                detail: "Built production flows that combine LLM prompting, API orchestration, validation, and human review loops.",
+              },
+              {
+                period: "2022 - 2023",
+                title: "Systems and DSA Foundation",
+                detail: "Focused on C++, data structures, and performance-first engineering fundamentals applied to real use cases.",
+              },
+              {
+                period: "Current Focus",
+                title: "Productized Engineering",
+                detail: "Merging design direction, frontend polish, and backend reliability into complete end-to-end digital products.",
+              },
+            ].map((item, index) => (
+              <ScrollReveal key={item.title} delay={index * 110} distance={28} duration={760}>
+                <article className="case-card rounded-2xl border border-[color:var(--border)] bg-[#fffdf9] p-6">
+                  <p className="text-xs font-mono tracking-[0.16em] text-[color:var(--accent)]">{item.period}</p>
+                  <h3 className="mt-2 text-xl font-bold tracking-[-0.4px] text-[color:var(--text-light)]">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-[color:var(--text-mid)]">{item.detail}</p>
+                </article>
+              </ScrollReveal>
+            ))}
           </div>
         </section>
 
