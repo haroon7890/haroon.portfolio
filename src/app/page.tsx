@@ -95,8 +95,8 @@ export default async function Home({
               <div className="hero-orb orb-b" aria-hidden="true" />
               <div className="hero-orb orb-c" aria-hidden="true" />
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ffb26b66] to-transparent" aria-hidden="true" />
-              <div className="grid items-center gap-8 md:gap-10 lg:grid-cols-[320px_1fr]">
-                <div className="photo-frame mx-auto w-full max-w-[200px] rounded-[12px] bg-gradient-to-br from-[color:var(--accent)] via-[color:var(--accent-2)] to-[color:var(--accent-3)] p-[2px] sm:max-w-[280px] md:max-w-[320px] lg:mx-0">
+              <div className="grid items-center gap-8 md:gap-10 lg:grid-cols-[1fr_320px]">
+                <div className="photo-frame order-2 mx-auto w-full max-w-[200px] rounded-[12px] bg-gradient-to-br from-[color:var(--accent)] via-[color:var(--accent-2)] to-[color:var(--accent-3)] p-[2px] sm:max-w-[280px] md:max-w-[320px] lg:mx-0">
                   <div className="relative h-[250px] sm:h-[320px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#eadfce]">
                     <Image
                       src="/image/haroon.jpg"
@@ -119,21 +119,33 @@ export default async function Home({
                   </div>
                 </div>
 
-                <div className="text-center lg:text-left">
+                <div className="order-1 text-center lg:text-left">
                   <div className="mb-3 inline-flex items-center justify-center gap-2 lg:justify-start">
                     <span className="h-px w-5 bg-[color:var(--accent)]" aria-hidden="true" />
-                    <span className="font-mono text-[11px] tracking-[0.28em] text-[color:var(--accent)]">MERN Stack + AI Integration</span>
+                    <span className="font-mono text-[11px] tracking-[0.28em] text-[color:var(--accent)]">INDEPENDENT PRODUCT ENGINEER</span>
                   </div>
 
                   <h1 className="hero-name mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[color:var(--text-light)] leading-[1.05]">Haroon Imran</h1>
-
-                  <p className="mb-3 text-base text-[color:var(--text-mid)] md:text-lg">
-                    I build MERN stack web apps and AI-powered tools that ship fast and work reliably.
-                  </p>
+                  <p className="hero-lead mb-4 max-w-2xl">Design-forward websites and robust web apps with practical AI workflows.</p>
 
                   <p className="body-copy max-w-2xl">From backend APIs to polished React frontends — I am a BSCS student at UMT Lahore building real products using the MERN stack and AI integrations. Currently available for freelance projects.</p>
 
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                  <div className="mt-5 grid gap-2 sm:grid-cols-3 sm:gap-3 max-w-3xl">
+                    <div className="hero-metric">
+                      <p className="font-display text-xl font-bold text-[color:var(--text-light)]">2</p>
+                      <p className="mt-0.5 text-[11px] font-mono tracking-[0.12em] text-[color:var(--text-dim)]">LIVE CASE STUDIES</p>
+                    </div>
+                    <div className="hero-metric">
+                      <p className="font-display text-xl font-bold text-[color:var(--text-light)]">24h</p>
+                      <p className="mt-0.5 text-[11px] font-mono tracking-[0.12em] text-[color:var(--text-dim)]">RESPONSE TIME</p>
+                    </div>
+                    <div className="hero-metric">
+                      <p className="font-display text-xl font-bold text-[color:var(--text-light)]">MERN + AI</p>
+                      <p className="mt-0.5 text-[11px] font-mono tracking-[0.12em] text-[color:var(--text-dim)]">DELIVERY FOCUS</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a
                       href="#contact"
                       className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-[#2d1308] transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-[#ff8a5b55]"

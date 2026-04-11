@@ -60,7 +60,7 @@ export default function ProjectsPage() {
         <span aria-hidden="true">←</span>
         <span>Back to Home</span>
       </Link>
-      <div className="glass tilt-3d tilt-soft card-3d mb-12 p-9 md:p-12">
+      <div className="glass card-3d mb-12 rounded-[28px] p-9 md:p-12">
         <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--accent)] font-mono mb-2">Case Studies</p>
         <h1 className="text-5xl md:text-6xl font-extrabold tracking-[-1.2px] text-[color:var(--text-light)] mb-4">Proof, not promises</h1>
         <p className="max-w-3xl text-[color:var(--text-mid)]">
@@ -69,12 +69,12 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid gap-7 md:grid-cols-2">
         {projects.map((project) => {
           const thumbnail = getThumbnailProps(project.slug, project.title, project.category);
 
           return (
-          <article key={project.slug} className="glass tilt-3d tilt-soft card-3d overflow-hidden flex flex-col border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[color:var(--accent-soft)]">
+          <article key={project.slug} className="glass card-3d overflow-hidden rounded-[24px] border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[color:var(--accent-soft)]">
             <ProjectThumbnail
               title={thumbnail.title}
               gradient={thumbnail.gradient}

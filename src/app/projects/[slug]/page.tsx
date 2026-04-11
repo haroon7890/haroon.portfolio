@@ -102,7 +102,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
         <span>Back to Case Studies</span>
       </Link>
 
-      <article className="glass tilt-3d tilt-soft card-3d overflow-hidden border border-[color:var(--border)]">
+      <article className="glass card-3d overflow-hidden rounded-[28px] border border-[color:var(--border)]">
         <div className="w-full" role="img" aria-label={`${project.title} - Case Study by Haroon Imran`}>
           <ProjectThumbnail
             title={thumbnail.title}
@@ -127,11 +127,11 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
           <p className="mb-8 text-lg text-[color:var(--text-mid)]">{project.summary}</p>
 
           <div className="grid md:grid-cols-2 gap-4 mb-8">
-            <div className="glass tilt-3d tilt-soft card-3d p-4 border border-[color:var(--border)] bg-[#fffaf4]">
+            <div className="glass card-3d rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-4">
               <p className="text-xs uppercase tracking-[0.16em] text-[color:var(--text-dim)] mb-1">Role</p>
               <p className="text-[color:var(--text-light)] font-medium">{project.role}</p>
             </div>
-            <div className="glass tilt-3d tilt-soft card-3d p-4 border border-[color:var(--border)] bg-[#fffaf4]">
+            <div className="glass card-3d rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-4">
               <p className="text-xs uppercase tracking-[0.16em] text-[color:var(--text-dim)] mb-1">Stack</p>
               <p className="text-[color:var(--text-light)] font-medium">{project.stack.join(" • ")}</p>
             </div>
