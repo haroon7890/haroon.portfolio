@@ -96,13 +96,13 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-8 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#ff8a5b22]"
+        className="hero-reveal hero-delay-1 inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-8 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#ff8a5b22]"
       >
         <span aria-hidden="true">←</span>
         <span>Back to Case Studies</span>
       </Link>
 
-      <article className="glass card-3d overflow-hidden rounded-[28px] border border-[color:var(--border)]">
+      <article className="hero-reveal hero-delay-2 glass card-3d overflow-hidden rounded-[28px] border border-[color:var(--border)]">
         <div className="w-full" role="img" aria-label={`${project.title} - Case Study by Haroon Imran`}>
           <ProjectThumbnail
             title={thumbnail.title}
