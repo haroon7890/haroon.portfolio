@@ -67,7 +67,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
     if (project.slug === "ride-sharing-dispatch-system") {
       return {
         title: "Ride Sharing",
-        gradient: "from-[#1d3557] via-[#457b9d] to-[#1f7a8c]",
+        gradient: "from-[#0f3958] via-[#147ea1] to-[#23b5d3]",
         pattern: "circuit" as const,
         category: "Mobility",
       };
@@ -76,7 +76,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
     if (project.slug === "supply-chain-management-system") {
       return {
         title: "Supply Chain",
-        gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
+        gradient: "from-[#182b4d] via-[#23617d] to-[#2ea8a1]",
         pattern: "grid" as const,
         category: "Enterprise",
       };
@@ -96,7 +96,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#63d2b440] text-[#63d2b4] font-mono text-sm mb-8 hover:bg-[#63d2b420] transition hover:-translate-y-0.5"
+        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-8 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#4fe0c620]"
       >
         <span aria-hidden="true">←</span>
         <span>Back to Case Studies</span>
@@ -115,36 +115,36 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
         <div className="p-8 md:p-10">
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-3 py-1 rounded-full bg-[#63d2b430] text-[#63d2b4] border border-[#63d2b450] text-xs">
+            <span className="px-3 py-1 rounded-full bg-[#4fe0c626] text-[color:var(--accent)] border border-[color:var(--accent-soft)] text-xs">
               {project.category}
             </span>
-            <span className="px-3 py-1 rounded-full bg-[#4fa8e830] text-[#4fa8e8] border border-[#4fa8e850] text-xs">
+            <span className="px-3 py-1 rounded-full bg-[#5ba7ff22] text-[#91c6ff] border border-[#5ba7ff55] text-xs">
               {project.timeline}
             </span>
           </div>
 
           <h1 className="text-4xl font-extrabold gradient-text mb-4">{project.title}</h1>
-          <p className="text-zinc-300 mb-8 text-lg">{project.summary}</p>
+          <p className="mb-8 text-lg text-[color:var(--text-mid)]">{project.summary}</p>
 
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             <div className="glass tilt-3d tilt-soft card-3d p-4">
-              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400 mb-1">Role</p>
-              <p className="text-white font-medium">{project.role}</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-[color:var(--text-dim)] mb-1">Role</p>
+              <p className="text-[color:var(--text-light)] font-medium">{project.role}</p>
             </div>
             <div className="glass tilt-3d tilt-soft card-3d p-4">
-              <p className="text-xs uppercase tracking-[0.16em] text-zinc-400 mb-1">Stack</p>
-              <p className="text-white font-medium">{project.stack.join(" • ")}</p>
+              <p className="text-xs uppercase tracking-[0.16em] text-[color:var(--text-dim)] mb-1">Stack</p>
+              <p className="text-[color:var(--text-light)] font-medium">{project.stack.join(" • ")}</p>
             </div>
           </div>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-3 text-white">Problem</h2>
-            <p className="text-zinc-300">{project.problem}</p>
+            <h2 className="text-2xl font-bold mb-3 text-[color:var(--text-light)]">Problem</h2>
+            <p className="text-[color:var(--text-mid)]">{project.problem}</p>
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-3 text-white">Approach</h2>
-            <ul className="space-y-2 text-zinc-300 list-disc ml-5">
+            <h2 className="text-2xl font-bold mb-3 text-[color:var(--text-light)]">Approach</h2>
+            <ul className="space-y-2 text-[color:var(--text-mid)] list-disc ml-5">
               {project.approach.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -152,8 +152,8 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold mb-3 text-white">Impact</h2>
-            <ul className="space-y-2 text-zinc-300 list-disc ml-5">
+            <h2 className="text-2xl font-bold mb-3 text-[color:var(--text-light)]">Impact</h2>
+            <ul className="space-y-2 text-[color:var(--text-mid)] list-disc ml-5">
               {project.impact.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -161,10 +161,10 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
           </section>
 
           <section className="mb-10">
-            <h2 className="text-2xl font-bold mb-3 text-white">Core Features</h2>
+            <h2 className="text-2xl font-bold mb-3 text-[color:var(--text-light)]">Core Features</h2>
             <div className="grid sm:grid-cols-2 gap-3">
               {project.features.map((feature) => (
-                <div key={feature} className="glass card-3d p-3 text-zinc-200">
+                <div key={feature} className="glass card-3d p-3 text-[color:var(--text-mid)]">
                   {feature}
                 </div>
               ))}
@@ -179,7 +179,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="px-6 py-2 rounded-full border border-[#63d2b4] text-[#63d2b4] font-semibold hover:bg-[#63d2b418]"
+              className="px-6 py-2 rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] font-semibold hover:bg-[#4fe0c622]"
             >
               GitHub
             </a>

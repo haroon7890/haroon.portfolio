@@ -61,13 +61,13 @@ export default async function Home({
   > = {
     "ride-sharing-dispatch-system": {
       title: "Ride Sharing",
-      gradient: "from-[#1d3557] via-[#457b9d] to-[#1f7a8c]",
+      gradient: "from-[#0f3958] via-[#147ea1] to-[#23b5d3]",
       pattern: "circuit",
       category: "Mobility",
     },
     "supply-chain-management-system": {
       title: "Supply Chain",
-      gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
+      gradient: "from-[#182b4d] via-[#23617d] to-[#2ea8a1]",
       pattern: "grid",
       category: "Enterprise",
     },
@@ -90,10 +90,13 @@ export default async function Home({
               }}
               aria-hidden="true"
             />
-            <div className="hero-shell relative overflow-hidden rounded-[20px] border border-white/[0.07] bg-gradient-to-br from-[#0d1626] to-[#0a1020] p-6 md:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" aria-hidden="true" />
+            <div className="hero-shell relative overflow-hidden rounded-[22px] border border-white/[0.08] p-6 md:p-8 shadow-[0_24px_70px_rgba(2,8,18,0.46)]">
+              <div className="hero-orb orb-a" aria-hidden="true" />
+              <div className="hero-orb orb-b" aria-hidden="true" />
+              <div className="hero-orb orb-c" aria-hidden="true" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#5de6cf66] to-transparent" aria-hidden="true" />
               <div className="grid items-center gap-6 md:gap-8 lg:grid-cols-[320px_1fr]">
-                <div className="photo-frame mx-auto w-full max-w-[200px] rounded-[12px] bg-gradient-to-br from-[#00C9A7] to-[#0066ff] p-[2px] sm:max-w-[280px] md:max-w-[320px] lg:mx-0">
+                <div className="photo-frame mx-auto w-full max-w-[200px] rounded-[12px] bg-gradient-to-br from-[color:var(--accent)] via-[color:var(--accent-2)] to-[color:var(--accent-3)] p-[2px] sm:max-w-[280px] md:max-w-[320px] lg:mx-0">
                   <div className="relative h-[250px] sm:h-[320px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
                     <Image
                       src="/image/haroon.jpg"
@@ -104,7 +107,7 @@ export default async function Home({
                       className="object-cover object-[center_18%] md:object-center"
                     />
                     <div className="absolute inset-0 bg-gradient-to-br from-black/25 via-transparent to-black/35" />
-                    <div className="absolute bottom-3 right-3 inline-flex rounded-full border border-white/10 bg-[#0a1020d8] px-3 py-1.5">
+                    <div className="absolute bottom-3 right-3 inline-flex rounded-full border border-white/10 bg-[#0a1324d9] px-3 py-1.5">
                       <span className="flex items-center gap-1.5 text-xs text-white/80">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -118,8 +121,8 @@ export default async function Home({
 
                 <div className="text-center lg:text-left">
                   <div className="mb-3 inline-flex items-center justify-center gap-2 lg:justify-start">
-                    <span className="h-px w-5 bg-[#00C9A7]" aria-hidden="true" />
-                    <span className="font-mono text-[11px] tracking-[0.28em] text-[#00C9A7]">MERN Stack + AI Integration</span>
+                    <span className="h-px w-5 bg-[color:var(--accent)]" aria-hidden="true" />
+                    <span className="font-mono text-[11px] tracking-[0.28em] text-[color:var(--accent)]">MERN Stack + AI Integration</span>
                   </div>
 
                   <h1 className="hero-name mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.05]">Haroon Imran</h1>
@@ -133,7 +136,7 @@ export default async function Home({
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a
                       href="#contact"
-                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[#00C9A7] px-6 py-3 text-sm font-semibold text-black transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-teal-500/25"
+                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-[#041419] transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-[#4fe0c655]"
                       data-analytics="booking_primary_click"
                       data-analytics-label="hero"
                     >
@@ -142,7 +145,7 @@ export default async function Home({
 
                     <a
                       href="#contact"
-                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[#63d2b440] px-6 py-3 text-sm font-semibold text-[#94a3b8] transition-all duration-200 ease-out hover:bg-teal-500/10 hover:border-teal-400 hover:text-teal-300"
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[color:var(--text-mid)] transition-all duration-200 ease-out hover:bg-[#4fe0c61a] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
                       data-analytics="hero_contact_click"
                     >
                       Start a Project
@@ -152,7 +155,7 @@ export default async function Home({
                       <a
                         href="/cv/Haroon_Imran_CV.docx"
                         download
-                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/[0.12] px-6 py-3 text-sm font-semibold text-[#e2e8f0] transition-all duration-200 ease-out hover:bg-white/5 hover:scale-[1.02]"
+                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/[0.14] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-white/5 hover:scale-[1.02]"
                         data-analytics="hero_download_cv_click"
                       >
                         Download CV
@@ -160,7 +163,7 @@ export default async function Home({
                     ) : (
                       <a
                         href={`mailto:${SITE_CONFIG.email}?subject=CV Request - Haroon Imran`}
-                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/[0.12] px-6 py-3 text-sm font-semibold text-[#e2e8f0] transition-all duration-200 ease-out hover:bg-white/5 hover:scale-[1.02]"
+                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-white/[0.14] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-white/5 hover:scale-[1.02]"
                         data-analytics="hero_cv_request_click"
                       >
                         Request CV by Email
@@ -168,7 +171,7 @@ export default async function Home({
                     )}
                   </div>
 
-                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-[#080d14] px-3 py-2 text-xs font-mono text-[#94a3b8]">
+                  <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#08111f] px-3 py-2 text-xs font-mono text-[color:var(--text-mid)]">
                     <span aria-hidden="true">🔨</span>
                     <span>Currently building: Multi-Agent AI Dev Workflow — n8n + LLMs + REST APIs</span>
                   </div>
@@ -183,18 +186,18 @@ export default async function Home({
           <div className="relative">
             <span className="section-number" aria-hidden="true">01</span>
             <ScrollReveal distance={24} duration={600} className="relative z-[1]">
-              <h2 className="section-title mb-4 text-[#e2e8f0]">
-                Engineering with <span className="text-teal-400">business context</span>
+              <h2 className="section-title mb-4 text-[color:var(--text-light)]">
+                Engineering with <span className="text-[color:var(--accent)]">business context</span>
               </h2>
-              <p className="body-copy border-l-2 border-teal-500/40 pl-4 text-[#94a3b8]">I am a BSCS student at UMT Lahore and a hands-on full-stack engineer building useful digital products with the MERN stack. My work sits at the intersection of clean architecture, practical AI integration, and real-world delivery — not just academic exercises.</p>
-              <p className="body-copy mt-4 border-l-2 border-teal-500/25 pl-4 text-[#94a3b8]">If you need someone who understands product tradeoffs, builds robust REST APIs, and ships polished frontends without cutting corners — let us talk. I am currently available for freelance projects on Upwork and Fiverr.</p>
+              <p className="body-copy border-l-2 border-[color:var(--accent-soft)] pl-4 text-[color:var(--text-mid)]">I am a BSCS student at UMT Lahore and a hands-on full-stack engineer building useful digital products with the MERN stack. My work sits at the intersection of clean architecture, practical AI integration, and real-world delivery — not just academic exercises.</p>
+              <p className="body-copy mt-4 border-l-2 border-[color:var(--accent-soft)] pl-4 text-[color:var(--text-mid)]">If you need someone who understands product tradeoffs, builds robust REST APIs, and ships polished frontends without cutting corners — let us talk. I am currently available for freelance projects on Upwork and Fiverr.</p>
             </ScrollReveal>
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <ScrollReveal distance={24} duration={600}>
-              <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6 transition-colors duration-300 hover:border-white/[0.12]">
-                <span className="text-xs font-mono tracking-widest text-teal-400">// STACK</span>
+              <div className="rounded-2xl border border-white/[0.08] bg-[color:var(--card-bg)] p-6 transition-colors duration-300 hover:border-white/[0.16]">
+                <span className="text-xs font-mono tracking-widest text-[color:var(--accent)]">// STACK</span>
                 <h3 className="mt-3 text-2xl font-bold text-white">Core Technologies</h3>
                 <div className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
                   {[
@@ -212,7 +215,7 @@ export default async function Home({
                     { label: "Git/GitHub", icon: "devicon-github-original" },
                   ].map((item, index) => (
                     <ScrollReveal key={item.label} delay={index * 30} distance={20} duration={500}>
-                      <div className="tech-badge group inline-flex items-center gap-2 rounded-xl border border-white/[0.06] bg-[#080d14] px-3 py-2 text-xs font-medium text-[#e2e8f0] hover:border-teal-400/50 hover:-translate-y-1 transition-all duration-200">
+                      <div className="tech-badge group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-[#08111f] px-3 py-2 text-xs font-medium text-[color:var(--text-light)] hover:border-[color:var(--accent-soft)] hover:-translate-y-1 transition-all duration-200">
                         <i className={`${item.icon} text-base`} aria-hidden="true" />
                         <span>{item.label}</span>
                       </div>
@@ -223,10 +226,10 @@ export default async function Home({
             </ScrollReveal>
 
             <ScrollReveal distance={24} duration={600}>
-              <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6 transition-colors duration-300 hover:border-white/[0.12]">
-                <span className="text-xs font-mono tracking-widest text-teal-400">// SERVICES</span>
+              <div className="rounded-2xl border border-white/[0.08] bg-[color:var(--card-bg)] p-6 transition-colors duration-300 hover:border-white/[0.16]">
+                <span className="text-xs font-mono tracking-widest text-[color:var(--accent)]">// SERVICES</span>
                 <h3 className="mt-3 text-2xl font-bold text-white">What I Deliver</h3>
-                <ul className="mt-5 space-y-3 text-[#94a3b8]">
+                <ul className="mt-5 space-y-3 text-[color:var(--text-mid)]">
                   {[
                     "Full-stack web applications from zero to deployment.",
                     "Integration of AI workflows and LLMs into existing tools.",
@@ -236,7 +239,7 @@ export default async function Home({
                   ].map((item, index) => (
                     <ScrollReveal key={item} delay={index * 60} distance={20} duration={500}>
                       <li className="group flex items-start gap-2 transition-colors duration-150 hover:text-white">
-                        <Check size={14} className="mt-1 shrink-0 text-teal-400" />
+                        <Check size={14} className="mt-1 shrink-0 text-[color:var(--accent)]" />
                         <span>{item}</span>
                       </li>
                     </ScrollReveal>
@@ -252,10 +255,10 @@ export default async function Home({
             <span className="section-number" aria-hidden="true">02</span>
             <ScrollReveal distance={24} duration={600} className="relative z-[1] mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
-                <h2 className="section-title text-[#e2e8f0]">Featured Case Studies</h2>
-                <p className="mt-2 text-sm text-[#64748b]">Problem, approach, and measurable outcomes.</p>
+                <h2 className="section-title text-[color:var(--text-light)]">Featured Case Studies</h2>
+                <p className="mt-2 text-sm text-[color:var(--text-dim)]">Problem, approach, and measurable outcomes.</p>
               </div>
-              <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] px-4 py-2 text-sm font-semibold text-[#e2e8f0] transition-colors duration-200 hover:border-teal-500/30 hover:text-teal-300">
+              <Link href="/projects" className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] px-4 py-2 text-sm font-semibold text-[color:var(--text-light)] transition-colors duration-200 hover:border-[color:var(--accent-soft)] hover:text-[color:var(--accent)]">
                 View All Case Studies
               </Link>
             </ScrollReveal>
@@ -273,8 +276,8 @@ export default async function Home({
 
               return (
                 <ScrollReveal key={project.slug} delay={index * 120} distance={32} duration={600}>
-                  <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-[#0d1626] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-teal-500/30">
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-teal-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-[color:var(--accent-soft)]">
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-[#4fe0c633] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <span className="pointer-events-none absolute right-4 top-4 text-5xl font-bold font-mono text-white/[0.04]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -288,15 +291,15 @@ export default async function Home({
                     />
 
                     <div className="flex flex-1 flex-col gap-4 p-5">
-                      <span className="w-fit rounded-full border border-teal-500/20 bg-teal-500/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-teal-400">
+                      <span className="w-fit rounded-full border border-[color:var(--accent-soft)] bg-[#4fe0c61a] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-[color:var(--accent)]">
                         {project.category}
                       </span>
                       <h3 className="text-[20px] font-bold tracking-[-0.5px] text-white">{project.title}</h3>
-                      <p className="text-sm leading-6 text-[#71839b]">{project.summary}</p>
+                      <p className="text-sm leading-6 text-[color:var(--text-mid)]">{project.summary}</p>
 
                       <div className="mt-auto flex flex-wrap gap-2">
                         {project.stack.slice(0, 4).map((item) => (
-                          <span key={`${project.slug}-${item}`} className="rounded-lg border border-white/[0.06] bg-[#080d14] px-2 py-1 text-[11px] font-mono text-[#94a3b8]">
+                          <span key={`${project.slug}-${item}`} className="rounded-lg border border-white/[0.08] bg-[#08111f] px-2 py-1 text-[11px] font-mono text-[color:var(--text-mid)]">
                             {item}
                           </span>
                         ))}
@@ -305,7 +308,7 @@ export default async function Home({
                       <div className="mt-2 flex items-center gap-4">
                         <Link
                           href={`/projects/${project.slug}`}
-                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-200 group-hover:gap-3"
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--accent)] transition-all duration-200 group-hover:gap-3"
                           data-analytics="project_case_study_open"
                           data-analytics-label={project.slug}
                         >
@@ -316,7 +319,7 @@ export default async function Home({
                           href={project.githubUrl}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="text-sm font-semibold text-[#94a3b8] transition-colors duration-200 hover:text-teal-300"
+                          className="text-sm font-semibold text-[color:var(--text-mid)] transition-colors duration-200 hover:text-[color:var(--accent)]"
                         >
                           GitHub
                         </a>
