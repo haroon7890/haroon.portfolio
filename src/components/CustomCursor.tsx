@@ -1,11 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
   const [hovering, setHovering] = useState(false);
-  const [position, setPosition] = useState({ x: -100, y: -100 });
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+  const positionRef = useRef({ x: -100, y: -100 });
+  const rafRef = useRef<number | null>(null);
+
+  const applyPosition = (size: number) => {
+    const node = cursorRef.current;
+    if (!node) {
+      return;
+    }
+
+    const { x, y } = positionRef.current;
+    node.style.transform = `translate(${x - size / 2}px, ${y - size / 2}px)`;
+  };
 
   useEffect(() => {
     const media = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -29,8 +41,22 @@ export default function CustomCursor() {
       return;
     }
 
+    const size = hovering ? 24 : 8;
+
+    const schedule = () => {
+      if (rafRef.current != null) {
+        return;
+      }
+
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = null;
+        applyPosition(size);
+      });
+    };
+
     const onMove = (event: MouseEvent) => {
-      setPosition({ x: event.clientX, y: event.clientY });
+      positionRef.current = { x: event.clientX, y: event.clientY };
+      schedule();
     };
 
     const onOver = (event: MouseEvent) => {
@@ -41,12 +67,17 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", onMove);
     document.addEventListener("mouseover", onOver);
+    applyPosition(size);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseover", onOver);
+      if (rafRef.current != null) {
+        window.cancelAnimationFrame(rafRef.current);
+        rafRef.current = null;
+      }
     };
-  }, [enabled]);
+  }, [enabled, hovering]);
 
   if (!enabled) {
     return null;
@@ -56,6 +87,7 @@ export default function CustomCursor() {
 
   return (
     <div
+      ref={cursorRef}
       aria-hidden="true"
       className={[
         "pointer-events-none fixed left-0 top-0 z-[120] rounded-full transition-[width,height,transform,background-color,border-color] duration-150",
@@ -64,7 +96,7 @@ export default function CustomCursor() {
       style={{
         width: `${size}px`,
         height: `${size}px`,
-        transform: `translate(${position.x - size / 2}px, ${position.y - size / 2}px)`,
+        transform: `translate(-100px, -100px)`,
       }}
     />
   );

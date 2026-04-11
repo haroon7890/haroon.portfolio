@@ -16,7 +16,7 @@ export default function TiltEffects() {
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
     if (reduceMotion) return;
 
-    const bound = new WeakSet<HTMLElement>();
+    const unbindByElement = new Map<HTMLElement, () => void>();
 
     const resetElement = (element: HTMLElement) => {
       element.classList.remove("is-tilting");
@@ -27,8 +27,7 @@ export default function TiltEffects() {
     };
 
     const bindElement = (element: HTMLElement) => {
-      if (bound.has(element)) return;
-      bound.add(element);
+      if (unbindByElement.has(element)) return;
 
       let rafId: number | null = null;
       let lastClientX = 0;
@@ -91,15 +90,31 @@ export default function TiltEffects() {
         }
       };
 
-      const onPointerEnter = (event: PointerEvent) => {
-        if (event.pointerType === "touch") return;
-        enter(event.clientX, event.clientY);
-      };
+      if (window.PointerEvent) {
+        const onPointerEnter = (event: PointerEvent) => {
+          if (event.pointerType === "touch") return;
+          enter(event.clientX, event.clientY);
+        };
 
-      const onPointerMove = (event: PointerEvent) => {
-        if (event.pointerType === "touch") return;
-        move(event.clientX, event.clientY);
-      };
+        const onPointerMove = (event: PointerEvent) => {
+          if (event.pointerType === "touch") return;
+          move(event.clientX, event.clientY);
+        };
+
+        element.addEventListener("pointerenter", onPointerEnter);
+        element.addEventListener("pointermove", onPointerMove);
+        element.addEventListener("pointerleave", leave);
+        element.addEventListener("pointercancel", leave);
+
+        unbindByElement.set(element, () => {
+          leave();
+          element.removeEventListener("pointerenter", onPointerEnter);
+          element.removeEventListener("pointermove", onPointerMove);
+          element.removeEventListener("pointerleave", leave);
+          element.removeEventListener("pointercancel", leave);
+        });
+        return;
+      }
 
       const onMouseEnter = (event: MouseEvent) => {
         enter(event.clientX, event.clientY);
@@ -109,23 +124,16 @@ export default function TiltEffects() {
         move(event.clientX, event.clientY);
       };
 
-      element.addEventListener("pointerenter", onPointerEnter);
-      element.addEventListener("pointermove", onPointerMove);
-      element.addEventListener("pointerleave", leave);
-      element.addEventListener("pointercancel", leave);
       element.addEventListener("mouseenter", onMouseEnter);
       element.addEventListener("mousemove", onMouseMove);
       element.addEventListener("mouseleave", leave);
 
-      return () => {
-        element.removeEventListener("pointerenter", onPointerEnter);
-        element.removeEventListener("pointermove", onPointerMove);
-        element.removeEventListener("pointerleave", leave);
-        element.removeEventListener("pointercancel", leave);
+      unbindByElement.set(element, () => {
+        leave();
         element.removeEventListener("mouseenter", onMouseEnter);
         element.removeEventListener("mousemove", onMouseMove);
         element.removeEventListener("mouseleave", leave);
-      };
+      });
     };
 
     const bindAll = () => {
@@ -136,8 +144,6 @@ export default function TiltEffects() {
       return elements.length;
     };
 
-    const cleanups: Array<() => void> = [];
-
     // Initial bind (and a second pass right after paint for streamed content).
     bindAll();
     const postPaintId = window.requestAnimationFrame(() => void bindAll());
@@ -145,12 +151,15 @@ export default function TiltEffects() {
     const observer = new MutationObserver(() => {
       bindAll();
     });
-    observer.observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["class"] });
-    cleanups.push(() => observer.disconnect());
-    cleanups.push(() => window.cancelAnimationFrame(postPaintId));
+    observer.observe(document.body, { subtree: true, childList: true });
 
     return () => {
-      for (const cleanup of cleanups) cleanup();
+      observer.disconnect();
+      window.cancelAnimationFrame(postPaintId);
+      for (const unbind of unbindByElement.values()) {
+        unbind();
+      }
+      unbindByElement.clear();
     };
   }, [pathname]);
 

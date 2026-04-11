@@ -213,23 +213,23 @@ export default async function Home({
                 <h3 className="mt-3 text-2xl font-bold text-[color:var(--text-light)]">Core Technologies</h3>
                 <div className="mt-5 flex flex-wrap justify-center gap-2 md:justify-start">
                   {[
-                    { label: "TypeScript", icon: "devicon-typescript-plain colored" },
-                    { label: "JavaScript", icon: "devicon-javascript-plain colored" },
-                    { label: "React", icon: "devicon-react-original colored" },
-                    { label: "Next.js", icon: "devicon-nextjs-plain" },
-                    { label: "Node.js", icon: "devicon-nodejs-plain colored" },
-                    { label: "Express", icon: "devicon-express-original" },
-                    { label: "Tailwind CSS", icon: "devicon-tailwindcss-plain colored" },
-                    { label: "C++", icon: "devicon-cplusplus-plain colored" },
-                    { label: "Python", icon: "devicon-python-plain colored" },
-                    { label: "MongoDB", icon: "devicon-mongodb-plain colored" },
-                    { label: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
-                    { label: "Git/GitHub", icon: "devicon-github-original" },
+                    "TypeScript",
+                    "JavaScript",
+                    "React",
+                    "Next.js",
+                    "Node.js",
+                    "Express",
+                    "Tailwind CSS",
+                    "C++",
+                    "Python",
+                    "MongoDB",
+                    "PostgreSQL",
+                    "Git/GitHub",
                   ].map((item, index) => (
-                    <ScrollReveal key={item.label} delay={index * 30} distance={20} duration={500}>
+                    <ScrollReveal key={item} delay={index * 30} distance={20} duration={500}>
                       <div className="tech-badge group inline-flex items-center gap-2 rounded-xl border border-[color:var(--border)] bg-[#fff] px-3 py-2 text-xs font-medium text-[color:var(--text-mid)] hover:border-[color:var(--accent-soft)] hover:-translate-y-1 transition-all duration-200">
-                        <i className={`${item.icon} text-base`} aria-hidden="true" />
-                        <span>{item.label}</span>
+                        <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
+                        <span>{item}</span>
                       </div>
                     </ScrollReveal>
                   ))}

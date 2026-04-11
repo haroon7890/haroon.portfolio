@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function ProjectThumbnail({
   title,
   gradient,
@@ -20,9 +22,13 @@ export default function ProjectThumbnail({
 
       {imageSrc ? (
         <>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${imageSrc})` }}
+          <Image
+            src={imageSrc}
+            alt={`${title} case study preview`}
+            fill
+            loading="lazy"
+            sizes="(max-width: 767px) 92vw, (max-width: 1200px) 46vw, 32vw"
+            className="absolute inset-0 object-cover"
           />
           <div className="absolute inset-0 bg-[#060b16]/55" />
         </>
