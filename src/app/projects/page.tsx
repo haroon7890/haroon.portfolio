@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Detailed case studies covering product challenges, architecture, implementation strategy, and measurable outcomes.",
     url: "/projects",
     type: "website",
-    images: ["/projects/supply-chain-optimization-platform/opengraph-image"],
+    images: ["/projects/supply-chain-management-system/opengraph-image"],
   },
 };
 
@@ -25,30 +25,21 @@ export default function ProjectsPage() {
   const projects = getAllProjects();
 
   const getThumbnailProps = (slug: string, title: string, category: string) => {
-    if (slug === "supply-chain-optimization-platform") {
+    if (slug === "ride-sharing-dispatch-system") {
+      return {
+        title: "Ride Sharing",
+        gradient: "from-[#1d3557] via-[#457b9d] to-[#1f7a8c]",
+        pattern: "circuit" as const,
+        category: "Mobility",
+      };
+    }
+
+    if (slug === "supply-chain-management-system") {
       return {
         title: "Supply Chain",
         gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
         pattern: "grid" as const,
         category: "Enterprise",
-      };
-    }
-
-    if (slug === "ai-powered-portfolio") {
-      return {
-        title: "AI Portfolio",
-        gradient: "from-[#0f4c4c] via-[#0d7377] to-[#14a085]",
-        pattern: "circuit" as const,
-        category: "Personal Brand",
-      };
-    }
-
-    if (slug === "academic-planning-mentorship-system") {
-      return {
-        title: "APMS Platform",
-        gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
-        pattern: "dots" as const,
-        category: "EdTech",
       };
     }
 
@@ -89,6 +80,7 @@ export default function ProjectsPage() {
               gradient={thumbnail.gradient}
               pattern={thumbnail.pattern}
               category={thumbnail.category}
+              imageSrc={project.coverImage}
             />
             <div className="p-6 flex flex-col gap-4 flex-1">
               <div className="flex items-center justify-between gap-3 flex-wrap">
@@ -106,7 +98,7 @@ export default function ProjectsPage() {
                   </span>
                 ))}
               </div>
-              <div className="mt-auto pt-2">
+              <div className="mt-auto pt-2 flex items-center gap-4">
                 <Link
                   href={`/projects/${project.slug}`}
                   className="group inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-200 hover:text-teal-300 hover:gap-[8px]"
@@ -114,6 +106,14 @@ export default function ProjectsPage() {
                   Read Case Study
                   <ArrowRight size={14} />
                 </Link>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-sm font-semibold text-zinc-400 transition-colors duration-200 hover:text-teal-300"
+                >
+                  GitHub
+                </a>
               </div>
             </div>
           </article>

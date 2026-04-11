@@ -203,7 +203,7 @@ function buildServicesReply(knowledge: KnowledgeItem[]): string {
     "- Portfolio/landing pages that convert (SEO + fast performance + contact/booking).",
     "- Enterprise dashboards and internal tools (KPIs, roles, analytics).",
     "- Full-stack platforms (auth, APIs, databases, admin workflows).",
-    "- EdTech-style apps (roadmaps, matching, progress tracking).",
+    "- Mobility and logistics apps (dispatch, tracking, operations workflows).",
     "- API + database systems and integrations (email/newsletter, etc.).",
     "",
     categories.length ? `Case study categories currently shown here: ${categories.join(", ")}.` : "",
@@ -412,7 +412,7 @@ function buildAssistantReply(question: string, matches: KnowledgeItem[]): string
   if (intent === "capabilities") {
     return [
       "I can help you navigate this portfolio:",
-      "- Recommend relevant case studies based on your domain (enterprise, EdTech, personal brand).",
+      "- Recommend relevant case studies based on your domain (enterprise, mobility, personal brand).",
       "- Summarize stack/architecture choices from the case studies.",
       "- Point you to the right place to book or contact.",
       "Ask something like: 'Show me projects using Next.js' or 'Which project is best for AI + dashboards?'.",
@@ -438,7 +438,7 @@ function buildAssistantReply(question: string, matches: KnowledgeItem[]): string
       ].join("\n");
     }
 
-    return "I couldn't find a strong match in the current case studies. Try asking about a specific technology (e.g., Next.js, Node.js, PostgreSQL) or a domain (dashboards, forecasting, EdTech).";
+    return "I couldn't find a strong match in the current case studies. Try asking about a specific technology (e.g., Next.js, Node.js, C++) or a domain (mobility, supply chain, portfolio websites).";
   }
 
   const top = matches.slice(0, 3);
@@ -455,7 +455,7 @@ function buildAssistantReply(question: string, matches: KnowledgeItem[]): string
   }
 
   lines.push(
-    "Ask for details on one (e.g., 'Explain the architecture of Supply Chain Optimization Platform' or 'What was the impact of AI-Powered Portfolio?')."
+    "Ask for details on one (e.g., 'Explain the architecture of Ride Sharing Dispatch System' or 'What was the impact of Supply Chain Management System?')."
   );
 
   return lines.join("\n");

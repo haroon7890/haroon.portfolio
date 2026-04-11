@@ -59,23 +59,17 @@ export default async function Home({
     string,
     { title: string; gradient: string; pattern: "grid" | "dots" | "circuit"; category: string }
   > = {
-    "supply-chain-optimization-platform": {
+    "ride-sharing-dispatch-system": {
+      title: "Ride Sharing",
+      gradient: "from-[#1d3557] via-[#457b9d] to-[#1f7a8c]",
+      pattern: "circuit",
+      category: "Mobility",
+    },
+    "supply-chain-management-system": {
       title: "Supply Chain",
       gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
       pattern: "grid",
       category: "Enterprise",
-    },
-    "ai-powered-portfolio": {
-      title: "AI Portfolio",
-      gradient: "from-[#0f4c4c] via-[#0d7377] to-[#14a085]",
-      pattern: "circuit",
-      category: "Personal Brand",
-    },
-    "academic-planning-mentorship-system": {
-      title: "APMS Platform",
-      gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
-      pattern: "dots",
-      category: "EdTech",
     },
   };
 
@@ -290,6 +284,7 @@ export default async function Home({
                       gradient={thumbnailProps.gradient}
                       pattern={thumbnailProps.pattern}
                       category={thumbnailProps.category}
+                      imageSrc={project.coverImage}
                     />
 
                     <div className="flex flex-1 flex-col gap-4 p-5">
@@ -307,15 +302,25 @@ export default async function Home({
                         ))}
                       </div>
 
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-200 group-hover:gap-3"
-                        data-analytics="project_case_study_open"
-                        data-analytics-label={project.slug}
-                      >
-                        Open Case Study
-                        <ArrowRight size={14} />
-                      </Link>
+                      <div className="mt-2 flex items-center gap-4">
+                        <Link
+                          href={`/projects/${project.slug}`}
+                          className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-400 transition-all duration-200 group-hover:gap-3"
+                          data-analytics="project_case_study_open"
+                          data-analytics-label={project.slug}
+                        >
+                          Open Case Study
+                          <ArrowRight size={14} />
+                        </Link>
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          className="text-sm font-semibold text-[#94a3b8] transition-colors duration-200 hover:text-teal-300"
+                        >
+                          GitHub
+                        </a>
+                      </div>
                     </div>
                   </article>
                 </ScrollReveal>

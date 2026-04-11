@@ -64,30 +64,21 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
   };
 
   const thumbnail = (() => {
-    if (project.slug === "supply-chain-optimization-platform") {
+    if (project.slug === "ride-sharing-dispatch-system") {
+      return {
+        title: "Ride Sharing",
+        gradient: "from-[#1d3557] via-[#457b9d] to-[#1f7a8c]",
+        pattern: "circuit" as const,
+        category: "Mobility",
+      };
+    }
+
+    if (project.slug === "supply-chain-management-system") {
       return {
         title: "Supply Chain",
         gradient: "from-[#1a1a4e] via-[#0f3460] to-[#533483]",
         pattern: "grid" as const,
         category: "Enterprise",
-      };
-    }
-
-    if (project.slug === "ai-powered-portfolio") {
-      return {
-        title: "AI Portfolio",
-        gradient: "from-[#0f4c4c] via-[#0d7377] to-[#14a085]",
-        pattern: "circuit" as const,
-        category: "Personal Brand",
-      };
-    }
-
-    if (project.slug === "academic-planning-mentorship-system") {
-      return {
-        title: "APMS Platform",
-        gradient: "from-[#0a1628] via-[#1a2f5e] to-[#2d4a8a]",
-        pattern: "dots" as const,
-        category: "EdTech",
       };
     }
 
@@ -113,7 +104,13 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
       <article className="glass tilt-3d tilt-soft card-3d overflow-hidden">
         <div className="w-full" role="img" aria-label={`${project.title} - Case Study by Haroon Imran`}>
-          <ProjectThumbnail title={thumbnail.title} gradient={thumbnail.gradient} pattern={thumbnail.pattern} category={thumbnail.category} />
+          <ProjectThumbnail
+            title={thumbnail.title}
+            gradient={thumbnail.gradient}
+            pattern={thumbnail.pattern}
+            category={thumbnail.category}
+            imageSrc={project.coverImage}
+          />
         </div>
 
         <div className="p-8 md:p-10">

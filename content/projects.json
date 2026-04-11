@@ -1,118 +1,60 @@
 [
   {
-    "slug": "supply-chain-optimization-platform",
-    "title": "Supply Chain Optimization Platform",
-    "summary": "A C++ OOP system for managing supply chain operations with real-time inventory tracking, demand forecasting, and logistics cost optimization. Built with advanced object-oriented design patterns.",
-    "coverImage": "/image/supply-chain-optimization.png",
+    "slug": "ride-sharing-dispatch-system",
+    "title": "Ride Sharing Dispatch System",
+    "summary": "A hybrid C++ plus Next.js ride dispatch platform that manages cities, drivers, riders, and trip state through API-driven workflows.",
+    "coverImage": "/image/rideshare.jpg.png",
+    "category": "Mobility",
+    "stack": ["C++", "TypeScript", "Next.js", "REST API"],
+    "liveUrl": "https://github.com/haroon7890/Ride-sharing-dispatch-system-",
+    "githubUrl": "https://github.com/haroon7890/Ride-sharing-dispatch-system-",
+    "role": "Full-Stack Developer",
+    "timeline": "4 weeks",
+    "problem": "Dispatch simulation in pure console code made it hard to demo real-world ride flow, API behavior, and state transitions to non-technical stakeholders.",
+    "approach": [
+      "Designed a C++ backend that models dispatch rules, rider-driver matching, and trip lifecycle management.",
+      "Added HTTP endpoints for locations, drivers, trips, trip actions, and rollback operations.",
+      "Built a Next.js frontend mode that can run with built-in API routes for deployment and demos."
+    ],
+    "impact": [
+      "Enabled end-to-end demos of dispatch logic without requiring a local-only setup.",
+      "Improved visibility into operational state by exposing trip and driver data through API routes.",
+      "Made the system presentation-ready for portfolio and client walkthroughs."
+    ],
+    "features": [
+      "Driver and rider tracking",
+      "Trip request, start, complete, and cancel flows",
+      "Undo support for dispatch actions",
+      "Deployable Next.js interface with API proxy mode"
+    ]
+  },
+  {
+    "slug": "supply-chain-management-system",
+    "title": "Supply Chain Management System",
+    "summary": "A C++ OOP supply-chain system with a premium web dashboard for inventory, order lifecycle tracking, and smart low-stock and expiry insights.",
+    "coverImage": "/image/supplychain2.png",
     "category": "Enterprise",
-    "stack": ["C++", "OOP", "File Handling", "Data Structures"],
-    "liveUrl": "#",
-    "githubUrl": "https://github.com/haroon7890",
+    "stack": ["C++", "JavaScript", "HTML5", "CSS3"],
+    "liveUrl": "https://supply-chain-premium-ui.vercel.app",
+    "githubUrl": "https://github.com/haroon7890/OOP-C-SUPPLY-CHAIN-MANAGEMENT-SYSTEM-",
     "role": "Full-Stack Developer",
     "timeline": "6 weeks",
-    "problem": "Manual operations and disconnected data made it difficult for teams to forecast demand and avoid stock-outs.",
+    "problem": "Operations teams needed a clear way to manage stock, perishable risk, and pending fulfillment while still preserving robust C++ core business logic.",
     "approach": [
-      "Built a unified analytics pipeline for inventory, orders, and transportation events.",
-      "Implemented a forecasting model to flag demand spikes and replenishment windows.",
-      "Designed role-based dashboards for operations managers and executives."
+      "Implemented the core inventory and order engine in C++ with file persistence and object-oriented abstractions.",
+      "Built a client-ready frontend dashboard with login, KPI modules, and report-friendly views.",
+      "Added demo data seeding, export/import workflows, and print mode for stakeholder presentations."
     ],
     "impact": [
-      "Reduced stock-out incidents by surfacing low-inventory alerts early.",
-      "Improved planning visibility with weekly forecast confidence reporting.",
-      "Decreased decision time through centralized KPI dashboards."
+      "Improved decision speed with dashboard KPIs for stock, pending orders, and expiry risk.",
+      "Made enterprise demos smoother through responsive UI and guided presentation flow.",
+      "Connected academic OOP depth with practical product-style delivery."
     ],
     "features": [
-      "Real-time KPI board",
-      "Forecast and anomaly alerts",
-      "Inventory health score",
-      "Role-based access controls"
-    ]
-  },
-  {
-    "slug": "ai-powered-portfolio",
-    "title": "AI-Powered Portfolio",
-    "summary": "A conversion-focused personal brand site with an AI chatbot assistant, dynamic contact forms, case study architecture, and SEO optimization. Built with Next.js 14 and deployed on Vercel.",
-    "coverImage": "/image/portfolio.png",
-    "category": "Personal Brand",
-    "stack": ["Next.js", "TypeScript", "Tailwind CSS", "Nodemailer"],
-    "liveUrl": "#",
-    "githubUrl": "https://github.com/haroon7890",
-    "role": "Designer + Full-Stack Developer",
-    "timeline": "4 weeks",
-    "problem": "A static portfolio was not generating qualified leads or showcasing technical depth effectively.",
-    "approach": [
-      "Redesigned the information architecture around conversion and proof.",
-      "Integrated contact and newsletter APIs with validation and anti-spam controls.",
-      "Added structured SEO metadata and machine-readable schema."
-    ],
-    "impact": [
-      "Improved lead capture through stronger CTA placement.",
-      "Enabled consistent outreach via integrated newsletter.",
-      "Increased discoverability with full technical SEO setup."
-    ],
-    "features": [
-      "Booking CTA",
-      "Improved contact intake",
-      "SEO, robots, sitemap, RSS",
-      "Interactive AI assistant"
-    ]
-  },
-  {
-    "slug": "academic-planning-mentorship-system",
-    "title": "APMS - Academic Planning & Mentorship",
-    "summary": "A full MERN stack platform for academic performance tracking, mentor matching, and AI-assisted student roadmap planning. Built end-to-end from database schema to React frontend.",
-    "coverImage": "/image/apms.png",
-    "category": "EdTech",
-    "stack": ["React", "Node.js", "MongoDB", "Express"],
-    "liveUrl": "#",
-    "githubUrl": "https://github.com/haroon7890",
-    "role": "Full-Stack Developer",
-    "timeline": "8 weeks",
-    "problem": "Students lacked a structured way to plan degree paths and access mentorship at the right time.",
-    "approach": [
-      "Designed a modular planner with semester-aware recommendations.",
-      "Created mentor discovery and request workflows.",
-      "Added AI support for roadmap suggestions and career hints."
-    ],
-    "impact": [
-      "Higher planning clarity with guided course sequencing.",
-      "Faster mentor connection through profile filtering.",
-      "Better retention using milestone-based progress tracking."
-    ],
-    "features": [
-      "Roadmap planner",
-      "Mentor matching",
-      "Progress dashboard",
-      "AI recommendation assistant"
-    ]
-  },
-  {
-    "slug": "cpp-supply-chain-management-system",
-    "title": "C++ Supply Chain Management System",
-    "summary": "A deeply object-oriented C++ system modeling suppliers, warehouses, and transport operations.",
-    "coverImage": "/image/supply-chain-management.png",
-    "category": "Systems",
-    "stack": ["C++", "OOP", "DSA", "File I/O"],
-    "liveUrl": "#",
-    "githubUrl": "https://github.com/haroon7890",
-    "role": "Software Engineer",
-    "timeline": "3 weeks",
-    "problem": "Need for a realistic OOP project that demonstrates inheritance, polymorphism, and data modeling in C++.",
-    "approach": [
-      "Modeled core entities with extensible class hierarchies.",
-      "Implemented polymorphic behaviors for operations and reporting.",
-      "Used file persistence for data storage and retrieval."
-    ],
-    "impact": [
-      "Demonstrated advanced OOP fluency for academic and interview settings.",
-      "Created reusable architecture patterns for future C++ projects.",
-      "Improved debugging and maintainability through separation of concerns."
-    ],
-    "features": [
-      "Multi-level class hierarchy",
-      "Operator overloading",
-      "Virtual inheritance",
-      "Persistent file storage"
+      "Inventory and restock management",
+      "Pending order fulfillment workflow",
+      "Perishable product expiry tracking",
+      "Smart insights, reporting, and data export/import"
     ]
   }
 ]

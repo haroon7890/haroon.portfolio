@@ -2,12 +2,14 @@ export default function ProjectThumbnail({
   title,
   gradient,
   pattern,
-  category
+  category,
+  imageSrc
 }: {
   title: string
   gradient: string
   pattern: "grid" | "dots" | "circuit"
   category: string
+  imageSrc?: string
 }) {
   const patternId = title.toLowerCase().replace(/\s+/g, "-")
 
@@ -15,6 +17,16 @@ export default function ProjectThumbnail({
     <div className={`relative w-full aspect-video
       bg-gradient-to-br ${gradient} overflow-hidden
       flex items-center justify-center`}>
+
+      {imageSrc ? (
+        <>
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${imageSrc})` }}
+          />
+          <div className="absolute inset-0 bg-[#060b16]/55" />
+        </>
+      ) : null}
 
       {pattern === "grid" && (
         <svg className="absolute inset-0 w-full h-full
