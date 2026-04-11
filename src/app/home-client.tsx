@@ -188,7 +188,7 @@ export function AssistantWidget() {
         <a
           href="#assistant-modal"
           role="button"
-          className="ask-ai-btn glow-animate glass btn-anim px-5 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold text-[#63d2b4] hover:bg-[#63d2b420]"
+          className="ask-ai-btn glow-animate glass btn-anim px-5 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold text-[color:var(--accent)] hover:bg-[#ff8a5b22]"
           aria-haspopup="dialog"
           aria-expanded={open}
           aria-controls="assistant-modal"
@@ -217,11 +217,11 @@ export function AssistantWidget() {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-between items-center">
-            <div className="font-bold text-[#63d2b4] text-lg">Portfolio Assistant</div>
+            <div className="font-bold text-[color:var(--accent)] text-lg">Portfolio Assistant</div>
             <a
               href="#"
               role="button"
-              className="btn-anim text-zinc-400 hover:text-[#63d2b4] text-2xl"
+              className="btn-anim text-zinc-400 hover:text-[color:var(--accent)] text-2xl"
               onClick={(e) => {
                 closeAssistant();
               }}
@@ -241,7 +241,7 @@ export function AssistantWidget() {
                         <a
                           key={`${source.sourceType}-${source.url}`}
                           href={source.url}
-                          className="btn-anim inline-flex w-full items-center justify-between gap-2 rounded-lg border border-[#63d2b440] bg-[#10162466] px-3 py-2 text-xs text-[#63d2b4] hover:bg-[#63d2b420] hover:text-[#7be8cb]"
+                          className="btn-anim inline-flex w-full items-center justify-between gap-2 rounded-lg border border-[color:var(--accent-soft)] bg-[#10162466] px-3 py-2 text-xs text-[color:var(--accent)] hover:bg-[#ff8a5b22] hover:text-[color:var(--accent-2)]"
                         >
                           {source.title} ({source.sourceType})
                         </a>
@@ -256,7 +256,7 @@ export function AssistantWidget() {
 
             <form className="flex gap-2" onSubmit={handleAsk}>
               <input
-                className="flex-1 rounded px-3 py-2 bg-[#232946] text-white border border-[#63d2b440] outline-none"
+                className="flex-1 rounded px-3 py-2 bg-[#232946] text-white border border-[color:var(--accent-soft)] outline-none"
                 placeholder="Ask about case studies, stack, delivery..."
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
@@ -265,7 +265,7 @@ export function AssistantWidget() {
               />
               <button
                 type="submit"
-                className="btn-anim rounded bg-[#63d2b4] text-black font-bold px-4 py-2 disabled:opacity-60"
+                className="btn-anim rounded bg-[color:var(--accent)] text-[#2d1308] font-bold px-4 py-2 disabled:opacity-60"
                 disabled={loading || question.trim().length < 2}
               >
                 Send

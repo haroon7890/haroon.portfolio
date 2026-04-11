@@ -96,7 +96,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-8 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#4fe0c620]"
+        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-8 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#ff8a5b22]"
       >
         <span aria-hidden="true">←</span>
         <span>Back to Case Studies</span>
@@ -115,10 +115,10 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
 
         <div className="p-8 md:p-10">
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-3 py-1 rounded-full bg-[#4fe0c626] text-[color:var(--accent)] border border-[color:var(--accent-soft)] text-xs">
+            <span className="px-3 py-1 rounded-full bg-[#ff8a5b24] text-[color:var(--accent)] border border-[color:var(--accent-soft)] text-xs">
               {project.category}
             </span>
-            <span className="px-3 py-1 rounded-full bg-[#5ba7ff22] text-[#91c6ff] border border-[#5ba7ff55] text-xs">
+            <span className="px-3 py-1 rounded-full bg-[#ffbf6d22] text-[#ffd8aa] border border-[#ffbf6d55] text-xs">
               {project.timeline}
             </span>
           </div>
@@ -179,7 +179,7 @@ export default async function ProjectCaseStudyPage({ params }: ProjectPageProps)
               href={project.githubUrl}
               target="_blank"
               rel="noreferrer noopener"
-              className="px-6 py-2 rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] font-semibold hover:bg-[#4fe0c622]"
+              className="px-6 py-2 rounded-full border border-[color:var(--accent)] text-[color:var(--accent)] font-semibold hover:bg-[#ff8a5b22]"
             >
               GitHub
             </a>

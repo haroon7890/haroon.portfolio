@@ -55,7 +55,7 @@ export default function ProjectsPage() {
     <main className="section max-w-6xl py-20">
       <Link
         href="/"
-        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-6 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#4fe0c620]"
+        className="inline-flex items-center gap-2 rounded-full border border-[color:var(--accent-soft)] px-4 py-2 font-mono text-sm mb-6 text-[color:var(--accent)] transition hover:-translate-y-0.5 hover:bg-[#ff8a5b22]"
       >
         <span aria-hidden="true">←</span>
         <span>Back to Home</span>
@@ -84,7 +84,7 @@ export default function ProjectsPage() {
             />
             <div className="p-6 flex flex-col gap-4 flex-1">
               <div className="flex items-center justify-between gap-3 flex-wrap">
-                <span className="text-xs px-3 py-1 rounded-full border border-[color:var(--accent-soft)] bg-[#4fe0c626] text-[color:var(--accent)]">
+                <span className="text-xs px-3 py-1 rounded-full border border-[color:var(--accent-soft)] bg-[#ff8a5b24] text-[color:var(--accent)]">
                   {project.category}
                 </span>
                 <span className="text-xs font-mono text-[color:var(--text-dim)]">{project.timeline}</span>
@@ -101,7 +101,7 @@ export default function ProjectsPage() {
               <div className="mt-auto pt-2 flex items-center gap-4">
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--accent)] transition-all duration-200 hover:text-[#74eed6] hover:gap-[8px]"
+                  className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--accent)] transition-all duration-200 hover:text-[#ffd09b] hover:gap-[8px]"
                 >
                   Read Case Study
                   <ArrowRight size={14} />

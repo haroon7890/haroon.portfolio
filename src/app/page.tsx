@@ -86,7 +86,7 @@ export default async function Home({
               className="absolute inset-0 -z-10"
               style={{
                 background:
-                  "radial-gradient(ellipse 600px 400px at 60% 50%, rgba(0,201,167,0.05) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 600px 400px at 60% 50%, rgba(255,138,91,0.1) 0%, transparent 70%)",
               }}
               aria-hidden="true"
             />
@@ -94,7 +94,7 @@ export default async function Home({
               <div className="hero-orb orb-a" aria-hidden="true" />
               <div className="hero-orb orb-b" aria-hidden="true" />
               <div className="hero-orb orb-c" aria-hidden="true" />
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#5de6cf66] to-transparent" aria-hidden="true" />
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#ffb26b66] to-transparent" aria-hidden="true" />
               <div className="grid items-center gap-6 md:gap-8 lg:grid-cols-[320px_1fr]">
                 <div className="photo-frame mx-auto w-full max-w-[200px] rounded-[12px] bg-gradient-to-br from-[color:var(--accent)] via-[color:var(--accent-2)] to-[color:var(--accent-3)] p-[2px] sm:max-w-[280px] md:max-w-[320px] lg:mx-0">
                   <div className="relative h-[250px] sm:h-[320px] md:h-[360px] w-full overflow-hidden rounded-[10px] bg-[#0b1323]">
@@ -136,7 +136,7 @@ export default async function Home({
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a
                       href="#contact"
-                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-[#041419] transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-[#4fe0c655]"
+                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-[#2d1308] transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-[#ff8a5b55]"
                       data-analytics="booking_primary_click"
                       data-analytics-label="hero"
                     >
@@ -145,7 +145,7 @@ export default async function Home({
 
                     <a
                       href="#contact"
-                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[color:var(--text-mid)] transition-all duration-200 ease-out hover:bg-[#4fe0c61a] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[color:var(--text-mid)] transition-all duration-200 ease-out hover:bg-[#ff8a5b1f] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
                       data-analytics="hero_contact_click"
                     >
                       Start a Project
@@ -277,7 +277,7 @@ export default async function Home({
               return (
                 <ScrollReveal key={project.slug} delay={index * 120} distance={32} duration={600}>
                   <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-[color:var(--accent-soft)]">
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-[#4fe0c633] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-[#ff8a5b33] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <span className="pointer-events-none absolute right-4 top-4 text-5xl font-bold font-mono text-white/[0.04]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -291,7 +291,7 @@ export default async function Home({
                     />
 
                     <div className="flex flex-1 flex-col gap-4 p-5">
-                      <span className="w-fit rounded-full border border-[color:var(--accent-soft)] bg-[#4fe0c61a] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-[color:var(--accent)]">
+                      <span className="w-fit rounded-full border border-[color:var(--accent-soft)] bg-[#ff8a5b1f] px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[1px] text-[color:var(--accent)]">
                         {project.category}
                       </span>
                       <h3 className="text-[20px] font-bold tracking-[-0.5px] text-white">{project.title}</h3>

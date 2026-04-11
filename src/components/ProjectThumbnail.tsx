@@ -81,16 +81,16 @@ export default function ProjectThumbnail({
       </span>
 
       <span className="absolute top-3 left-3
-        bg-black/30 backdrop-blur-sm text-teal-400
+        bg-black/30 backdrop-blur-sm text-[color:var(--accent)]
         text-xs font-mono tracking-widest
         px-2 py-1 rounded-md border
-        border-teal-500/20 uppercase">
+        border-[color:var(--accent-soft)] uppercase">
         {category}
       </span>
 
       <div className="absolute top-0 left-0 right-0
-        h-[2px] bg-gradient-to-r from-teal-500/0
-        via-teal-400/60 to-teal-500/0"/>
+        h-[2px] bg-gradient-to-r from-[#ff8a5b00]
+        via-[#ff8a5bcc] to-[#ff8a5b00]"/>
     </div>
   )
 }
