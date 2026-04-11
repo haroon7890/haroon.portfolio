@@ -15,10 +15,10 @@ type ScrollRevealProps = {
 export default function ScrollReveal({
   children,
   className = "",
-  threshold = 0.15,
+  threshold = 0.12,
   delay = 0,
-  distance = 20,
-  duration = 500,
+  distance = 28,
+  duration = 760,
 }: ScrollRevealProps) {
   const { ref, visible } = useScrollAnimation(threshold);
 

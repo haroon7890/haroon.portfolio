@@ -197,7 +197,7 @@ export default async function Home({
         <section id="about" className="section scroll-mt-24 pt-6 md:pt-8">
           <div className="relative">
             <span className="section-number" aria-hidden="true">01</span>
-            <ScrollReveal distance={24} duration={600} className="relative z-[1]">
+            <ScrollReveal distance={26} duration={760} className="relative z-[1]">
               <h2 className="section-title mb-4 text-[color:var(--text-light)]">
                 Engineering with <span className="text-[color:var(--accent)]">business context</span>
               </h2>
@@ -207,7 +207,7 @@ export default async function Home({
           </div>
 
           <div className="mt-10 grid gap-7 md:grid-cols-2">
-            <ScrollReveal distance={24} duration={600}>
+            <ScrollReveal distance={26} duration={760}>
               <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-7 transition-colors duration-300 hover:border-[color:var(--accent-soft)]">
                 <span className="text-xs font-mono tracking-widest text-[color:var(--accent)]">// STACK</span>
                 <h3 className="mt-3 text-2xl font-bold text-[color:var(--text-light)]">Core Technologies</h3>
@@ -226,7 +226,7 @@ export default async function Home({
                     "PostgreSQL",
                     "Git/GitHub",
                   ].map((item, index) => (
-                    <ScrollReveal key={item} delay={index * 30} distance={20} duration={500}>
+                    <ScrollReveal key={item} delay={index * 36} distance={22} duration={680}>
                       <div className="tech-badge group inline-flex items-center gap-2 rounded-xl border border-[color:var(--border)] bg-[#fff] px-3 py-2 text-xs font-medium text-[color:var(--text-mid)] hover:border-[color:var(--accent-soft)] hover:-translate-y-1 transition-all duration-200">
                         <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)]" aria-hidden="true" />
                         <span>{item}</span>
@@ -237,7 +237,7 @@ export default async function Home({
               </div>
             </ScrollReveal>
 
-            <ScrollReveal distance={24} duration={600}>
+            <ScrollReveal distance={26} duration={760}>
               <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-7 transition-colors duration-300 hover:border-[color:var(--accent-soft)]">
                 <span className="text-xs font-mono tracking-widest text-[color:var(--accent)]">// SERVICES</span>
                 <h3 className="mt-3 text-2xl font-bold text-[color:var(--text-light)]">What I Deliver</h3>
@@ -249,7 +249,7 @@ export default async function Home({
                     "Data structures and C++ system modeling.",
                     "Social media and marketing automation for crypto and Web3 brands.",
                   ].map((item, index) => (
-                    <ScrollReveal key={item} delay={index * 60} distance={20} duration={500}>
+                    <ScrollReveal key={item} delay={index * 70} distance={22} duration={680}>
                       <li className="group flex items-start gap-2 transition-colors duration-150 hover:text-[color:var(--text-light)]">
                         <Check size={14} className="mt-1 shrink-0 text-[color:var(--accent)]" />
                         <span>{item}</span>
@@ -265,7 +265,7 @@ export default async function Home({
         <section id="case-studies" className="section scroll-mt-24 pt-10">
           <div className="relative">
             <span className="section-number" aria-hidden="true">02</span>
-            <ScrollReveal distance={24} duration={600} className="relative z-[1] mb-6 flex flex-wrap items-center justify-between gap-4">
+            <ScrollReveal distance={26} duration={760} className="relative z-[1] mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h2 className="section-title text-[color:var(--text-light)]">Featured Case Studies</h2>
                 <p className="mt-2 text-sm text-[color:var(--text-dim)]">Problem, approach, and measurable outcomes.</p>
@@ -287,8 +287,8 @@ export default async function Home({
                 };
 
               return (
-                <ScrollReveal key={project.slug} delay={index * 120} distance={32} duration={600}>
-                  <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:border-[color:var(--accent-soft)]">
+                <ScrollReveal key={project.slug} delay={index * 130} distance={34} duration={780}>
+                  <article className="case-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:border-[color:var(--accent-soft)]">
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-[#ff8a5b33] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                     <span className="pointer-events-none absolute right-4 top-4 text-5xl font-bold font-mono text-black/[0.08]">
                       {String(index + 1).padStart(2, "0")}

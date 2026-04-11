@@ -204,14 +204,14 @@ export default function ContactSection({
     <section id="contact" className="section scroll-mt-24 pt-10">
       <div className="relative">
         <span className="section-number" aria-hidden="true">03</span>
-        <ScrollReveal distance={20} duration={600} className="relative z-[1] mb-6">
+        <ScrollReveal distance={24} duration={760} className="relative z-[1] mb-6">
           <h2 className="section-title text-[color:var(--text-light)]">Let&apos;s Build Something Together</h2>
           <p className="mt-2 text-sm text-[color:var(--text-mid)]">Tell me about your project and I will get back to you within 24 hours.</p>
         </ScrollReveal>
       </div>
 
       <div className="grid gap-6 md:grid-cols-[2fr_3fr]">
-        <ScrollReveal distance={20} duration={600}>
+        <ScrollReveal distance={24} duration={760}>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-6">
             <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Why work with me?</h3>
             <ul className="mt-4 space-y-3 text-sm text-[color:var(--text-mid)]">
@@ -239,7 +239,7 @@ export default function ContactSection({
           </div>
         </ScrollReveal>
 
-        <ScrollReveal distance={20} duration={600}>
+        <ScrollReveal distance={24} duration={760}>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-6">
             {submitted ? (
               <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-800">

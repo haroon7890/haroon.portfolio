@@ -15,6 +15,8 @@
   --accent-soft: rgba(231, 119, 70, 0.24);
   --border: rgba(26, 20, 14, 0.12);
   --border-hover: rgba(255, 138, 91, 0.42);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --font-sans: var(--font-jakarta), "Segoe UI", "Helvetica Neue", sans-serif;
   --font-display: var(--font-space-grotesk), var(--font-jakarta), sans-serif;
   --font-mono: var(--font-geist-mono), "SFMono-Regular", Menlo, Consolas, monospace;
@@ -181,8 +183,8 @@ body::after {
 
 .hero-shell-enter {
   opacity: 0;
-  transform: translate3d(0, 26px, 0) scale(0.985);
-  animation: hero-shell-enter 920ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translate3d(0, 32px, 0) scale(0.98);
+  animation: hero-shell-enter 1040ms var(--ease-emphasized) forwards;
 }
 
 .hero-glow {
@@ -238,18 +240,18 @@ body::after {
 
 .hero-reveal {
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
-  filter: blur(4px);
-  animation: hero-content-enter 760ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform: translate3d(0, 24px, 0);
+  filter: blur(6px);
+  animation: hero-content-enter 820ms var(--ease-standard) forwards;
   animation-delay: var(--hero-delay, 0ms);
   will-change: transform, opacity, filter;
 }
 
 .hero-media {
   opacity: 0;
-  transform: translate3d(26px, 0, 0) scale(0.97) rotate(0.45deg);
+  transform: translate3d(34px, 0, 0) scale(0.95) rotate(0.7deg);
   transform-origin: 50% 55%;
-  animation: hero-media-enter 940ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: hero-media-enter 1120ms var(--ease-standard) forwards;
   animation-delay: 180ms;
 }
 
@@ -377,8 +379,7 @@ body::after {
   opacity: 0;
   transform: translateY(var(--reveal-y, 20px)) scale(0.992);
   filter: blur(2px);
-  transition: opacity 680ms cubic-bezier(0.22, 1, 0.36, 1), transform 680ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 680ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 780ms var(--ease-standard), transform 780ms var(--ease-standard), filter 780ms var(--ease-standard);
 }
 
 .animate-in {
@@ -423,12 +424,23 @@ body::after {
 
 .case-card {
   transition-property: transform, box-shadow, border-color, background-color;
-  transition-duration: 360ms;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 420ms;
+  transition-timing-function: var(--ease-standard);
 }
 
 .case-card:hover {
   background-color: var(--card-hover-bg);
+  transform: translate3d(0, -7px, 0) scale(1.007);
+  box-shadow: 0 24px 48px rgba(68, 42, 16, 0.14);
+}
+
+.case-card .thumbnail-media {
+  transition: transform 900ms var(--ease-standard);
+  transform-origin: center center;
+}
+
+.case-card:hover .thumbnail-media {
+  transform: scale(1.055);
 }
 
 @keyframes ambient-drift {

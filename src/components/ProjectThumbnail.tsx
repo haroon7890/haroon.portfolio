@@ -28,7 +28,7 @@ export default function ProjectThumbnail({
             fill
             loading="lazy"
             sizes="(max-width: 767px) 92vw, (max-width: 1200px) 46vw, 32vw"
-            className="absolute inset-0 object-cover"
+            className="thumbnail-media absolute inset-0 object-cover"
           />
           <div className="absolute inset-0 bg-[#060b16]/55" />
         </>

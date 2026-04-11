@@ -35,7 +35,10 @@ export function useScrollAnimation(threshold = 0.15) {
           observer.disconnect();
         }
       },
-      { threshold }
+      {
+        threshold,
+        rootMargin: "0px 0px -10% 0px",
+      }
     );
 
     observer.observe(element);

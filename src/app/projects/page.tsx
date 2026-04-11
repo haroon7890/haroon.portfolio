@@ -75,7 +75,7 @@ export default function ProjectsPage() {
           const motionDelayClass = index === 0 ? "hero-delay-3" : "hero-delay-4";
 
           return (
-          <article key={project.slug} className={`hero-reveal ${motionDelayClass} glass card-3d overflow-hidden rounded-[24px] border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[color:var(--accent-soft)]`}>
+          <article key={project.slug} className={`hero-reveal ${motionDelayClass} case-card group glass card-3d overflow-hidden rounded-[24px] border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:border-[color:var(--accent-soft)]`}>
             <ProjectThumbnail
               title={thumbnail.title}
               gradient={thumbnail.gradient}
