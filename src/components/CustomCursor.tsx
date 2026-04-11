@@ -59,7 +59,7 @@ export default function CustomCursor() {
       aria-hidden="true"
       className={[
         "pointer-events-none fixed left-0 top-0 z-[120] rounded-full transition-[width,height,transform,background-color,border-color] duration-150",
-        hovering ? "bg-transparent border border-[#00C9A7]/80" : "bg-[#00C9A7]",
+        hovering ? "bg-transparent border border-[color:var(--accent)]/80" : "bg-[color:var(--accent)]",
       ].join(" ")}
       style={{
         width: `${size}px`,

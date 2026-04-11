@@ -207,7 +207,7 @@ export function AssistantWidget() {
         id="assistant-modal"
         role="dialog"
         aria-modal="true"
-        className={`assistant-overlay fixed inset-0 z-[70] items-end sm:items-center justify-center bg-black/45 ${
+        className={`assistant-overlay fixed inset-0 z-[70] items-end sm:items-center justify-center bg-black/28 ${
           open ? "is-open" : ""
         }`}
         onClick={closeAssistant}
@@ -233,8 +233,8 @@ export function AssistantWidget() {
 
             <div className="flex-1 overflow-y-auto space-y-3 pr-1">
               {messages.map((message, idx) => (
-                <div key={`${message.role}-${idx}`} className={`rounded-xl p-3 ${message.role === "assistant" ? "bg-[#1b2238]" : "bg-[#26355f]"}`}>
-                  <p className="text-sm text-zinc-100 whitespace-pre-wrap">{message.text}</p>
+                <div key={`${message.role}-${idx}`} className={`rounded-xl p-3 border ${message.role === "assistant" ? "bg-[#fff9f0] border-[#e6d5bf]" : "bg-[#ffe8d8] border-[#e9c2a6]"}`}>
+                  <p className="text-sm text-[color:var(--text-light)] whitespace-pre-wrap">{message.text}</p>
                   {message.sources && message.sources.length > 0 ? (
                     <div className="mt-3 space-y-2">
                       {message.sources.map((source) => (
@@ -251,12 +251,12 @@ export function AssistantWidget() {
                 </div>
               ))}
 
-              {loading ? <div className="text-sm text-zinc-400">Thinking...</div> : null}
+              {loading ? <div className="text-sm text-[color:var(--text-dim)]">Thinking...</div> : null}
             </div>
 
             <form className="flex gap-2" onSubmit={handleAsk}>
               <input
-                className="flex-1 rounded px-3 py-2 bg-[#232946] text-white border border-[color:var(--accent-soft)] outline-none"
+                className="flex-1 rounded px-3 py-2 bg-[#fffaf3] text-[color:var(--text-light)] border border-[color:var(--accent-soft)] outline-none"
                 placeholder="Ask about case studies, stack, delivery..."
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}

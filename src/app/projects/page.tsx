@@ -60,9 +60,9 @@ export default function ProjectsPage() {
         <span aria-hidden="true">←</span>
         <span>Back to Home</span>
       </Link>
-      <div className="glass tilt-3d tilt-soft card-3d p-8 md:p-10 mb-10">
+      <div className="glass tilt-3d tilt-soft card-3d mb-12 p-9 md:p-12">
         <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--accent)] font-mono mb-2">Case Studies</p>
-        <h1 className="text-4xl md:text-5xl font-extrabold gradient-text mb-4">Proof, not promises</h1>
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-[-1.2px] text-[color:var(--text-light)] mb-4">Proof, not promises</h1>
         <p className="max-w-3xl text-[color:var(--text-mid)]">
           Each project below breaks down the business problem, technical approach, and delivery impact. These are structured for
           stakeholders who care about outcomes and engineering decisions.
@@ -74,7 +74,7 @@ export default function ProjectsPage() {
           const thumbnail = getThumbnailProps(project.slug, project.title, project.category);
 
           return (
-          <article key={project.slug} className="glass tilt-3d tilt-soft card-3d overflow-hidden flex flex-col border border-white/[0.08] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:border-[color:var(--accent-soft)]">
+          <article key={project.slug} className="glass tilt-3d tilt-soft card-3d overflow-hidden flex flex-col border border-[color:var(--border)] bg-[color:var(--card-bg)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-xl hover:border-[color:var(--accent-soft)]">
             <ProjectThumbnail
               title={thumbnail.title}
               gradient={thumbnail.gradient}
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
               <p className="text-[color:var(--text-mid)]">{project.summary}</p>
               <div className="flex flex-wrap gap-2 text-xs">
                 {project.stack.map((tech) => (
-                  <span key={`${project.slug}-${tech}`} className="px-2 py-1 rounded border border-white/[0.1] bg-[#08111f] text-[color:var(--text-mid)]">
+                  <span key={`${project.slug}-${tech}`} className="px-2 py-1 rounded border border-[color:var(--border)] bg-[#fff8ef] text-[color:var(--text-mid)]">
                     {tech}
                   </span>
                 ))}

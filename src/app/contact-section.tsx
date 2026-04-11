@@ -205,16 +205,16 @@ export default function ContactSection({
       <div className="relative">
         <span className="section-number" aria-hidden="true">03</span>
         <ScrollReveal distance={20} duration={600} className="relative z-[1] mb-6">
-          <h2 className="section-title text-[#e2e8f0]">Let&apos;s Build Something Together</h2>
-          <p className="mt-2 text-sm text-[#94a3b8]">Tell me about your project and I will get back to you within 24 hours.</p>
+          <h2 className="section-title text-[color:var(--text-light)]">Let&apos;s Build Something Together</h2>
+          <p className="mt-2 text-sm text-[color:var(--text-mid)]">Tell me about your project and I will get back to you within 24 hours.</p>
         </ScrollReveal>
       </div>
 
       <div className="grid gap-6 md:grid-cols-[2fr_3fr]">
         <ScrollReveal distance={20} duration={600}>
-          <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6">
-            <h3 className="text-lg font-semibold text-white">Why work with me?</h3>
-            <ul className="mt-4 space-y-3 text-sm text-[#94a3b8]">
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-6">
+            <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Why work with me?</h3>
+            <ul className="mt-4 space-y-3 text-sm text-[color:var(--text-mid)]">
               <li>✦ 48hr response guarantee</li>
               <li>✦ Clean, documented MERN stack code</li>
               <li>✦ AI integrations that actually work</li>
@@ -222,14 +222,14 @@ export default function ContactSection({
               <li>✦ Direct communication - no middlemen</li>
             </ul>
 
-            <div className="mt-6 rounded-xl border border-white/[0.08] bg-[#080d14] p-3">
-              <div className="text-xs text-[#64748b]">Email</div>
+            <div className="mt-6 rounded-xl border border-[color:var(--border)] bg-[#fff] p-3">
+              <div className="text-xs text-[color:var(--text-dim)]">Email</div>
               <div className="mt-1 flex items-center justify-between gap-2">
-                <span className="text-sm text-[#e2e8f0] break-all">{SITE_CONFIG.email}</span>
+                <span className="text-sm text-[color:var(--text-light)] break-all">{SITE_CONFIG.email}</span>
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="inline-flex items-center gap-1 rounded-md border border-white/[0.08] px-2 py-1 text-xs text-[#94a3b8] hover:text-white transition-colors duration-200"
+                  className="inline-flex items-center gap-1 rounded-md border border-[color:var(--border)] px-2 py-1 text-xs text-[color:var(--text-mid)] hover:text-[color:var(--text-light)] transition-colors duration-200"
                 >
                   <Copy size={14} />
                   {copied ? "Copied!" : "Copy"}
@@ -240,14 +240,14 @@ export default function ContactSection({
         </ScrollReveal>
 
         <ScrollReveal distance={20} duration={600}>
-          <div className="rounded-2xl border border-white/[0.06] bg-[#0d1626] p-6">
+          <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-6">
             {submitted ? (
-              <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-300">
+              <div className="rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-800">
                 <div className="inline-flex items-center gap-2 font-semibold">
                   <Check size={16} />
                   Message sent!
                 </div>
-                {deliveryId ? <div className="mt-1 text-xs text-green-200/80">Delivery reference: {deliveryId}</div> : null}
+                {deliveryId ? <div className="mt-1 text-xs text-green-700/80">Delivery reference: {deliveryId}</div> : null}
               </div>
             ) : null}
 
@@ -323,11 +323,11 @@ export default function ContactSection({
                 className="contact-field w-full"
               />
 
-              {error ? <div className="text-sm text-red-400">{error}</div> : null}
+              {error ? <div className="text-sm text-red-600">{error}</div> : null}
 
               <button
                 type="submit"
-                className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-teal-500 px-4 text-base font-bold text-black transition-all duration-200 hover:bg-teal-400 hover:shadow-lg hover:shadow-teal-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-[color:var(--accent)] px-4 text-base font-bold text-[#2d1308] transition-all duration-200 hover:brightness-110 hover:shadow-lg hover:shadow-[#ff8a5b33] disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={loading}
               >
                 {loading ? <Loader2 size={18} className="animate-spin" /> : null}
@@ -339,7 +339,7 @@ export default function ContactSection({
                   href={CALENDLY_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-anim inline-flex w-full items-center justify-center rounded-full border border-white/[0.12] bg-transparent px-6 py-2 text-sm font-semibold text-[#94a3b8] transition-all duration-200 hover:bg-white/5"
+                  className="btn-anim inline-flex w-full items-center justify-center rounded-full border border-[color:var(--border)] bg-transparent px-6 py-2 text-sm font-semibold text-[color:var(--text-mid)] transition-all duration-200 hover:bg-[#fff4e8]"
                 >
                   Or book a strategy call
                 </a>
