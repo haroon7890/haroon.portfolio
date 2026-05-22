@@ -5,7 +5,7 @@ import GitHubStats from "@/components/GitHubStats";
 export default function RecruiterPage() {
   return (
     <main className="section" id="recruiter">
-      <div className="max-w-3xl mx-auto bg-[#fffdf9] rounded-2xl p-8 shadow-lg">
+      <div className="glass glass-hover max-w-3xl mx-auto bg-gradient-to-br from-[rgba(255,253,249,0.8)] via-[rgba(255,250,245,0.75)] to-[rgba(255,248,240,0.8)] rounded-3xl p-8 shadow-lg backdrop-blur-md border border-[color:var(--glass-border)] hover:border-[color:var(--accent)]/30">
         <h1 className="section-title">For Recruiters</h1>
         <p className="body-copy mt-4">
           Hi — I'm {SITE_CONFIG.name}. I build production-ready full-stack applications with measurable outcomes. Open to freelance, full-time, and contract roles. Based in {SITE_CONFIG.location}, {SITE_CONFIG.timezone}.
@@ -23,11 +23,11 @@ export default function RecruiterPage() {
           <h3 className="text-lg font-semibold">Core Skills</h3>
           <div className="mt-4 grid grid-cols-2 md:grid-cols-3 gap-3">
             {SITE_CONFIG.skills.slice(0, 6).map((skill) => (
-              <div key={skill.name} className="flex flex-col gap-1 rounded-lg border border-[color:var(--border)] bg-[#fff] px-3 py-2">
+              <div key={skill.name} className="glass glass-hover rounded-lg backdrop-blur-sm border border-[color:var(--glass-border)] bg-[rgba(255,255,255,0.6)] px-3 py-2 transition-all hover:bg-[rgba(255,255,255,0.8)]">
                 <span className="text-sm font-medium text-[color:var(--text-light)]">{skill.name}</span>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-[color:var(--accent)] font-semibold">{skill.level}</span>
-                  <span className="text-xs text-[color:var(--text-dim)]">{skill.yearsExp}y</span>
+                <div className="flex items-center justify-between mt-1">
+                  <span className="text-xs text-white font-semibold bg-gradient-to-r from-[#2563eb] to-[#1e40af] px-2 py-1 rounded">{skill.level}</span>
+                  <span className="text-xs text-[color:var(--text-dim)] font-medium">{skill.yearsExp}y exp</span>
                 </div>
               </div>
             ))}
@@ -35,24 +35,24 @@ export default function RecruiterPage() {
         </div>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="rounded-lg border border-[color:var(--border)] bg-blue-50 p-4">
+          <div className="glass glass-hover rounded-lg backdrop-blur-sm border border-[color:var(--glass-border)] bg-gradient-to-br from-[rgba(37,99,235,0.12)] to-[rgba(59,130,246,0.08)] p-4 shadow-sm">
             <h4 className="font-semibold text-[color:var(--accent)]">Quick Actions</h4>
             <div className="mt-3 flex flex-col gap-2">
               <a href="/cv/Haroon_Imran_CV.pdf" download className="featured-btn text-center">Download Resume (PDF)</a>
-              <a href={`mailto:${SITE_CONFIG.email}?subject=Let's%20Talk`} className="rounded-md border border-[color:var(--accent)] bg-white px-3 py-2 text-center text-[color:var(--accent)] hover:bg-blue-50 transition-colors">Email Direct</a>
+              <a href={`mailto:${SITE_CONFIG.email}?subject=Let's%20Talk`} className="rounded-md border border-[color:var(--accent)] bg-white px-3 py-2 text-center text-[color:var(--accent)] hover:bg-blue-50 transition-colors shadow-sm hover:shadow-md">Email Direct</a>
             </div>
           </div>
-          <div className="rounded-lg border border-[color:var(--border)] bg-blue-50 p-4">
+          <div className="glass glass-hover rounded-lg backdrop-blur-sm border border-[color:var(--glass-border)] bg-gradient-to-br from-[rgba(37,99,235,0.12)] to-[rgba(59,130,246,0.08)] p-4 shadow-sm">
             <h4 className="font-semibold text-[color:var(--accent)]">Learn More</h4>
             <div className="mt-3 flex flex-col gap-2">
-              <Link href="/onepager" className="rounded-md border border-[color:var(--border)] bg-white px-3 py-2 text-center hover:bg-blue-50 transition-colors">One-Page Summary</Link>
-              <a href={SITE_CONFIG.github} target="_blank" rel="noreferrer" className="rounded-md border border-[color:var(--border)] bg-white px-3 py-2 text-center hover:bg-blue-50 transition-colors">GitHub Profile</a>
+              <Link href="/onepager" className="rounded-md border border-[color:var(--border)] bg-white px-3 py-2 text-center hover:bg-blue-50 transition-colors shadow-sm hover:shadow-md">One-Page Summary</Link>
+              <a href={SITE_CONFIG.github} target="_blank" rel="noreferrer" className="rounded-md border border-[color:var(--border)] bg-white px-3 py-2 text-center hover:bg-blue-50 transition-colors shadow-sm hover:shadow-md">GitHub Profile</a>
             </div>
           </div>
         </div>
 
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
+          <div className="glass rounded-lg backdrop-blur-sm border border-[color:var(--glass-border)] bg-[rgba(255,255,255,0.4)] p-4">
             <h3 className="font-semibold text-[color:var(--text-light)]">Work Preferences</h3>
             <ul className="mt-3 space-y-2 text-sm text-[color:var(--text-dim)]">
               <li>• <strong>Full-time:</strong> Remote/Hybrid (Pakistan timezones)</li>

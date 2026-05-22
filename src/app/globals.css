@@ -20,6 +20,12 @@
   --font-sans: var(--font-jakarta), "Segoe UI", "Helvetica Neue", sans-serif;
   --font-display: var(--font-space-grotesk), var(--font-jakarta), sans-serif;
   --font-mono: var(--font-geist-mono), "SFMono-Regular", Menlo, Consolas, monospace;
+  --glass-bg: rgba(255, 253, 249, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 24px rgba(37, 99, 235, 0.15);
 }
 
 html {
@@ -146,6 +152,47 @@ body::after {
     transform: scaleX(1);
     opacity: 0;
   }
+}
+
+@keyframes float-rise {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.2); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 253, 249, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-hover:hover {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 253, 249, 0.85);
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.18);
+}
+
+.float-up {
+  animation: float-rise 3s ease-in-out infinite;
+}
+
+.glow-effect {
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 .section {

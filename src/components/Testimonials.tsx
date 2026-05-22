@@ -48,25 +48,25 @@ export default function Testimonials() {
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <ScrollReveal key={testimonial.author} delay={index * 120} distance={26} duration={760}>
-              <div className="rounded-2xl border border-[color:var(--border)] bg-gradient-to-br from-[#fffdf9] to-white p-6 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+              <div className="glass glass-hover rounded-2xl backdrop-blur-md border border-[color:var(--glass-border)] bg-gradient-to-br from-[rgba(255,253,249,0.8)] via-[rgba(255,250,245,0.75)] to-[rgba(255,248,240,0.8)] p-6 flex flex-col h-full shadow-sm hover:shadow-lg transition-all">
                 
-                {/* Star Rating */}
+                {/* Star Rating with glow */}
                 <div className="flex gap-1 mb-3">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">★</span>
+                    <span key={i} className="text-yellow-400 drop-shadow-sm">★</span>
                   ))}
                 </div>
 
                 {/* Quote */}
-                <p className="text-sm text-[color:var(--text-mid)] italic flex-grow">"{testimonial.quote}"</p>
+                <p className="text-sm text-[color:var(--text-mid)] italic flex-grow leading-relaxed">"{testimonial.quote}"</p>
 
-                {/* Divider */}
-                <div className="my-4 border-t border-[color:var(--border)]"></div>
+                {/* Divider with gradient */}
+                <div className="my-4 h-px bg-gradient-to-r from-transparent via-[color:var(--border)] to-transparent"></div>
 
                 {/* Author Info */}
                 <div className="flex items-center gap-3">
-                  {/* Avatar */}
-                  <div className="w-10 h-10 rounded-full bg-[#2563eb] text-white flex items-center justify-center font-semibold text-sm">
+                  {/* Avatar with gradient */}
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#2563eb] to-[#1e40af] text-white flex items-center justify-center font-semibold text-sm shadow-md hover:shadow-lg transform hover:scale-110 transition-transform">
                     {testimonial.image}
                   </div>
                   
@@ -74,7 +74,7 @@ export default function Testimonials() {
                     <div className="flex items-center gap-1">
                       <p className="font-semibold text-sm text-[color:var(--text-light)] truncate">{testimonial.author}</p>
                       {testimonial.verified && (
-                        <span className="text-xs text-blue-600" title="Verified client">✓</span>
+                        <span className="text-xs text-[#2563eb] font-bold" title="Verified client">✓</span>
                       )}
                     </div>
                     <p className="text-xs text-[color:var(--text-dim)] truncate">{testimonial.company}</p>

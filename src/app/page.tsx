@@ -185,10 +185,11 @@ export default async function Home({
                     </a>
                     <a
                       href="/recruiter"
-                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--border)] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-[#fff2e6] hover:scale-[1.02]"
+                      className="group inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#2563eb] to-[#1e40af] shadow-md hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 ease-out hover:scale-[1.03] hover:brightness-110"
                       data-analytics="hero_recruiter_click"
                     >
                       Recruiter One-Pager
+                      <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                     </a>
                   </div>
 
