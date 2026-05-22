@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react"
+import { SITE_CONFIG } from "@/lib/config"
 
 export default function Footer() {
   return (
@@ -20,6 +21,10 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-5">
+          <a href="/recruiter" className="text-[color:var(--text-dim)] hover:text-[color:var(--accent)] transition-colors duration-200">For Recruiters</a>
+          <a href="/onepager" className="text-[color:var(--text-dim)] hover:text-[color:var(--accent)] transition-colors duration-200">One-Page Summary</a>
+          <span className="text-[color:var(--border)]">•</span>
+          <a href="/blog" className="text-[color:var(--text-dim)] hover:text-[color:var(--accent)] transition-colors duration-200 text-sm">Resources</a>
           <a href="https://github.com/haroon7890"
             target="_blank" rel="noopener noreferrer"
             className="text-[color:var(--text-dim)] hover:text-[color:var(--accent)]
@@ -36,9 +41,10 @@ export default function Footer() {
               <path d="M19 3H5a2 2 0 0 0-2 2v14c0 1.11.89 2 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18H5.66V9.4h2.68V18ZM7 8.2a1.55 1.55 0 1 1 0-3.1 1.55 1.55 0 0 1 0 3.1ZM18.34 18h-2.67v-4.18c0-.99-.02-2.27-1.39-2.27-1.39 0-1.6 1.09-1.6 2.2V18H9.99V9.4h2.56v1.17h.04c.36-.68 1.23-1.39 2.53-1.39 2.71 0 3.22 1.79 3.22 4.11V18Z" />
             </svg>
           </a>
-          <a href="mailto:haroon@example.com"
+          <a href={`mailto:${SITE_CONFIG.email}`}
             className="text-[color:var(--text-dim)] hover:text-[color:var(--accent)]
-            transition-colors duration-200">
+            transition-colors duration-200"
+            aria-label="Email">
             <Mail size={18}/>
           </a>
         </div>

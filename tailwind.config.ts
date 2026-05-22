@@ -15,9 +15,9 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            "--tw-prose-body": "#94a3b8",
-            "--tw-prose-headings": "#e2e8f0",
-            "--tw-prose-bold": "#ffffff",
+            "--tw-prose-body": "var(--text-mid)",
+            "--tw-prose-headings": "var(--text-light)",
+            "--tw-prose-bold": "var(--text-white)",
           },
         },
       },

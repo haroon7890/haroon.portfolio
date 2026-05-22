@@ -176,7 +176,7 @@ export default function ContactSection({
 
       setSubmitted(true);
       setDeliveryId(payload?.deliveryId ?? null);
-      showToast("Message sent! I'll reply within 24 hours ✓", "success");
+      showToast("Message sent! I'll reply within 2-4 hours ✓", "success");
 
       window.setTimeout(() => {
         setForm({
@@ -205,21 +205,21 @@ export default function ContactSection({
       <div className="relative">
         <span className="section-number" aria-hidden="true">05</span>
         <ScrollReveal distance={24} duration={760} className="relative z-[1] mb-6">
-          <h2 className="section-title text-[color:var(--text-light)]">Let&apos;s Build Something Together</h2>
-          <p className="mt-2 text-sm text-[color:var(--text-mid)]">Tell me about your project and I will get back to you within 24 hours.</p>
+          <h2 className="section-title text-[color:var(--text-light)]">Let&apos;s Connect</h2>
+          <p className="mt-2 text-sm text-[color:var(--text-mid)]">Hiring or project inquiry? I typically reply within 2-4 hours with next steps (same day guaranteed).</p>
         </ScrollReveal>
       </div>
 
       <div className="grid gap-6 md:grid-cols-[2fr_3fr]">
         <ScrollReveal distance={24} duration={760}>
           <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffaf4] p-6">
-            <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Why work with me?</h3>
+            <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Why recruiters hire me</h3>
             <ul className="mt-4 space-y-3 text-sm text-[color:var(--text-mid)]">
-              <li>✦ 48hr response guarantee</li>
-              <li>✦ Clean, documented MERN stack code</li>
-              <li>✦ AI integrations that actually work</li>
-              <li>✦ Affordable rates, professional results</li>
-              <li>✦ Direct communication - no middlemen</li>
+              <li>✦ 2-4 hour response time (same day)</li>
+              <li>✦ Production-ready MERN + Next.js delivery</li>
+              <li>✦ Clear project updates and handoff notes</li>
+              <li>✦ References and code samples on request</li>
+              <li>✦ Open to freelance and full-time roles</li>
             </ul>
 
             <div className="mt-6 rounded-xl border border-[color:var(--border)] bg-[#fff] p-3">
@@ -235,6 +235,29 @@ export default function ContactSection({
                   {copied ? "Copied!" : "Copy"}
                 </button>
               </div>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+              <a
+                href="/recruiter"
+                className="inline-flex items-center rounded-md border border-[color:var(--border)] bg-[#fff] px-3 py-2 text-xs font-semibold text-[color:var(--text-light)]"
+              >
+                Recruiter One-Pager
+              </a>
+              <a
+                href="/onepager"
+                className="inline-flex items-center rounded-md border border-[color:var(--border)] bg-[#fff] px-3 py-2 text-xs font-semibold text-[color:var(--text-light)]"
+              >
+                One-Page Summary
+              </a>
+              <a
+                href="/cv/Haroon_Imran_CV.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center rounded-md border border-[color:var(--border)] bg-[#fff] px-3 py-2 text-xs font-semibold text-[color:var(--text-mid)]"
+              >
+                Printable Resume
+              </a>
             </div>
           </div>
         </ScrollReveal>

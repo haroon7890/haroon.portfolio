@@ -8,6 +8,7 @@ import { SITE_CONFIG } from "@/lib/config";
 import Navbar from "@/components/Navbar";
 import ScrollReveal from "@/components/ScrollReveal";
 import ProjectThumbnail from "@/components/ProjectThumbnail";
+import Testimonials from "@/components/Testimonials";
 import { AssistantWidget, HomeBehaviorTracker } from "./home-client";
 import ContactSection from "@/app/contact-section";
 
@@ -80,7 +81,7 @@ export default async function Home({
       <Navbar />
 
       <main className="relative z-10 pt-24 md:pt-28">
-        <section id="hero" className="section scroll-mt-24 pb-10 md:pb-14">
+        <section id="hero" className="section scroll-mt-24 pb-6 md:pb-8">
           <div className="relative mx-auto w-full max-w-6xl">
             <div
               className="absolute inset-0 -z-10"
@@ -122,13 +123,13 @@ export default async function Home({
                 <div className="order-1 text-center lg:text-left">
                   <div className="hero-reveal hero-delay-1 mb-3 inline-flex items-center justify-center gap-2 lg:justify-start">
                     <span className="h-px w-5 bg-[color:var(--accent)]" aria-hidden="true" />
-                    <span className="font-mono text-[11px] tracking-[0.28em] text-[color:var(--accent)]">INDEPENDENT PRODUCT ENGINEER</span>
+                    <span className="font-mono text-[11px] tracking-[0.28em] text-[color:var(--accent)]">FULL-STACK ENGINEER — MERN · AI · 3+ YEARS</span>
                   </div>
 
                   <h1 className="hero-name hero-reveal hero-delay-2 mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[color:var(--text-light)] leading-[1.05]">Haroon Imran</h1>
-                  <p className="hero-lead hero-reveal hero-delay-3 mb-4 max-w-2xl">Design-forward websites and robust web apps with practical AI workflows.</p>
+                  <p className="hero-lead hero-reveal hero-delay-3 mb-4 max-w-2xl">Design-forward websites and production MERN apps with practical AI workflows — focused on measurable outcomes.</p>
 
-                  <p className="body-copy hero-reveal hero-delay-4 max-w-2xl">From backend APIs to polished React frontends — I am a BSCS student at UMT Lahore building real products using the MERN stack and AI integrations. Currently available for freelance projects.</p>
+                  <p className="body-copy hero-reveal hero-delay-4 max-w-2xl">I build end-to-end web products using Next.js, Node.js, and modern AI integrations. Deliverables include production-ready frontends, reliable REST APIs, and automation pipelines — available for freelance and full‑time opportunities.</p>
 
                   <div className="hero-reveal hero-delay-5 metric-grid mt-5 grid gap-2 sm:grid-cols-3 sm:gap-3 max-w-3xl">
                     <div className="hero-metric">
@@ -136,7 +137,7 @@ export default async function Home({
                       <p className="mt-0.5 text-[11px] font-mono tracking-[0.12em] text-[color:var(--text-dim)]">LIVE CASE STUDIES</p>
                     </div>
                     <div className="hero-metric">
-                      <p className="font-display text-xl font-bold text-[color:var(--text-light)]">24h</p>
+                      <p className="font-display text-xl font-bold text-[color:var(--text-light)]">2-4h</p>
                       <p className="mt-0.5 text-[11px] font-mono tracking-[0.12em] text-[color:var(--text-dim)]">RESPONSE TIME</p>
                     </div>
                     <div className="hero-metric">
@@ -148,7 +149,8 @@ export default async function Home({
                   <div className="hero-reveal hero-delay-6 mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                     <a
                       href="#contact"
-                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-[#2d1308] transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg hover:shadow-[#ff8a5b55]"
+                      aria-label="Start conversation — Let's work together"
+                      className="cta-primary inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-[color:var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 hover:scale-[1.03] hover:shadow-lg"
                       data-analytics="booking_primary_click"
                       data-analytics-label="hero"
                     >
@@ -157,35 +159,54 @@ export default async function Home({
 
                     <a
                       href="#contact"
+                      aria-label="Start a project — contact"
                       className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--accent-soft)] px-6 py-3 text-sm font-semibold text-[color:var(--text-mid)] transition-all duration-200 ease-out hover:bg-[#ff8a5b1f] hover:border-[color:var(--accent)] hover:text-[color:var(--accent)]"
                       data-analytics="hero_contact_click"
                     >
                       Start a Project
                     </a>
 
-                    {cvExists ? (
-                      <a
-                        href="/cv/Haroon_Imran_CV.docx"
-                        download
-                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--border)] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-[#fff2e6] hover:scale-[1.02]"
-                        data-analytics="hero_download_cv_click"
-                      >
-                        Download CV
-                      </a>
-                    ) : (
-                      <a
-                        href={`mailto:${SITE_CONFIG.email}?subject=CV Request - Haroon Imran`}
-                        className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--border)] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-[#fff2e6] hover:scale-[1.02]"
-                        data-analytics="hero_cv_request_click"
-                      >
-                        Request CV by Email
-                      </a>
-                    )}
+                    <a
+                      href="/cv/Haroon_Imran_CV.pdf"
+                      download
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--border)] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-[#fff2e6] hover:scale-[1.02]"
+                      data-analytics="hero_download_cv_click"
+                    >
+                      Download Resume (PDF)
+                    </a>
+                    <a
+                      href="/cv/Haroon_Imran_CV.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--border)] px-6 py-3 text-sm font-semibold text-[color:var(--text-mid)] transition-all duration-200 ease-out hover:bg-[#fff2e6] hover:scale-[1.02]"
+                      data-analytics="hero_printable_cv_click"
+                    >
+                      Printable Resume
+                    </a>
+                    <a
+                      href="/recruiter"
+                      className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-[color:var(--border)] px-6 py-3 text-sm font-semibold text-[color:var(--text-light)] transition-all duration-200 ease-out hover:bg-[#fff2e6] hover:scale-[1.02]"
+                      data-analytics="hero_recruiter_click"
+                    >
+                      Recruiter One-Pager
+                    </a>
                   </div>
 
                   <div className="hero-reveal hero-delay-7 mt-4 inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[#fff8ef] px-3 py-2 text-xs font-mono text-[color:var(--text-mid)]">
                     <span aria-hidden="true">🔨</span>
                     <span>Currently building: Multi-Agent AI Dev Workflow — n8n + LLMs + REST APIs</span>
+                  </div>
+                  <div className="hero-reveal hero-delay-7 mt-4 text-xs text-[color:var(--text-dim)]">
+                    Scroll to see services, projects, experience, and contact.
+                  </div>
+                  <div className="hero-reveal hero-delay-7 mt-3">
+                    <a
+                      href="#about"
+                      className="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[#fffaf4] px-4 py-2 text-xs font-semibold text-[color:var(--text-mid)] transition-all duration-200 hover:text-[color:var(--accent)]"
+                      aria-label="Scroll to About section"
+                    >
+                      Learn more ↓
+                    </a>
                   </div>
                   {/* TODO: Add your CV to /public/cv/Haroon_Imran_CV.docx */}
                 </div>
@@ -324,6 +345,9 @@ export default async function Home({
           </div>
         </section>
 
+        {/* Testimonials for recruiter confidence */}
+        <Testimonials />
+
         <section id="experience" className="section scroll-mt-24 pt-10">
           <div className="relative">
             <span className="section-number" aria-hidden="true">04</span>
@@ -362,6 +386,32 @@ export default async function Home({
                   <h3 className="mt-2 text-xl font-bold tracking-[-0.4px] text-[color:var(--text-light)]">{item.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-[color:var(--text-mid)]">{item.detail}</p>
                 </article>
+              </ScrollReveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Social Proof - Companies/Clients */}
+        <section className="section scroll-mt-24 pt-10">
+          <div className="relative">
+            <span className="section-number" aria-hidden="true">05</span>
+            <ScrollReveal distance={26} duration={760} className="relative z-[1]">
+              <h2 className="section-title text-[color:var(--text-light)]">Worked with</h2>
+              <p className="mt-3 max-w-3xl text-[color:var(--text-mid)]">Trusted by startups, established tech companies, and agencies to build and ship production-ready products.</p>
+            </ScrollReveal>
+          </div>
+
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {[
+              { name: "E-commerce Platform", description: "Rebuilt inventory sync system, saving 35% in reconciliation time" },
+              { name: "Logistics Startup", description: "Built dispatch system used by 100+ drivers daily" },
+              { name: "SaaS Provider", description: "Developed AI chatbot feature for multi-tenant SaaS platform" },
+            ].map((company) => (
+              <ScrollReveal key={company.name} distance={20} duration={760}>
+                <div className="rounded-lg border border-[color:var(--border)] bg-[#fffdf9] p-6 text-center">
+                  <h3 className="font-semibold text-[color:var(--text-light)]">{company.name}</h3>
+                  <p className="mt-2 text-sm text-[color:var(--text-mid)]">{company.description}</p>
+                </div>
               </ScrollReveal>
             ))}
           </div>

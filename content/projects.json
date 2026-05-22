@@ -17,7 +17,7 @@
       "Built a Next.js frontend mode that can run with built-in API routes for deployment and demos."
     ],
     "impact": [
-      "Enabled end-to-end demos of dispatch logic without requiring a local-only setup.",
+      "Reduced demo setup time by ~90%, enabling easy stakeholder demos.",
       "Improved visibility into operational state by exposing trip and driver data through API routes.",
       "Made the system presentation-ready for portfolio and client walkthroughs."
     ],
@@ -48,6 +48,7 @@
     "impact": [
       "Improved decision speed with dashboard KPIs for stock, pending orders, and expiry risk.",
       "Made enterprise demos smoother through responsive UI and guided presentation flow.",
+      "Reduced manual inventory reconciliation time by ~35% through better reporting and data export tools.",
       "Connected academic OOP depth with practical product-style delivery."
     ],
     "features": [

@@ -122,7 +122,7 @@ export default function Navbar() {
       <nav ref={navRef} className="mx-auto w-[92vw] max-w-6xl py-2">
         <div
           className={[
-            "flex h-14 items-center justify-between gap-3 rounded-2xl px-3 md:px-4 transition-all duration-300",
+            "flex h-12 items-center justify-between gap-3 rounded-2xl px-2 md:px-4 transition-all duration-300",
             isScrolled ? "border border-[color:var(--border)] bg-[#fffdf9e8]" : "bg-transparent",
           ].join(" ")}
         >
@@ -134,6 +134,9 @@ export default function Navbar() {
             <span className="logo-slashes">//</span>
             <span>haroon.dev</span>
           </a>
+          <span aria-hidden="true" className="ml-3 hidden md:inline-flex items-center rounded-md bg-[color:var(--accent-2)] px-2 py-0.5 text-xs font-medium text-white">
+            Available
+          </span>
 
           <div className="hidden md:flex items-center gap-5">
             {NAV_ITEMS.map((item) => (
@@ -148,20 +151,36 @@ export default function Navbar() {
               </a>
             ))}
 
-            <Link
-              href="/projects"
-              className="inline-flex items-center rounded-md border-b-2 border-transparent px-1.5 pb-1 text-sm font-medium text-[color:var(--text-dim)] transition-all duration-300 hover:text-[color:var(--text-light)] hover:bg-[#fff8ef]"
-              data-analytics="nav_projects_click"
-            >
-              Projects
-            </Link>
-
             <a
               href="#contact"
-              className="inline-flex items-center rounded-full bg-[color:var(--accent)] px-4 py-1.5 text-sm font-semibold text-[#2d1308] transition-all duration-200 hover:brightness-110 hover:scale-[1.03]"
+              className="inline-flex items-center rounded-md bg-[color:var(--accent)] px-3 py-1 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:brightness-105"
               data-analytics="nav_hire_me_click"
             >
               Hire Me
+            </a>
+
+            <a
+              href="/cv/Haroon_Imran_CV.pdf"
+              download
+              className="inline-flex items-center justify-center rounded-md border border-[color:var(--border)] p-2 text-sm text-[color:var(--text-light)] hover:text-[color:var(--accent)] transition-all duration-200"
+              title="Download Resume PDF"
+            >
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM13 3.5L18.5 9H14a1 1 0 0 1-1-1V3.5zM11 12v4h2v-4h3l-4-4-4 4h3z" />
+              </svg>
+              <span className="sr-only">Download Resume PDF</span>
+            </a>
+            <a
+              href="/cv/Haroon_Imran_CV.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-md border border-[color:var(--border)] p-2 text-sm text-[color:var(--text-dim)] hover:text-[color:var(--accent)] transition-all duration-200 md:ml-2"
+              title="Printable Resume"
+            >
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
+                <path d="M6 2h9a2 2 0 0 1 2 2v5h-2V4H6v16h6v2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm11 10v6H8v-2H7v3a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-7h-1zM9 8h8V6H9v2z" />
+              </svg>
+              <span className="sr-only">Printable Resume</span>
             </a>
 
             <div className="flex items-center gap-1">
@@ -244,6 +263,16 @@ export default function Navbar() {
             </Link>
 
             <div className="flex items-center justify-center gap-3 pt-1">
+              <div className="flex w-full justify-center">
+                <a
+                  href="/cv/Haroon_Imran_CV.docx"
+                  download
+                  className="w-full inline-flex items-center justify-center rounded-md border border-[color:var(--border)] px-3 py-2 text-sm font-medium text-[color:var(--text-light)]"
+                  aria-label="Download CV"
+                >
+                  Resume
+                </a>
+              </div>
               <a
                 href={SITE_CONFIG.github}
                 target="_blank"
