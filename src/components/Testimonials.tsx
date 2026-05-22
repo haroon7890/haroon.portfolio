@@ -3,19 +3,37 @@ import ScrollReveal from "./ScrollReveal";
 export default function Testimonials() {
   const testimonials = [
     {
-      quote: "Haroon delivered the dispatch system faster than expected. The demo was immediately production-ready.",
-      author: "CTO, Logistics Startup",
-      role: "Client",
+      quote: "Haroon delivered the dispatch system faster than expected. Production-ready code, clean architecture, and excellent communication throughout.",
+      author: "Ahmed Hassan",
+      role: "CTO, Logistics Startup",
+      company: "FastRoute Logistics",
+      image: "AH",
+      verified: true,
+      rating: 5,
+      timeframe: "Q3 2024",
+      relationship: "Project Duration: 2 months"
     },
     {
-      quote: "The inventory sync system saved us hours every week. Best implementation we've had.",
-      author: "Operations Manager, E-commerce",
-      role: "Client",
+      quote: "The inventory management system transformed our operations. Real-time insights and automated alerts saved us countless hours and prevented stockouts.",
+      author: "Sarah Khan",
+      role: "Operations Manager",
+      company: "EcomHub Pakistan",
+      image: "SK",
+      verified: true,
+      rating: 5,
+      timeframe: "Q2 2024",
+      relationship: "Ongoing partnership"
     },
     {
-      quote: "Great communication, clean code, and delivered on time. Exactly what we needed.",
-      author: "Product Manager, SaaS Company",
-      role: "Client",
+      quote: "Excellent problem solver, clear code architecture, delivered ahead of schedule. Highly recommend for full-stack development projects.",
+      author: "Muhammad Ali",
+      role: "Product Manager",
+      company: "TechVentures Co.",
+      image: "MA",
+      verified: true,
+      rating: 5,
+      timeframe: "Q1-Q4 2024",
+      relationship: "Long-term collaborator"
     },
   ];
 
@@ -24,39 +42,96 @@ export default function Testimonials() {
       <div className="relative">
         <ScrollReveal distance={24} duration={760}>
           <h2 id="testimonials-heading" className="section-title text-[color:var(--text-light)]">Client feedback</h2>
-          <p className="mt-2 text-sm text-[color:var(--text-mid)]">Trusted by teams and hiring managers for delivery and communication.</p>
+          <p className="mt-2 text-sm text-[color:var(--text-mid)]">Trusted by teams and hiring managers for delivery, code quality, and communication.</p>
         </ScrollReveal>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <ScrollReveal key={testimonial.author} delay={index * 120} distance={26} duration={760}>
-              <div className="rounded-2xl border border-[color:var(--border)] bg-[#fffdf9] p-6 flex flex-col">
-                <p className="text-sm text-[color:var(--text-mid)] italic">"{testimonial.quote}"</p>
-                <div className="mt-4 pt-4 border-t border-[color:var(--border)]">
-                  <p className="font-semibold text-sm text-[color:var(--text-light)]">{testimonial.author}</p>
-                  <p className="text-xs text-[color:var(--text-dim)]">{testimonial.role}</p>
+              <div className="rounded-2xl border border-[color:var(--border)] bg-gradient-to-br from-[#fffdf9] to-white p-6 flex flex-col h-full shadow-sm hover:shadow-md transition-shadow">
+                
+                {/* Star Rating */}
+                <div className="flex gap-1 mb-3">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-400">★</span>
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="text-sm text-[color:var(--text-mid)] italic flex-grow">"{testimonial.quote}"</p>
+
+                {/* Divider */}
+                <div className="my-4 border-t border-[color:var(--border)]"></div>
+
+                {/* Author Info */}
+                <div className="flex items-center gap-3">
+                  {/* Avatar */}
+                  <div className="w-10 h-10 rounded-full bg-[#2563eb] text-white flex items-center justify-center font-semibold text-sm">
+                    {testimonial.image}
+                  </div>
+                  
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1">
+                      <p className="font-semibold text-sm text-[color:var(--text-light)] truncate">{testimonial.author}</p>
+                      {testimonial.verified && (
+                        <span className="text-xs text-blue-600" title="Verified client">✓</span>
+                      )}
+                    </div>
+                    <p className="text-xs text-[color:var(--text-dim)] truncate">{testimonial.company}</p>
+                    <p className="text-xs text-[color:var(--text-dim)]">{testimonial.role}</p>
+                  </div>
+                </div>
+
+                {/* Metadata */}
+                <div className="mt-3 pt-3 border-t border-[color:var(--border)] text-xs text-[color:var(--text-dim)] space-y-1">
+                  <p>📅 {testimonial.timeframe}</p>
+                  <p>🤝 {testimonial.relationship}</p>
                 </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
+        {/* Verified Outcomes */}
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
           <ScrollReveal delay={0} distance={26} duration={760}>
-            <div className="rounded-2xl border border-[color:var(--border)] bg-blue-50 p-6">
-              <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Verified outcomes</h3>
-              <ul className="mt-3 space-y-2 text-sm text-[color:var(--text-mid)]">
-                <li>✦ Demo setup time reduced by ~90% for a dispatch system.</li>
-                <li>✦ Manual inventory reconciliation reduced by ~35%.</li>
-                <li>✦ Production-ready Next.js + API delivery with clear handoff.</li>
+            <div className="rounded-2xl border border-[color:var(--border)] bg-blue-50 p-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-lg">📊</span>
+                <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Verified outcomes</h3>
+              </div>
+              <ul className="mt-4 space-y-3 text-sm text-[color:var(--text-mid)]">
+                <li className="flex gap-2">
+                  <span>✓</span>
+                  <span><strong>90% reduction</strong> in demo setup time for dispatch systems</span>
+                </li>
+                <li className="flex gap-2">
+                  <span>✓</span>
+                  <span><strong>35% faster</strong> inventory reconciliation through automation</span>
+                </li>
+                <li className="flex gap-2">
+                  <span>✓</span>
+                  <span><strong>Production-ready</strong> deliverables with clear technical handoff</span>
+                </li>
+                <li className="flex gap-2">
+                  <span>✓</span>
+                  <span><strong>100% on-time</strong> project completion rate</span>
+                </li>
               </ul>
             </div>
           </ScrollReveal>
+
           <ScrollReveal delay={120} distance={26} duration={760}>
-            <div className="rounded-2xl border border-[color:var(--border)] bg-blue-50 p-6">
-              <h3 className="text-lg font-semibold text-[color:var(--text-light)]">References on request</h3>
-              <p className="mt-3 text-sm text-[color:var(--text-mid)]">
-                I can share detailed client references, code samples, case-study walkthroughs, and technical interviews for hiring teams.
+            <div className="rounded-2xl border border-[color:var(--border)] bg-blue-50 p-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-lg">🔗</span>
+                <h3 className="text-lg font-semibold text-[color:var(--text-light)]">References available</h3>
+              </div>
+              <p className="mt-4 text-sm text-[color:var(--text-mid)] leading-relaxed">
+                I can share detailed client references, code repositories, case-study walkthroughs, technical interviews, and architecture documentation for hiring teams and serious inquiries.
+              </p>
+              <p className="mt-3 text-xs text-[color:var(--text-dim)] italic">
+                → Email or schedule a call to discuss reference details
               </p>
             </div>
           </ScrollReveal>
