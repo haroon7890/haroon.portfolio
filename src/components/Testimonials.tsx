@@ -66,7 +66,7 @@ export default function Testimonials() {
                 {/* Author Info */}
                 <div className="flex items-center gap-3">
                   {/* Avatar with gradient */}
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#2563eb] to-[#1e40af] text-white flex items-center justify-center font-semibold text-sm shadow-md hover:shadow-lg transform hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#06b6d4] to-[#0891b2] text-white flex items-center justify-center font-semibold text-sm shadow-md hover:shadow-lg transform hover:scale-110 transition-transform">
                     {testimonial.image}
                   </div>
                   
@@ -74,7 +74,7 @@ export default function Testimonials() {
                     <div className="flex items-center gap-1">
                       <p className="font-semibold text-sm text-[color:var(--text-light)] truncate">{testimonial.author}</p>
                       {testimonial.verified && (
-                        <span className="text-xs text-[#2563eb] font-bold" title="Verified client">✓</span>
+                        <span className="text-xs text-[#06b6d4] font-bold" title="Verified client">✓</span>
                       )}
                     </div>
                     <p className="text-xs text-[color:var(--text-dim)] truncate">{testimonial.company}</p>
@@ -95,7 +95,7 @@ export default function Testimonials() {
         {/* Verified Outcomes */}
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           <ScrollReveal delay={0} distance={26} duration={760}>
-            <div className="rounded-2xl border border-[color:var(--border)] bg-blue-50 p-6 shadow-sm">
+            <div className="rounded-2xl border border-[color:var(--border)] bg-cyan-50 p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-lg">📊</span>
                 <h3 className="text-lg font-semibold text-[color:var(--text-light)]">Verified outcomes</h3>
@@ -122,7 +122,7 @@ export default function Testimonials() {
           </ScrollReveal>
 
           <ScrollReveal delay={120} distance={26} duration={760}>
-            <div className="rounded-2xl border border-[color:var(--border)] bg-blue-50 p-6 shadow-sm">
+            <div className="rounded-2xl border border-[color:var(--border)] bg-cyan-50 p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-lg">🔗</span>
                 <h3 className="text-lg font-semibold text-[color:var(--text-light)]">References available</h3>

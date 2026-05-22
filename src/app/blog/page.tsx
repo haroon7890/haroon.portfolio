@@ -88,7 +88,7 @@ export default function BlogPage() {
           ))}
         </div>
 
-        <div className="mt-16 rounded-2xl border border-[color:var(--border)] bg-blue-50 p-8">
+        <div className="mt-16 rounded-2xl border border-[color:var(--border)] bg-cyan-50 p-8">
           <h3 className="text-lg font-semibold text-[color:var(--text-light)]">More resources</h3>
           <p className="mt-2 text-[color:var(--text-mid)]">
             Also publishing on{" "}
