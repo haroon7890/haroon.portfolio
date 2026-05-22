@@ -49,3 +49,5 @@ Or use any static hosting that supports Next.js.
 
 ---
 For questions or freelance work, contact: haroon86865@gmail.com
+
+<!-- Redeploy trigger: teal theme migration applied -->
