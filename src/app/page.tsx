@@ -126,7 +126,7 @@ export default async function Home({
                     <span className="font-mono text-[11px] tracking-[0.28em] text-[color:var(--accent)]">FULL-STACK ENGINEER — MERN · AI · 3+ YEARS</span>
                   </div>
 
-                  <h1 className="hero-name hero-reveal hero-delay-2 mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[color:var(--text-light)] leading-[1.05]">Haroon Imran <span className="text-sm text-[color:var(--accent)]">(teal-deploy-test)</span></h1>
+                  <h1 className="hero-name hero-reveal hero-delay-2 mb-4 text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[color:var(--text-light)] leading-[1.05]">Haroon Imran</h1>
                   <p className="hero-lead hero-reveal hero-delay-3 mb-4 max-w-2xl">Design-forward websites and production MERN apps with practical AI workflows — focused on measurable outcomes.</p>
 
                   <p className="body-copy hero-reveal hero-delay-4 max-w-2xl">I build end-to-end web products using Next.js, Node.js, and modern AI integrations. Deliverables include production-ready frontends, reliable REST APIs, and automation pipelines — available for freelance and full‑time opportunities.</p>
